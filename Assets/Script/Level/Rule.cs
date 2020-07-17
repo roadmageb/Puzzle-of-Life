@@ -16,17 +16,18 @@ public class Rule
         constraints = new List<Constraint>();
 
         for (int i = 0; i < 3; ++i)
+        {
             for (int j = 0; j < 3; ++j)
             {
                 condition[i, j] = Cell.NULL;
                 isReplaceable[i, j] = false;
             }
+        }
         isOutcomeReplaceable = false;
     }
     public bool SetConditionCell(Vector2Int pos, Cell type)
     {
-        if (pos.x >= 3 || pos.y >= 3 || pos.x < 0 || pos.y < 0)
-            return false;
+        if (pos.x >= 3 || pos.y >= 3 || pos.x < 0 || pos.y < 0) return false;
         condition[pos.x, pos.y] = type;
         return true;
     }
@@ -44,8 +45,7 @@ public class Rule
     }
     public bool SwitchReplaceability(Vector2Int pos)
     {
-        if (pos.x >= 3 || pos.y >= 3 || pos.x < 0 || pos.y < 0)
-            return false;
+        if (pos.x >= 3 || pos.y >= 3 || pos.x < 0 || pos.y < 0) return false;
         isReplaceable[pos.x, pos.y] = !isReplaceable[pos.x, pos.y];
         return true;
     }

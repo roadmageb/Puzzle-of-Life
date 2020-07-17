@@ -36,23 +36,23 @@ public class Level
         rules = new List<Rule>();
 
         for (int i = 0; i < size.x; ++i)
+        {
             for (int j = 0; j < size.y; ++j)
             {
                 map[i, j] = Cell.NULL;
                 isReplaceable[i, j] = false;
             }
+        }
     }
     public bool SetCell(Vector2Int pos, Cell type)
     {
-        if (pos.x >= size.x || pos.y >= size.y || pos.x < 0 || pos.y < 0)
-            return false;
+        if (pos.x >= size.x || pos.y >= size.y || pos.x < 0 || pos.y < 0) return false;
         map[pos.x, pos.y] = type;
         return true;
     }
     public bool SwitchReplaceability(Vector2Int pos)
     {
-        if (pos.x >= size.x || pos.y >= size.y || pos.x < 0 || pos.y < 0)
-            return false;
+        if (pos.x >= size.x || pos.y >= size.y || pos.x < 0 || pos.y < 0) return false;
         isReplaceable[pos.x, pos.y] = !isReplaceable[pos.x, pos.y];
         return true;
     }
@@ -63,7 +63,9 @@ public class Level
     public void RemovePalette(int index)
     {
         if (index < palette.Count)
+        {
             palette.RemoveAt(index);
+        }
     }
     public void AddRule(Rule rule)
     {
@@ -72,7 +74,9 @@ public class Level
     public void RemoveRule(int index)
     {
         if (index < rules.Count)
+        {
             rules.RemoveAt(index);
+        }
     }
     public int RuleMatchCheck(Vector2Int pos)
     {
@@ -84,8 +88,7 @@ public class Level
             bool conditionFlag = false;
             bool constraintFlag = false;
 
-            if (!(rules[k].condition[1, 1] == map[pos.x, pos.y])) // rule의 가운데 cell과 검사하는 좌표의 cell이 일치하는지 확인함
-                continue;
+            if (!(rules[k].condition[1, 1] == map[pos.x, pos.y])) continue; // rule의 가운데 cell과 검사하는 좌표의 cell이 일치하는지 확인함
 
             for (int i = 0; i < 3; ++i)
             {
