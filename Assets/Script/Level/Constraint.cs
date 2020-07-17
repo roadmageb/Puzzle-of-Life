@@ -20,4 +20,23 @@ public class Constraint
     {
         isReplaceable = !isReplaceable;
     }
+
+    public bool ConstraintMatches(int val)
+    {
+        switch(type)
+        {
+            case ConstraintType.GE:
+                return param1 <= val;
+            case ConstraintType.LE:
+                return param1 >= val;
+            case ConstraintType.EQ:
+                return param1 == val;
+            case ConstraintType.NE:
+                return param1 != val;
+            case ConstraintType.BET:
+                return param1 <= val && val <= param2;
+            default:
+                return false;
+        }
+    }
 }
