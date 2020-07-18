@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: RuleBorder
+    uniqueID: 1096643463
+    locked: 0
+  - name: Cell
+    uniqueID: 1968829
+    locked: 0

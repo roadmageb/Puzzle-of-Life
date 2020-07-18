@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,11 @@ public class LevelManager : Singleton<LevelManager>
 {
     public bool isPlaymode = false;
     public Transform mapOrigin;
+    public Transform ruleOrigin;
     public GameObject cellPrefab;
+    public GameObject rulePrefab;
     public CellController[,] cellObjectGrid;
+    public RuleController[] ruleObjectGrid;
     public Level currentLevel;
     public Cell[,] previousCells;
 
@@ -89,6 +93,20 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
+    public void RuleInstantiate()
+    {
+        float wholeRuleHeight = 0;
+        ruleObjectGrid = new RuleController[currentLevel.rules.Count];
+
+        for (int i = 0; i < currentLevel.rules.Count; ++i)
+        {
+            ruleObjectGrid[i] = Instantiate(rulePrefab, ruleOrigin).GetComponent<RuleController>();
+            ruleObjectGrid[i].RuleInstantiate(currentLevel.rules[i]);
+            ruleObjectGrid[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
+            wholeRuleHeight = ruleObjectGrid[i].ruleHeight;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,27 +126,10 @@ public class LevelManager : Singleton<LevelManager>
         currentRule.SetConditionCell(new Vector2Int(1, 1), Cell.TARGET1);
         currentRule.SetOutcome(Cell.NULL);
         currentLevel.SetCell(new Vector2Int(1, 1), Cell.CELL1);
+        currentRule.AddConstraint(ConstraintType.GE, Cell.CELL1, 1, 0);
         currentLevel.AddRule(currentRule);
         CellInstantiate();
-        /*
-        currentLevel.PrintMap();
-        currentLevel.NextState();
-        currentLevel.PrintMap();
-        currentLevel.NextState();
-        currentLevel.PrintMap();
-        currentLevel.NextState();
-        currentLevel.PrintMap();
-        currentLevel.NextState();
-        currentLevel.PrintMap();
-        currentLevel.NextState();
-        currentLevel.PrintMap();
-        currentLevel.NextState();
-        currentLevel.PrintMap();
-        currentLevel.NextState();
-        currentLevel.PrintMap();
-        currentLevel.NextState();
-        currentLevel.PrintMap();
-        */
+        RuleInstantiate();
     }
 
     // Update is called once per frame
