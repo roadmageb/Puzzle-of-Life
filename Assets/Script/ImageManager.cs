@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellManager : Singleton<CellManager>
+public class ImageManager : Singleton<ImageManager>
 {
+    public float ruleGap;
     [Serializable]
     public struct CellSpritePair
     {

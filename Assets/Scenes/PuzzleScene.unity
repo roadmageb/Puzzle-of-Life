@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 1289294203}
   - component: {fileID: 1289294202}
   m_Layer: 0
-  m_Name: CellManager
+  m_Name: ImageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b244136033ecea844b0c78a385a048ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ruleGap: 0.3
   sprites:
   - cell: 0
     sprite: {fileID: 21300000, guid: 980adf6111b212d468319ace3fee6b83, type: 3}

@@ -95,6 +95,11 @@ public class LevelManager : Singleton<LevelManager>
 
     public void RuleInstantiate()
     {
+        while (ruleOrigin.childCount > 0)
+        {
+            Destroy(ruleOrigin.GetChild(0));
+        }
+
         float wholeRuleHeight = 0;
         ruleObjectGrid = new RuleController[currentLevel.rules.Count];
 
@@ -103,7 +108,7 @@ public class LevelManager : Singleton<LevelManager>
             ruleObjectGrid[i] = Instantiate(rulePrefab, ruleOrigin).GetComponent<RuleController>();
             ruleObjectGrid[i].RuleInstantiate(currentLevel.rules[i]);
             ruleObjectGrid[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
-            wholeRuleHeight = ruleObjectGrid[i].ruleHeight;
+            wholeRuleHeight += ruleObjectGrid[i].ruleHeight + ImageManager.Inst.ruleGap;
         }
     }
 
@@ -126,7 +131,6 @@ public class LevelManager : Singleton<LevelManager>
         currentRule.SetConditionCell(new Vector2Int(1, 1), Cell.TARGET1);
         currentRule.SetOutcome(Cell.NULL);
         currentLevel.SetCell(new Vector2Int(1, 1), Cell.CELL1);
-        currentRule.AddConstraint(ConstraintType.GE, Cell.CELL1, 1, 0);
         currentLevel.AddRule(currentRule);
         CellInstantiate();
         RuleInstantiate();

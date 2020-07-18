@@ -47,3 +47,6 @@ TagManager:
   - name: Cell
     uniqueID: 1968829
     locked: 0
+  - name: Arrow
+    uniqueID: 3956602449
+    locked: 0
