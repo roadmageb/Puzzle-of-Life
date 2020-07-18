@@ -14,7 +14,7 @@ public class CellManager : Singleton<CellManager>
     public CellSpritePair[] sprites;
     public Dictionary<Cell, Sprite> cellSpriteDict;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cellSpriteDict = new Dictionary<Cell, Sprite>();
 
