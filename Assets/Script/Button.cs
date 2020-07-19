@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
+    public string go_to_scene;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class Button : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Button has been clicked(OnMouseDown).");
+        Debug.Log("Scene has been changed to " + go_to_scene);
+        SceneManager.LoadScene(go_to_scene);
     }
 }

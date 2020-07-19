@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8072128613410259592, guid: fb6d8c0a872022840b26ecd65613159e,
+        type: 3}
+      propertyPath: go_to_scene
+      value: PuzzleScene
+      objectReference: {fileID: 0}
     - target: {fileID: 8072128613410259593, guid: fb6d8c0a872022840b26ecd65613159e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -197,6 +202,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8072128613410259592, guid: fb6d8c0a872022840b26ecd65613159e,
+        type: 3}
+      propertyPath: go_to_scene
+      value: SelectScene
+      objectReference: {fileID: 0}
     - target: {fileID: 8072128613410259593, guid: fb6d8c0a872022840b26ecd65613159e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,6 +359,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8072128613410259592, guid: fb6d8c0a872022840b26ecd65613159e,
+        type: 3}
+      propertyPath: go_to_scene
+      value: PuzzleScene
+      objectReference: {fileID: 0}
     - target: {fileID: 8072128613410259593, guid: fb6d8c0a872022840b26ecd65613159e,
         type: 3}
       propertyPath: m_LocalPosition.x
