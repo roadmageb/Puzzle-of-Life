@@ -6,6 +6,7 @@ public class CellController : MonoBehaviour
 {
     public void ChangeSprite(Cell cell)
     {
-        GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellSpriteDict[cell];
+        Transform cellForeground = transform.GetChild(0);
+        cellForeground.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellSpriteDict[cell];
     }
 }

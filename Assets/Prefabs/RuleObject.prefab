@@ -53,10 +53,12 @@ MonoBehaviour:
   ruleBorders: []
   outcomeCell: {fileID: 0}
   arrow: {fileID: 5191827316422431804, guid: 051eeb78416aaee4a853f22ae30f148c, type: 3}
+  constraintCell: []
   ruleHeight: 0
   conditionOffset: {fileID: 2538504002365037476}
   arrowOffset: {fileID: 4984767043705711889}
   outcomeOffset: {fileID: 538009802960062284}
+  constraintOffset: {x: -1, y: -0.75}
 --- !u!1 &2308838555027644164
 GameObject:
   m_ObjectHideFlags: 0

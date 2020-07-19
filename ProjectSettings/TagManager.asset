@@ -44,9 +44,15 @@ TagManager:
   - name: RuleBorder
     uniqueID: 1096643463
     locked: 0
+  - name: CellBackground
+    uniqueID: 806393671
+    locked: 0
   - name: Cell
     uniqueID: 1968829
     locked: 0
   - name: Arrow
     uniqueID: 3956602449
+    locked: 0
+  - name: Text
+    uniqueID: 293042751
     locked: 0

@@ -9,10 +9,10 @@ public class LevelManager : Singleton<LevelManager>
     public bool isPlaymode = false;
     public Transform mapOrigin;
     public Transform ruleOrigin;
-    public GameObject cellPrefab;
-    public GameObject rulePrefab;
-    public CellController[,] cellObjectGrid;
-    public RuleController[] ruleObjectGrid;
+    public Transform paletteOrigin;
+    public CellController[,] cellObject;
+    public RuleController[] ruleObject;
+    public PaletteController paletteObject;
     public Level currentLevel;
     public Cell[,] previousCells;
 
@@ -65,19 +65,19 @@ public class LevelManager : Singleton<LevelManager>
 
     public void CellInstantiate()
     {
-        while (mapOrigin.childCount > 0)
+        foreach (Transform child in mapOrigin)
         {
-            Destroy(mapOrigin.GetChild(0));
+            Destroy(child.gameObject);
         }
 
-        cellObjectGrid = new CellController[currentLevel.size.x, currentLevel.size.y];
+        cellObject = new CellController[currentLevel.size.x, currentLevel.size.y];
         for (int i = 0; i < currentLevel.size.x; ++i)
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
             {
-                cellObjectGrid[i, j] = Instantiate(cellPrefab, mapOrigin).GetComponent<CellController>();
-                cellObjectGrid[i, j].transform.localPosition = new Vector2(i, -j);
-                cellObjectGrid[i, j].ChangeSprite(currentLevel.map[i, j]);
+                cellObject[i, j] = Instantiate(ImageManager.Inst.cellPrefab, mapOrigin).GetComponent<CellController>();
+                cellObject[i, j].transform.localPosition = new Vector2(i, -j);
+                cellObject[i, j].ChangeSprite(currentLevel.map[i, j]);
             }
         }
     }
@@ -88,28 +88,39 @@ public class LevelManager : Singleton<LevelManager>
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
             {
-                cellObjectGrid[i, j].ChangeSprite(currentLevel.map[i, j]);
+                cellObject[i, j].ChangeSprite(currentLevel.map[i, j]);
             }
         }
     }
 
     public void RuleInstantiate()
     {
-        while (ruleOrigin.childCount > 0)
+        foreach (Transform child in ruleOrigin)
         {
-            Destroy(ruleOrigin.GetChild(0));
+            Destroy(child.gameObject);
         }
 
         float wholeRuleHeight = 0;
-        ruleObjectGrid = new RuleController[currentLevel.rules.Count];
+        ruleObject = new RuleController[currentLevel.rules.Count];
 
         for (int i = 0; i < currentLevel.rules.Count; ++i)
         {
-            ruleObjectGrid[i] = Instantiate(rulePrefab, ruleOrigin).GetComponent<RuleController>();
-            ruleObjectGrid[i].RuleInstantiate(currentLevel.rules[i]);
-            ruleObjectGrid[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
-            wholeRuleHeight += ruleObjectGrid[i].ruleHeight + ImageManager.Inst.ruleGap;
+            ruleObject[i] = Instantiate(ImageManager.Inst.rulePrefab, ruleOrigin).GetComponent<RuleController>();
+            ruleObject[i].RuleInstantiate(currentLevel.rules[i]);
+            ruleObject[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
+            wholeRuleHeight += ruleObject[i].ruleHeight + ImageManager.Inst.ruleGap;
         }
+    }
+
+    public void PaletteInstantiate()
+    {
+        foreach (Transform child in paletteOrigin)
+        {
+            Destroy(child.gameObject);
+        }
+
+        paletteObject = Instantiate(ImageManager.Inst.palettePrefab, paletteOrigin).GetComponent<PaletteController>();
+        paletteObject.PaletteInstantiate(currentLevel.palette);
     }
 
     // Start is called before the first frame update
@@ -125,6 +136,8 @@ public class LevelManager : Singleton<LevelManager>
         currentRule = new Rule();
         currentRule.SetConditionCell(new Vector2Int(0, 1), Cell.CELL1);
         currentRule.SetOutcome(Cell.CELL1);
+        currentRule.AddConstraint(ConstraintType.NE, Cell.CELL1, 7, 0);
+        currentRule.AddConstraint(ConstraintType.BET, Cell.CELL1, 2, 5);
         currentLevel.AddRule(currentRule);
         currentRule = new Rule();
         currentRule.SetConditionCell(new Vector2Int(0, 1), Cell.CELL1);
@@ -134,6 +147,7 @@ public class LevelManager : Singleton<LevelManager>
         currentLevel.AddRule(currentRule);
         CellInstantiate();
         RuleInstantiate();
+        PaletteInstantiate();
     }
 
     // Update is called once per frame
@@ -152,6 +166,14 @@ public class LevelManager : Singleton<LevelManager>
         if (Input.GetKeyDown("f"))
         {
             PlayFrame();
+        }
+
+        if (Input.GetKeyDown("q"))
+        {
+            Debug.Log("map reset");
+            CellInstantiate();
+            RuleInstantiate();
+            PaletteInstantiate();
         }
     }
 }
