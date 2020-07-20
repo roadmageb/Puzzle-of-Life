@@ -18,7 +18,7 @@ public class PaletteController : MonoBehaviour
         {
             cells[i] = Instantiate(ImageManager.Inst.cellPrefab, transform).GetComponent<CellController>();
             cells[i].transform.localPosition = new Vector2(i, 0);
-            cells[i].ChangeSprite(palette[i].cell);
+            cells[i].CellInitialize(palette[i].cell, true, "Palette");
             cellsNum[i] = Instantiate(cellNumPrefab, cells[i].transform);
             cellsNum[i].transform.localPosition = textOffset;
             cellsNum[i].GetComponent<TextMesh>().text = palette[i].num.ToString();

@@ -56,3 +56,6 @@ TagManager:
   - name: Text
     uniqueID: 293042751
     locked: 0
+  - name: SelectedCell
+    uniqueID: 3332110397
+    locked: 0

@@ -43,14 +43,14 @@ public class RuleController : MonoBehaviour
             {
                 conditionCell[i, j] = Instantiate(ImageManager.Inst.cellPrefab, ruleBorders[0].transform).GetComponent<CellController>();
                 conditionCell[i, j].transform.localPosition = new Vector3(i, -j) + conditionOffset.localPosition;
-                conditionCell[i, j].ChangeSprite(rule.condition[i, j]);
+                conditionCell[i, j].CellInitialize(rule.condition[i, j], rule.isReplaceable[i, j], "Rule");
             }
         }
         arrow = Instantiate(arrow, ruleBorders[0].transform);
         arrow.transform.localPosition = arrowOffset.localPosition;
         outcomeCell = Instantiate(ImageManager.Inst.cellPrefab, ruleBorders[0].transform).GetComponent<CellController>();
         outcomeCell.transform.localPosition = outcomeOffset.localPosition;
-        outcomeCell.ChangeSprite(rule.outcome);
+        outcomeCell.CellInitialize(rule.outcome, rule.isOutcomeReplaceable, "Rule");
 
         ConstraintInstantiate(rule.constraints);
     }
@@ -64,7 +64,7 @@ public class RuleController : MonoBehaviour
             {
                 constraintCell[i] = Instantiate(ImageManager.Inst.cellPrefab, ruleBorders[i + 1].transform).GetComponent<CellController>();
                 constraintCell[i].transform.localPosition = new Vector2(0, 0) + constraintOffset;
-                constraintCell[i].ChangeSprite(constraints[i].target);
+                constraintCell[i].CellInitialize(constraints[i].target, constraints[i].isReplaceable, "Rule");
                 GameObject tmp;
                 tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
                 tmp.transform.localPosition = new Vector2(1, 0) + constraintOffset;
@@ -84,7 +84,7 @@ public class RuleController : MonoBehaviour
                 tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.symbolSpriteDict[ConstraintType.LE];
                 constraintCell[i] = Instantiate(ImageManager.Inst.cellPrefab, ruleBorders[i + 1].transform).GetComponent<CellController>();
                 constraintCell[i].transform.localPosition = new Vector2(1, 0) + constraintOffset;
-                constraintCell[i].ChangeSprite(constraints[i].target);
+                constraintCell[i].CellInitialize(constraints[i].target, constraints[i].isReplaceable, "Rule");
                 tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
                 tmp.transform.localPosition = new Vector2(2, 0) + constraintOffset;
                 tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.symbolSpriteDict[ConstraintType.LE];

@@ -7,6 +7,7 @@ using UnityEngine;
 public class LevelManager : Singleton<LevelManager>
 {
     public bool isPlaymode = false;
+    public CellController cellUnderCursor { get; set; }
     public Transform mapOrigin;
     public Transform ruleOrigin;
     public Transform paletteOrigin;
@@ -77,7 +78,7 @@ public class LevelManager : Singleton<LevelManager>
             {
                 cellObject[i, j] = Instantiate(ImageManager.Inst.cellPrefab, mapOrigin).GetComponent<CellController>();
                 cellObject[i, j].transform.localPosition = new Vector2(i, -j);
-                cellObject[i, j].ChangeSprite(currentLevel.map[i, j]);
+                cellObject[i, j].CellInitialize(currentLevel.map[i, j], currentLevel.isReplaceable[i, j], "Map");
             }
         }
     }
@@ -143,6 +144,7 @@ public class LevelManager : Singleton<LevelManager>
         currentRule.SetConditionCell(new Vector2Int(0, 1), Cell.CELL1);
         currentRule.SetConditionCell(new Vector2Int(1, 1), Cell.TARGET1);
         currentRule.SetOutcome(Cell.NULL);
+        currentLevel.SetCell(new Vector2Int(0, 1), Cell.CELL1);
         currentLevel.SetCell(new Vector2Int(1, 1), Cell.CELL1);
         currentLevel.AddRule(currentRule);
         CellInstantiate();
