@@ -118,6 +118,11 @@ public class CellController : MonoBehaviour
         {
             if (string.Equals(parentName, "Palette")) // palette -> any로의 이동
             {
+                if (LevelManager.Inst.cellUnderCursor.cell != Cell.NULL) // 놓으려는 cell이 비어있지 않다면
+                {
+                    SetCellNumOnPalette(havingCellNum + 1);
+                    return;
+                }
                 if (havingCellNum == 0)
                 {
                     cellForeground.GetComponent<SpriteRenderer>().color = Color.grey; // sprite를 어둡게 함
