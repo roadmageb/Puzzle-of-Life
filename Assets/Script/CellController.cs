@@ -11,7 +11,6 @@ public class CellController : MonoBehaviour
     public int havingCellNum { get; set; }
     public bool invalidPaletteMove;
     public string parentName;
-    public Vector3 myOrigin, parentOrigin;
     public Cell cell;
     public bool replaceability;
     public void CellInitialize(Cell cell, bool replaceability, string parentName)
@@ -21,8 +20,6 @@ public class CellController : MonoBehaviour
         cellSelected = transform.GetChild(2);
         ChangeSpriteByCell(cell);
         ShowReplaceability(replaceability);
-        myOrigin = transform.localPosition;
-        parentOrigin = transform.parent.position;
         this.parentName = parentName;
         invalidPaletteMove = false;
     }
@@ -43,10 +40,7 @@ public class CellController : MonoBehaviour
     private void OnMouseEnter()
     {
         ShowSelection(true);
-        if (replaceability)
-        {
-            LevelManager.Inst.cellUnderCursor = this;
-        }
+        LevelManager.Inst.cellUnderCursor = this;
     }
     private void OnMouseExit()
     {
@@ -96,7 +90,7 @@ public class CellController : MonoBehaviour
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "SelectedCell";
 
         Vector3 tempVec = Input.mousePosition;
-        cellForeground.localPosition = (Vector2)(Camera.main.ScreenToWorldPoint(tempVec) - parentOrigin - myOrigin);
+        cellForeground.position = (Vector2)(Camera.main.ScreenToWorldPoint(tempVec));
 
     }
     private void OnMouseUp()
@@ -161,6 +155,6 @@ public class CellController : MonoBehaviour
         }
 
         Vector3 tempVec = Input.mousePosition;
-        cellForeground.localPosition = (Vector2)(Camera.main.ScreenToWorldPoint(tempVec) - parentOrigin - myOrigin);
+        cellForeground.position = (Vector2)(Camera.main.ScreenToWorldPoint(tempVec));
     }
 }

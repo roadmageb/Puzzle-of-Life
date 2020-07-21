@@ -11,7 +11,7 @@ using UnityEngine.Jobs;
 
 public class CellNumPair
 {
-    public Cell cell;
+    public Cell cell { get; set; }
     public int num;
     public CellNumPair(Cell cell, int num)
     {
@@ -191,21 +191,5 @@ public class Level
                 map[i, j] = tempMap[i, j];
             }
         }
-    }
-
-    public void PrintMap()
-    {
-        string str;
-        Debug.Log("---");
-        for (int j = 0; j < size.y; ++j)
-        {
-            str = "";
-            for (int i = 0; i < size.x; ++i)
-            {
-                str += ((int)map[i, j]).ToString() + " ";
-            }
-            Debug.Log(str);
-        }
-        Debug.Log("---");
     }
 }

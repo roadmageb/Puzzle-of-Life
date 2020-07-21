@@ -123,10 +123,31 @@ public class LevelManager : Singleton<LevelManager>
         paletteObject = Instantiate(ImageManager.Inst.palettePrefab, paletteOrigin).GetComponent<PaletteController>();
         paletteObject.PaletteInstantiate(currentLevel.palette);
     }
+    public void MapScale(int criteria)
+    {
+        int maxValue = Math.Max(currentLevel.size.x, currentLevel.size.y);
+        if (maxValue > criteria)
+        {
+            mapOrigin.localScale = new Vector3((float)criteria / maxValue, (float)criteria / maxValue, 1);
+        }
+        else
+        {
+            mapOrigin.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    public void MapInstantiate()
+    {
+        CellInstantiate();
+        RuleInstantiate();
+        PaletteInstantiate();
+        MapScale(8);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        /*
         Rule currentRule;
         currentLevel = new Level(new Vector2Int(6, 3));
         currentLevel.SetCell(new Vector2Int(4, 1), Cell.TARGET1);
@@ -151,6 +172,7 @@ public class LevelManager : Singleton<LevelManager>
         CellInstantiate();
         RuleInstantiate();
         PaletteInstantiate();
+        */
     }
 
     // Update is called once per frame
