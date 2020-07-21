@@ -89,7 +89,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
             {
-                cellObject[i, j].ChangeSprite(currentLevel.map[i, j]);
+                cellObject[i, j].ChangeSpriteByCell(currentLevel.map[i, j]);
             }
         }
     }
@@ -134,6 +134,7 @@ public class LevelManager : Singleton<LevelManager>
         currentLevel.SwitchReplaceability(new Vector2Int(1, 1));
         currentLevel.SwitchReplaceability(new Vector2Int(1, 2));
         currentLevel.AddPalette(Cell.CELL1, 1);
+        currentLevel.AddPalette(Cell.TARGET1, 2);
         currentRule = new Rule();
         currentRule.SetConditionCell(new Vector2Int(0, 1), Cell.CELL1);
         currentRule.SetOutcome(Cell.CELL1);
