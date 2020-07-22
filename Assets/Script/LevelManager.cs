@@ -16,6 +16,7 @@ public class LevelManager : Singleton<LevelManager>
     public PaletteController paletteObject;
     public Level currentLevel;
     public Cell[,] previousCells;
+    public float wholeRuleHeight;
 
     public void PlayLevel()
     {
@@ -101,7 +102,7 @@ public class LevelManager : Singleton<LevelManager>
             Destroy(child.gameObject);
         }
 
-        float wholeRuleHeight = 0;
+        wholeRuleHeight = 0;
         ruleObject = new RuleController[currentLevel.rules.Count];
 
         for (int i = 0; i < currentLevel.rules.Count; ++i)
@@ -111,6 +112,7 @@ public class LevelManager : Singleton<LevelManager>
             ruleObject[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
             wholeRuleHeight += ruleObject[i].ruleHeight + ImageManager.Inst.ruleGap;
         }
+        wholeRuleHeight -= ImageManager.Inst.ruleGap;
     }
 
     public void PaletteInstantiate()
@@ -147,7 +149,6 @@ public class LevelManager : Singleton<LevelManager>
     // Start is called before the first frame update
     void Start()
     {
-        /*
         Rule currentRule;
         currentLevel = new Level(new Vector2Int(6, 3));
         currentLevel.SetCell(new Vector2Int(4, 1), Cell.TARGET1);
@@ -172,7 +173,6 @@ public class LevelManager : Singleton<LevelManager>
         CellInstantiate();
         RuleInstantiate();
         PaletteInstantiate();
-        */
     }
 
     // Update is called once per frame

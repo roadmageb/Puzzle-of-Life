@@ -7,6 +7,7 @@ public class ImageManager : Singleton<ImageManager>
 {
     public float ruleGap;
     public GameObject cellPrefab;
+    public GameObject cellPrefabInRule;
     public GameObject rulePrefab;
     public GameObject palettePrefab;
     public GameObject symbolPrefab;
