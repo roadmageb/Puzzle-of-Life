@@ -21,6 +21,7 @@ public class LevelManager : Singleton<LevelManager>
     public void PlayLevel()
     {
         if (isPlaymode) return;
+        Debug.Log("playlevel called");
         isPlaymode = true;
         previousCells = new Cell[currentLevel.size.x, currentLevel.size.y];
         for (int i = 0; i < currentLevel.size.x; ++i)
@@ -61,6 +62,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             currentLevel.NextState();
             CellUpdate();
+            Debug.Log("coroutine called");
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -180,6 +182,7 @@ public class LevelManager : Singleton<LevelManager>
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown("s"))
         {
             PlayLevel();
@@ -202,5 +205,6 @@ public class LevelManager : Singleton<LevelManager>
             RuleInstantiate();
             PaletteInstantiate();
         }
+        */
     }
 }

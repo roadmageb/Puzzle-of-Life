@@ -82,79 +82,75 @@ public class Level
     public int RuleMatchCheck(Vector2Int pos)
     {
         int matchRuleNo = -1;
-        Dictionary<Cell, int> check = new Dictionary<Cell, int>();
         for (int k = 0; k < rules.Count; ++k)
         {
-            check.Clear();
-            bool conditionFlag = false;
+            Dictionary<Cell, int> check = new Dictionary<Cell, int>();
+            Dictionary<Cell, bool> checkBool = new Dictionary<Cell, bool>();
+            Dictionary<Cell, int> count = new Dictionary<Cell, int>();
             bool constraintFlag = false;
 
-            if (!(rules[k].condition[1, 1] == map[pos.x, pos.y])) continue; // rule의 가운데 cell과 검사하는 좌표의 cell이 일치하는지 확인함
+            if (rules[k].condition[1, 1] == Cell.ANY && map[pos.x, pos.y] == Cell.NULL) continue;
+            else if (rules[k].condition[1, 1] != map[pos.x, pos.y]) continue;
 
             for (int i = 0; i < 3; ++i)
             {
                 for (int j = 0; j < 3; ++j)
                 {
-                    // map에서 x나 y의 값이 0 미만이나 최대 범위를 초과해서 map 밖으로 나갈 때는 rules[k]의 i, j이 Cell.NULL인지만 확인함
+                    if ((i == 1 && j == 1) || rules[k].condition[i, j] == Cell.NULL) continue;
+
+                    // check, checkBool, count dict 초기화
+                    if (!check.ContainsKey(rules[k].condition[i, j]))
+                    {
+                        check.Add(rules[k].condition[i, j], 0);
+                        checkBool.Add(rules[k].condition[i, j], false);
+                        count.Add(rules[k].condition[i, j], 0);
+                    }
+                    count[rules[k].condition[i, j]]++;
+
                     if (pos.x + i - 1 < 0 || pos.y + j - 1 < 0 || pos.x + i - 1 >= size.x || pos.y + j - 1 >= size.y)
                     {
-                        if (rules[k].condition[i, j] == Cell.NULL)
-                        {
-                            if (!check.ContainsKey(Cell.NULL))
-                                check.Add(Cell.NULL, 1);
-                            else
-                                check[Cell.NULL]++;
-                        }
-                        // 일치하지 않는다면 반복문을 탈출함
-                        else
-                        {
-                            conditionFlag = true;
-                            break;
-                        }
+                        continue;
                     }
                     // 정상적인 좌표 값이라면 map의 좌표와 rules[k]이 일치하는지 확인함
-                    else if (map[pos.x + i - 1, pos.y + j - 1] == rules[k].condition[i, j])
+                    else if ((map[pos.x + i - 1, pos.y + j - 1] == rules[k].condition[i, j])
+                        || (rules[k].condition[i, j] == Cell.ANY && map[pos.x + i - 1, pos.y + j - 1] != Cell.NULL)
+                        || (rules[k].condition[i, j] == Cell.EMPTY && map[pos.x + i - 1, pos.y + j - 1] == Cell.NULL))
                     {
-                        if (!check.ContainsKey(rules[k].condition[i, j]))
-                            check.Add(rules[k].condition[i, j], 1);
-                        else
-                            check[rules[k].condition[i, j]]++;
-                    }
-                    // 일치하지 않는다면 rules[k]에서 조건이 없는지(Cell.NULL인지) 확인함
-                    else if (rules[k].condition[i, j] == Cell.NULL)
-                    {
-                        if (!check.ContainsKey(Cell.NULL))
-                            check.Add(Cell.NULL, 1);
-                        else
-                            check[Cell.NULL]++;
-                    }
-                    // 일치하지 않는다면 반복문을 탈출함
-                    else
-                    {
-                        conditionFlag = true;
-                        break;
+                        check[rules[k].condition[i, j]]++;
                     }
                 }
-                if (conditionFlag) break;
             }
-            if (conditionFlag) continue; // condition이 일치하지 않았을 때
-            else // condition이 일치했을 때
+
+            for (int i = 0; i < rules[k].constraints.Count; ++i) // constraint도 일치하는지 확인함
             {
-                for (int i = 0; i < rules[k].constraints.Count; ++i) // constraint도 일치하는지 확인함
+                int val = check[rules[k].constraints[i].target];
+                Debug.Log(val);
+                if (rules[k].constraints[i].ConstraintMatches(val))
                 {
-                    int val = check[rules[k].constraints[i].target];
-                    if (!rules[k].constraints[i].ConstraintMatches(val)) // constraint가 일치하지 않았을 때
-                    {
-                        constraintFlag = true;
-                        break;
-                    } 
+                    checkBool[rules[k].constraints[i].target] = true;
                 }
-                if (constraintFlag) continue; // constraint가 일치하지 않았을 때
-                else // 최종 일치
+                else
                 {
-                    matchRuleNo = k;
+                    constraintFlag = true;
                     break;
                 }
+            }
+
+            if (constraintFlag) continue;
+
+            foreach (KeyValuePair<Cell, bool> items in checkBool)
+            {
+                if (!checkBool[items.Key])
+                {
+                    if (check[items.Key] != count[items.Key]) constraintFlag = true;
+                }
+            }
+
+            if (constraintFlag) continue;
+            else
+            {
+                matchRuleNo = k;
+                break;
             }
         }
         return matchRuleNo; // 해당하는 rule이 없으면 -1을, 있으면 해당하는 rule의 번호를 반환

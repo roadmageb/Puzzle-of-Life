@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ using UnityEngine.UI;
 public class LevelEditor : MonoBehaviour
 {
     public InputField[] sizeInput, constraintInput;
+    public InputField stageName;
     public Dropdown cellPalette, constraintType;
     public Toggle constraintReplaceability;
     public Cell selectedCell;
@@ -111,13 +113,24 @@ public class LevelEditor : MonoBehaviour
     }
     public void LoadLevelIntoJson()
     {
-
+        try
+        {
+            string str = File.ReadAllText(Application.dataPath + "/Resources/" + stageName.text + ".json");
+            Level level = JsonConvert.DeserializeObject<Level>(str);
+            LevelManager.Inst.currentLevel = level;
+        }
+        catch (FileNotFoundException e)
+        {
+            Debug.Log(e);
+            return;
+        }
+        LevelManager.Inst.MapInstantiate();
+        Debug.Log("Load complete.");
     }
     public void SaveLevelIntoJson()
     {
-        //LevelForJson levelForJson = new LevelForJson(LevelManager.Inst.currentLevel);
         string level = JsonConvert.SerializeObject(LevelManager.Inst.currentLevel);
-        System.IO.File.WriteAllText(Application.dataPath + "/Resources/NewLevel.json", level);
+        File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", level);
         Debug.Log("Save complete.");
     }
     public Vector2Int GetCoordinateInMap()
