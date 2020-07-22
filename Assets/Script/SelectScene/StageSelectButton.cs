@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class StageSelectButton : MonoBehaviour
 {
-    public int selected_stage;
+    public int stage_to_go;
 
     void OnMouseDown()
     {
-        StageManager.Inst.StageSelected(selected_stage);
+        StageManager.Inst.StageSelected(stage_to_go);
     }
 }

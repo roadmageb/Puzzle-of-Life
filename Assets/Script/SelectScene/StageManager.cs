@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
@@ -13,39 +14,52 @@ public class StageManager : Singleton<StageManager>
     public GameObject prefLevelSelectButton;
     public GameObject prefBackSelectButton;
 
+    int selected_stage;
+    int selected_level;
+    List<GameObject> LevelSelectScreen_LevelSelectButton_List;
+
     public void Start()
     {
         for (int i = 0; i < stage_count; i++)
         {
             GameObject created_instance = Instantiate(prefStageSelectButton, objStageSelectScreen.transform);
             created_instance.GetComponent<Transform>().position = new Vector2(-5 + (i % 3) * 5, -2.5f - (i / 3));
-            created_instance.GetComponent<StageSelectButton>().selected_stage = i + 1;
+            created_instance.GetComponent<StageSelectButton>().stage_to_go = i + 1;
         }
     }
 
     public void StageSelected(int n)
     {
         objStageSelectScreen.SetActive(false);
-        setLevelSelectScreen(n);
+        selected_stage = n;
+        setLevelSelectScreen();
     }
 
     public void BackSelected()
     {
-        objLevelSelectScreen.SetActive(false);
+        closeLevelSelctScreen();
         objStageSelectScreen.SetActive(true);
     }
 
-    void setLevelSelectScreen(int n)
+    void setLevelSelectScreen()
     {
         objLevelSelectScreen.SetActive(true);
-        for (int i = 0; i < level_count[n - 1]; i++)
+        LevelSelectScreen_LevelSelectButton_List = new List<GameObject>();
+        for (int i = 0; i < level_count[selected_stage - 1]; i++)
         {
             GameObject created_instance = Instantiate(prefLevelSelectButton, objLevelSelectScreen.transform);
             created_instance.GetComponent<Transform>().position = new Vector2(-6 + (i % 5) * 3, 3 - (i / 5));
-            created_instance.GetComponent<LevelSelectButton>().selected_level = i + 1;
-
-            GameObject created_instance_back_button = Instantiate(prefBackSelectButton, objLevelSelectScreen.transform);
-            created_instance_back_button.GetComponent<Transform>().position = new Vector2(0, -4);
+            created_instance.GetComponent<LevelSelectButton>().level_to_go = i + 1;
+            LevelSelectScreen_LevelSelectButton_List.Add(created_instance);
         }
+    }
+
+    void closeLevelSelctScreen()
+    {
+        for (int i = 0; i < level_count[selected_stage - 1]; i++)
+        {
+            Destroy(LevelSelectScreen_LevelSelectButton_List[i].gameObject);
+        }
+        objLevelSelectScreen.SetActive(false);
     }
 }
