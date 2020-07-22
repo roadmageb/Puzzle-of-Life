@@ -52,6 +52,12 @@ public class LevelEditor : MonoBehaviour
         }
         LevelManager.Inst.MapInstantiate();
     }
+    public void DeletePaletteCell()
+    {
+        if (LevelManager.Inst.currentLevel.palette.Count - 1 < 0) return;
+        LevelManager.Inst.currentLevel.RemovePalette(LevelManager.Inst.currentLevel.palette.Count - 1);
+        LevelManager.Inst.MapInstantiate();
+    }
     public void ChangeSelectedCell()
     {
         selectedCell = (Cell)System.Enum.Parse(typeof(Cell), cellPalette.options[cellPalette.value].text);
@@ -75,6 +81,12 @@ public class LevelEditor : MonoBehaviour
         LevelManager.Inst.currentLevel.AddRule(rule);
         LevelManager.Inst.MapInstantiate();
     }
+    public void DeleteRule()
+    {
+        if (LevelManager.Inst.currentLevel.rules.Count - 1 < 0) return;
+        LevelManager.Inst.currentLevel.RemoveRule(LevelManager.Inst.currentLevel.rules.Count - 1);
+        LevelManager.Inst.MapInstantiate();
+    }
     public void AddConstraint()
     {
         Constraint constraint;
@@ -88,6 +100,13 @@ public class LevelEditor : MonoBehaviour
         }
         constraint.SetReplaceability(constraintReplaceability.isOn);
         LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].AddConstraint(constraint);
+        LevelManager.Inst.MapInstantiate();
+    }
+    public void DeleteConstraint()
+    {
+        if (LevelManager.Inst.currentLevel.rules.Count - 1 < 0 || LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].constraints.Count - 1 < 0) return;
+        LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1]
+            .RemoveConstraint(LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].constraints.Count - 1);
         LevelManager.Inst.MapInstantiate();
     }
     public void LoadLevelIntoJson()

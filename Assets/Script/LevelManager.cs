@@ -143,7 +143,7 @@ public class LevelManager : Singleton<LevelManager>
         CellInstantiate();
         RuleInstantiate();
         PaletteInstantiate();
-        MapScale(6);
+        MapScale(5);
     }
 
     // Start is called before the first frame update
