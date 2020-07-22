@@ -20,6 +20,7 @@ public class RuleScroller : MonoBehaviour
     }
     private void OnMouseDrag()
     {
+        if (ruleMaxY <= ruleMinY) return;
         Vector2 currentMouseCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (rule.position.y - (mouseCoord.y - currentMouseCoord.y) < ruleMinY)
         {

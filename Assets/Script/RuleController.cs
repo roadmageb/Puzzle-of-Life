@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RuleController : MonoBehaviour
 {
-    // 작성중
     public GameObject[] rulePrefab;
     public GameObject[] ruleBorders;
     public CellController[,] conditionCell;

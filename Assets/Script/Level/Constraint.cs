@@ -16,9 +16,9 @@ public class Constraint
         this.param2 = param2;
         isReplaceable = false;
     }
-    public void SwitchReplaceability()
+    public void SetReplaceability(bool isReplaceable)
     {
-        isReplaceable = !isReplaceable;
+        this.isReplaceable = isReplaceable;
     }
 
     public bool ConstraintMatches(int val)

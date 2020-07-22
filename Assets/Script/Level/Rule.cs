@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Rule
 {
     public Cell[,] condition;
@@ -38,6 +40,10 @@ public class Rule
     public void AddConstraint(ConstraintType type, Cell target, int param1, int param2)
     {
         constraints.Add(new Constraint(type, target, param1, param2));
+    }
+    public void AddConstraint(Constraint constraint)
+    {
+        constraints.Add(constraint);
     }
     public void RemoveConstraint(int index)
     {

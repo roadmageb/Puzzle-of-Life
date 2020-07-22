@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Jobs;
 
+[Serializable]
 public class CellNumPair
 {
     public Cell cell { get; set; }
