@@ -8,6 +8,7 @@ public class ImageManager : Singleton<ImageManager>
     public float ruleGap;
     public GameObject cellPrefab;
     public GameObject cellPrefabInRule;
+    public GameObject cellBorderPrefab;
     public GameObject rulePrefab;
     public GameObject palettePrefab;
     public GameObject symbolPrefab;
@@ -28,6 +29,7 @@ public class ImageManager : Singleton<ImageManager>
     public SymbolSpritePair[] symbolSprites;
     public Dictionary<ConstraintType, Sprite> symbolSpriteDict;
     public Sprite[] numberSprites;
+    public Sprite[] cellBorderSprites;
     // Start is called before the first frame update
     void Awake()
     {

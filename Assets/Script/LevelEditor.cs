@@ -240,7 +240,7 @@ public class LevelEditor : MonoBehaviour
                         }
                     }
                 }
-                LevelManager.Inst.MapInstantiate();
+                //LevelManager.Inst.MapInstantiate();
             }
         }
 }

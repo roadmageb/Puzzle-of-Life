@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 806393671
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3056916703824530622, guid: bb1c9e83e95638642bb5e9bc5302f946,
+  m_Sprite: {fileID: 7742693149587739665, guid: 2401fae4d8e00b04daa241bcda2b7641,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,6 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91da220cf70222147998125155b16aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellForeground: {fileID: 0}
+  cellReplaceable: {fileID: 0}
+  cellSelected: {fileID: 0}
+  cellPalette: {fileID: 0}
+  invalidPaletteMove: 0
+  parentName: 
+  cell: 0
+  replaceability: 0
 --- !u!61 &5540021833822683174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -277,7 +285,7 @@ SpriteRenderer:
   m_SortingLayerID: 1968829
   m_SortingLayer: 3
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1271053110039498253, guid: bb1c9e83e95638642bb5e9bc5302f946,
+  m_Sprite: {fileID: -7741418070336246057, guid: 2401fae4d8e00b04daa241bcda2b7641,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -359,7 +367,7 @@ SpriteRenderer:
   m_SortingLayerID: 1968829
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8945147480430892299, guid: bb1c9e83e95638642bb5e9bc5302f946,
+  m_Sprite: {fileID: 9000733862417047202, guid: 2401fae4d8e00b04daa241bcda2b7641,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

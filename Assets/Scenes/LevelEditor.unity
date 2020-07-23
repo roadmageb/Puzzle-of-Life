@@ -4470,6 +4470,8 @@ MonoBehaviour:
     type: 3}
   cellPrefabInRule: {fileID: 4218622536935842221, guid: adb547173dd83a748860619f42e073ac,
     type: 3}
+  cellBorderPrefab: {fileID: 4754780052482861629, guid: 12afa0fb6b6aa114384a9f2e1afea9be,
+    type: 3}
   rulePrefab: {fileID: 943466755731619821, guid: 6403115c54f72cf4eae292ff0a46e740,
     type: 3}
   palettePrefab: {fileID: 6632063439822609789, guid: 9d10e963481949244b8a8808c10e0673,
@@ -4484,10 +4486,9 @@ MonoBehaviour:
     sprite: {fileID: -7884619784041808936, guid: 67addd64b146a0b4d9bf27d37fec1258,
       type: 3}
   - cell: 3
-    sprite: {fileID: -8285534535350406123, guid: 67addd64b146a0b4d9bf27d37fec1258,
-      type: 3}
+    sprite: {fileID: 292714194057516317, guid: 9f91bba708991b4439b42fec81f12973, type: 3}
   - cell: 6
-    sprite: {fileID: 6858873082803174782, guid: 67addd64b146a0b4d9bf27d37fec1258,
+    sprite: {fileID: -585920486215080950, guid: 9f91bba708991b4439b42fec81f12973,
       type: 3}
   symbolSprites:
   - symbol: 0
@@ -4512,6 +4513,15 @@ MonoBehaviour:
   - {fileID: 5323434411118445789, guid: dc82c935da53e4c4a9381629b0a420f4, type: 3}
   - {fileID: 2477988945880566711, guid: dc82c935da53e4c4a9381629b0a420f4, type: 3}
   - {fileID: 2197721149573187775, guid: dc82c935da53e4c4a9381629b0a420f4, type: 3}
+  cellBorderSprites:
+  - {fileID: -8676323922263802645, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
+  - {fileID: 241772265871317990, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
+  - {fileID: -3064458530872026849, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
+  - {fileID: -6482075590488858781, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
+  - {fileID: 1022403795611696438, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
+  - {fileID: 8741309270930122531, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
+  - {fileID: -8852984708619320722, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
+  - {fileID: 8557575003254276168, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
 --- !u!4 &1289294203
 Transform:
   m_ObjectHideFlags: 0

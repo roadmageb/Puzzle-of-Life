@@ -12,6 +12,7 @@ public class LevelManager : Singleton<LevelManager>
     public Transform ruleOrigin;
     public Transform paletteOrigin;
     public CellController[,] cellObject;
+    public Transform[][] cellBorderObject;
     public RuleController[] ruleObject;
     public PaletteController paletteObject;
     public Level currentLevel;
@@ -80,10 +81,45 @@ public class LevelManager : Singleton<LevelManager>
             for (int j = 0; j < currentLevel.size.y; ++j)
             {
                 cellObject[i, j] = Instantiate(ImageManager.Inst.cellPrefab, mapOrigin).GetComponent<CellController>();
-                cellObject[i, j].transform.localPosition = new Vector2(i, -j);
+                cellObject[i, j].transform.localPosition = new Vector2(i + 1, -(j + 1));
                 cellObject[i, j].CellInitialize(currentLevel.map[i, j], currentLevel.isReplaceable[i, j], "Map");
             }
         }
+
+        cellBorderObject = new Transform[currentLevel.size.x + 2][];
+        for (int i = 0; i < currentLevel.size.x + 2; ++i)
+        {
+            if (i == 0 || i == currentLevel.size.x + 1)
+            {
+                cellBorderObject[i] = new Transform[currentLevel.size.y + 2];
+                for (int j = 0; j < currentLevel.size.y + 2; ++j)
+                {
+                    cellBorderObject[i][j] = Instantiate(ImageManager.Inst.cellBorderPrefab, mapOrigin).GetComponent<Transform>();
+                    cellBorderObject[i][j].localPosition = new Vector2(i, -j);
+                }
+            }
+            else
+            {
+                cellBorderObject[i] = new Transform[2];
+                cellBorderObject[i][0] = Instantiate(ImageManager.Inst.cellBorderPrefab, mapOrigin).GetComponent<Transform>();
+                cellBorderObject[i][0].localPosition = new Vector2(i, 0);
+                cellBorderObject[i][0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[1]; // Top
+                cellBorderObject[i][1] = Instantiate(ImageManager.Inst.cellBorderPrefab, mapOrigin).GetComponent<Transform>();
+                cellBorderObject[i][1].localPosition = new Vector2(i, -(currentLevel.size.y + 1));
+                cellBorderObject[i][1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[6]; // Bottom
+            }
+        }
+
+        for (int i = 1; i < currentLevel.size.y + 1; ++i)
+        {
+            cellBorderObject[0][i].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[3]; // Left
+            cellBorderObject[currentLevel.size.x + 1][i].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[4]; // Right
+        }
+
+        cellBorderObject[0][0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[0]; // Top-Left
+        cellBorderObject[currentLevel.size.x + 1][0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[2]; // Top-Right
+        cellBorderObject[0][currentLevel.size.y + 1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[5]; // Bottom-Left
+        cellBorderObject[currentLevel.size.x + 1][currentLevel.size.y + 1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[7]; // Bottom-Right
     }
 
     public void CellUpdate()
