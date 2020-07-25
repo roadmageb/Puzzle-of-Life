@@ -12,7 +12,7 @@ public class LevelManager : Singleton<LevelManager>
     public Transform ruleOrigin;
     public Transform paletteOrigin;
     public CellController[,] cellObject;
-    public Transform[][] cellBorderObject;
+    public Transform[,] mapBackgroundObject;
     public RuleController[] ruleObject;
     public PaletteController paletteObject;
     public Level currentLevel;
@@ -86,40 +86,36 @@ public class LevelManager : Singleton<LevelManager>
             }
         }
 
-        cellBorderObject = new Transform[currentLevel.size.x + 2][];
+        mapBackgroundObject = new Transform[currentLevel.size.x + 2, currentLevel.size.y + 2];
         for (int i = 0; i < currentLevel.size.x + 2; ++i)
         {
-            if (i == 0 || i == currentLevel.size.x + 1)
+            for (int j = 0; j < currentLevel.size.y + 2; ++j)
             {
-                cellBorderObject[i] = new Transform[currentLevel.size.y + 2];
-                for (int j = 0; j < currentLevel.size.y + 2; ++j)
-                {
-                    cellBorderObject[i][j] = Instantiate(ImageManager.Inst.cellBorderPrefab, mapOrigin).GetComponent<Transform>();
-                    cellBorderObject[i][j].localPosition = new Vector2(i, -j);
-                }
-            }
-            else
-            {
-                cellBorderObject[i] = new Transform[2];
-                cellBorderObject[i][0] = Instantiate(ImageManager.Inst.cellBorderPrefab, mapOrigin).GetComponent<Transform>();
-                cellBorderObject[i][0].localPosition = new Vector2(i, 0);
-                cellBorderObject[i][0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[1]; // Top
-                cellBorderObject[i][1] = Instantiate(ImageManager.Inst.cellBorderPrefab, mapOrigin).GetComponent<Transform>();
-                cellBorderObject[i][1].localPosition = new Vector2(i, -(currentLevel.size.y + 1));
-                cellBorderObject[i][1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[6]; // Bottom
+                mapBackgroundObject[i, j] = Instantiate(ImageManager.Inst.mapBackgroundPrefab, mapOrigin).GetComponent<Transform>();
+                mapBackgroundObject[i, j].localPosition = new Vector2(i, -j);
             }
         }
-
-        for (int i = 1; i < currentLevel.size.y + 1; ++i)
+        for (int i = 1; i < currentLevel.size.x + 1; ++i)
         {
-            cellBorderObject[0][i].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[3]; // Left
-            cellBorderObject[currentLevel.size.x + 1][i].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[4]; // Right
+            for (int j = 1; j < currentLevel.size.y + 1; ++j)
+            {
+                mapBackgroundObject[i, j].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[4];
+            }
         }
-
-        cellBorderObject[0][0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[0]; // Top-Left
-        cellBorderObject[currentLevel.size.x + 1][0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[2]; // Top-Right
-        cellBorderObject[0][currentLevel.size.y + 1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[5]; // Bottom-Left
-        cellBorderObject[currentLevel.size.x + 1][currentLevel.size.y + 1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellBorderSprites[7]; // Bottom-Right
+        for (int i = 1; i < currentLevel.size.x + 1; ++i)
+        {
+            mapBackgroundObject[i, 0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[1]; // Top
+            mapBackgroundObject[i, currentLevel.size.y + 1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[7]; // Bottom
+        }
+        for (int j = 1; j < currentLevel.size.y + 1; ++j)
+        {
+            mapBackgroundObject[0, j].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[3]; // Left
+            mapBackgroundObject[currentLevel.size.x + 1, j].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[5]; // Right
+        }
+        mapBackgroundObject[0, 0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[0]; // Top-Left
+        mapBackgroundObject[currentLevel.size.x + 1, 0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[2]; // Top-Right
+        mapBackgroundObject[0, currentLevel.size.y + 1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[6]; // Bottom-Left
+        mapBackgroundObject[currentLevel.size.x + 1, currentLevel.size.y + 1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[8]; // Bottom-Right
     }
 
     public void CellUpdate()

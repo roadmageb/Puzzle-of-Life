@@ -44,6 +44,9 @@ TagManager:
   - name: RuleBorder
     uniqueID: 1096643463
     locked: 0
+  - name: MapBackground
+    uniqueID: 1299226755
+    locked: 0
   - name: CellBackground
     uniqueID: 806393671
     locked: 0

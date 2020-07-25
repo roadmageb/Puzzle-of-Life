@@ -6,13 +6,8 @@ using UnityEngine;
 public class ImageManager : Singleton<ImageManager>
 {
     public float ruleGap;
-    public GameObject cellPrefab;
-    public GameObject cellPrefabInRule;
-    public GameObject cellPrefabInPalette;
-    public GameObject cellBorderPrefab;
-    public GameObject rulePrefab;
-    public GameObject palettePrefab;
-    public GameObject symbolPrefab;
+    public GameObject cellPrefab, cellPrefabInRule, cellPrefabInRuleIO, cellPrefabInPalette;
+    public GameObject mapBackgroundPrefab, rulePrefab, palettePrefab, symbolPrefab;
     [Serializable]
     public struct CellSpritePair
     {
@@ -30,7 +25,7 @@ public class ImageManager : Singleton<ImageManager>
     public SymbolSpritePair[] symbolSprites;
     public Dictionary<ConstraintType, Sprite> symbolSpriteDict;
     public Sprite[] numberSprites;
-    public Sprite[] cellBorderSprites;
+    public Sprite[] mapBackgroundSprites;
     public Sprite[] cellNumSprites;
     // Start is called before the first frame update
     void Awake()

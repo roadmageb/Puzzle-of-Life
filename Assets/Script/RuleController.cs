@@ -8,10 +8,9 @@ public class RuleController : MonoBehaviour
     public GameObject[] ruleBorders;
     public CellController[,] conditionCell;
     public CellController outcomeCell;
-    public GameObject arrow;
     public CellController[] constraintCell;
     public float ruleHeight;
-    public Transform conditionOffset, arrowOffset, outcomeOffset;
+    public Transform conditionOffset, outcomeOffset;
     public Vector2 constraintOffset;
     public float GetSpriteHeight(GameObject g)
     {
@@ -40,14 +39,21 @@ public class RuleController : MonoBehaviour
         {
             for (int j = 0; j < 3; ++j)
             {
-                conditionCell[i, j] = Instantiate(ImageManager.Inst.cellPrefabInRule, ruleBorders[0].transform).GetComponent<CellController>();
-                conditionCell[i, j].transform.localPosition = new Vector3(i, -j) + conditionOffset.localPosition;
-                conditionCell[i, j].CellInitialize(rule.condition[i, j], rule.isReplaceable[i, j], "Rule");
+                if (i == 1 && j == 1)
+                {
+                    conditionCell[i, j] = Instantiate(ImageManager.Inst.cellPrefabInRuleIO, ruleBorders[0].transform).GetComponent<CellController>();
+                    conditionCell[i, j].transform.localPosition = new Vector3(i, -j) + conditionOffset.localPosition;
+                    conditionCell[i, j].CellInitialize(rule.condition[i, j], rule.isReplaceable[i, j], "Rule");
+                }
+                else
+                {
+                    conditionCell[i, j] = Instantiate(ImageManager.Inst.cellPrefabInRule, ruleBorders[0].transform).GetComponent<CellController>();
+                    conditionCell[i, j].transform.localPosition = new Vector3(i, -j) + conditionOffset.localPosition;
+                    conditionCell[i, j].CellInitialize(rule.condition[i, j], rule.isReplaceable[i, j], "Rule");
+                }
             }
         }
-        arrow = Instantiate(arrow, ruleBorders[0].transform);
-        arrow.transform.localPosition = arrowOffset.localPosition;
-        outcomeCell = Instantiate(ImageManager.Inst.cellPrefabInRule, ruleBorders[0].transform).GetComponent<CellController>();
+        outcomeCell = Instantiate(ImageManager.Inst.cellPrefabInRuleIO, ruleBorders[0].transform).GetComponent<CellController>();
         outcomeCell.transform.localPosition = outcomeOffset.localPosition;
         outcomeCell.CellInitialize(rule.outcome, rule.isOutcomeReplaceable, "Rule");
 
