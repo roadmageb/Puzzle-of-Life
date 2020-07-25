@@ -76,7 +76,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.04, y: 0.84}
+  m_Size: {x: 3.0625, y: 0.65625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -95,7 +95,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cells: []
-  cellsNum: []
-  cellNumPrefab: {fileID: 5334354907189302381, guid: 312ec3118a0e2904aa6143bcdb75dd8e,
-    type: 3}
-  textOffset: {x: 0.3, y: -0.2}

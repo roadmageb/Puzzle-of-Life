@@ -188,7 +188,7 @@ public class LevelEditor : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (LevelManager.Inst.cellUnderCursor != null && !Equals(LevelManager.Inst.cellUnderCursor.parentName, "Palette"))
+            if (LevelManager.Inst.cellUnderCursor != null)
             {
                 if (editMode == 1)
                 {
@@ -213,6 +213,10 @@ public class LevelEditor : MonoBehaviour
                                 LevelManager.Inst.currentLevel.rules[i].SetOutcome(selectedCell);
                             }
                         }
+                    }
+                    else if (Equals(LevelManager.Inst.cellUnderCursor.parentName, "Palette"))
+                    {
+
                     }
                 }
                 else if (editMode == 2)
@@ -239,8 +243,12 @@ public class LevelEditor : MonoBehaviour
                             }
                         }
                     }
+                    else if (Equals(LevelManager.Inst.cellUnderCursor.parentName, "Palette"))
+                    {
+
+                    }
                 }
-                //LevelManager.Inst.MapInstantiate();
+                LevelManager.Inst.MapInstantiate();
             }
         }
 }

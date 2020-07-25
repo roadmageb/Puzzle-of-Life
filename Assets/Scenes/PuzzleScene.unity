@@ -439,6 +439,8 @@ MonoBehaviour:
     type: 3}
   cellPrefabInRule: {fileID: 4218622536935842221, guid: adb547173dd83a748860619f42e073ac,
     type: 3}
+  cellPrefabInPalette: {fileID: 8348255106239354341, guid: f64b9045d02684943886a482c7f3017e,
+    type: 3}
   cellBorderPrefab: {fileID: 4754780052482861629, guid: 12afa0fb6b6aa114384a9f2e1afea9be,
     type: 3}
   rulePrefab: {fileID: 943466755731619821, guid: 6403115c54f72cf4eae292ff0a46e740,
@@ -492,6 +494,18 @@ MonoBehaviour:
   - {fileID: 8741309270930122531, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
   - {fileID: -8852984708619320722, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
   - {fileID: 8557575003254276168, guid: 2401fae4d8e00b04daa241bcda2b7641, type: 3}
+  cellNumSprites:
+  - {fileID: -240009367753479651, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: 3372989576036527417, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: 5225446773755498846, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: 5972256909420939518, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: 4197543330011756096, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: -5409521587292398609, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: -59133372378406708, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: 3710114919029991953, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: -7997090775506885759, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: 423887377282695815, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
+  - {fileID: 3392678853859105045, guid: b69ff2b0a3d4d6d4880652fe5dc41e19, type: 3}
 --- !u!4 &1289294203
 Transform:
   m_ObjectHideFlags: 0

@@ -8,20 +8,30 @@ public class CellController : MonoBehaviour
 {
     public Transform cellForeground, cellReplaceable, cellSelected;
     public Transform cellPalette;
+    public Transform cellsNum;
     public int havingCellNum { get; set; }
     public bool invalidPaletteMove;
     public string parentName;
     public Cell cell;
     public bool replaceability;
-    public void CellInitialize(Cell cell, bool replaceability, string parentName)
+    public void CellInitialize(Cell cell, string parentName)
     {
-        cellForeground = transform.GetChild(0);
-        cellReplaceable = transform.GetChild(1);
-        cellSelected = transform.GetChild(2);
+        cellForeground = transform.Find("CellForeground");
+        cellSelected = transform.Find("CellSelected");
         ChangeSpriteByCell(cell);
-        ShowReplaceability(replaceability);
         this.parentName = parentName;
         invalidPaletteMove = false;
+    }
+    public void CellInitialize(Cell cell, bool replaceability, string parentName)
+    {
+        CellInitialize(cell, parentName);
+        cellReplaceable = transform.Find("CellReplaceable");
+        ShowReplaceability(replaceability);
+    }
+    public void CellNumInitialize(int cellsNum)
+    {
+        this.cellsNum = transform.Find("PaletteNum");
+        SetCellNumOnPalette(cellsNum);
     }
     public void ChangeSpriteByCell(Cell cell)
     {
@@ -49,14 +59,26 @@ public class CellController : MonoBehaviour
     }
     public void SetCellNumOnPalette(int num)
     {
-        TextMesh cellNum = transform.GetComponentInChildren<TextMesh>();
         havingCellNum = num;
-        cellNum.text = havingCellNum.ToString();
-    }
-    public int GetCellNumOnPalette()
-    {
-        TextMesh cellNum = transform.GetComponentInChildren<TextMesh>();
-        return int.Parse(cellNum.text);
+        SpriteRenderer units = cellsNum.GetChild(0).GetComponent<SpriteRenderer>();
+        SpriteRenderer tens = cellsNum.GetChild(1).GetComponent<SpriteRenderer>();
+        units.gameObject.SetActive(true);
+        tens.gameObject.SetActive(true);
+        if (num == 0)
+        {
+            units.sprite = ImageManager.Inst.cellNumSprites[10];
+            tens.gameObject.SetActive(false);
+        }
+        else if (num < 10)
+        {
+            units.sprite = ImageManager.Inst.cellNumSprites[num % 10];
+            tens.gameObject.SetActive(false);
+        }
+        else
+        {
+            units.sprite = ImageManager.Inst.cellNumSprites[num % 10];
+            tens.sprite = ImageManager.Inst.cellNumSprites[num / 10];
+        }
     }
     private void OnMouseDown()
     {
@@ -66,7 +88,7 @@ public class CellController : MonoBehaviour
         if (string.Equals(parentName, "Palette"))
         {
             cellPalette = Instantiate(cellForeground, transform).GetComponent<Transform>();
-            int cellNum = GetCellNumOnPalette() - 1;
+            int cellNum = havingCellNum - 1;
             invalidPaletteMove = false;
             if (cellNum < 0) // Palette에서 이 cell을 선택했을 때 남은 cell의 개수가 음수일 때
             {
@@ -129,7 +151,7 @@ public class CellController : MonoBehaviour
                 {
                     if (cell == LevelManager.Inst.cellUnderCursor.cell) // !palette의 cell과 palette의 cell type이 일치한다면
                     {
-                        LevelManager.Inst.cellUnderCursor.SetCellNumOnPalette(LevelManager.Inst.cellUnderCursor.GetCellNumOnPalette() + 1);
+                        LevelManager.Inst.cellUnderCursor.SetCellNumOnPalette(LevelManager.Inst.cellUnderCursor.havingCellNum + 1);
                         LevelManager.Inst.cellUnderCursor.cellForeground.GetComponent<SpriteRenderer>().color = Color.white;
                         ChangeSpriteByCell(Cell.NULL);
                     }

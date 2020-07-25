@@ -6,23 +6,19 @@ using UnityEngine.UI;
 public class PaletteController : MonoBehaviour
 {
     public CellController[] cells;
-    public GameObject[] cellsNum;
-    public GameObject cellNumPrefab;
-    public Vector2 textOffset;
+    public int[] cellsNum { get; set; }
     public void PaletteInstantiate(List<CellNumPair> palette)
     {
         cells = new CellController[palette.Count];
-        cellsNum = new GameObject[palette.Count];
+        cellsNum = new int[palette.Count];
 
         for (int i = 0; i < palette.Count; ++i)
         {
-            cells[i] = Instantiate(ImageManager.Inst.cellPrefab, transform).GetComponent<CellController>();
+            cells[i] = Instantiate(ImageManager.Inst.cellPrefabInPalette, transform).GetComponent<CellController>();
             cells[i].transform.localPosition = new Vector2(i, 0);
-            cells[i].CellInitialize(palette[i].cell, true, "Palette");
+            cells[i].CellInitialize(palette[i].cell, "Palette");
+            cells[i].CellNumInitialize(cellsNum[i] = palette[i].num);
             cells[i].havingCellNum = palette[i].num;
-            cellsNum[i] = Instantiate(cellNumPrefab, cells[i].transform);
-            cellsNum[i].transform.localPosition = textOffset;
-            cellsNum[i].GetComponent<TextMesh>().text = palette[i].num.ToString();
         }
     }
 }
