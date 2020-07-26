@@ -142,7 +142,7 @@ public class LevelManager : Singleton<LevelManager>
         for (int i = 0; i < currentLevel.rules.Count; ++i)
         {
             ruleObject[i] = Instantiate(ImageManager.Inst.rulePrefab, ruleOrigin).GetComponent<RuleController>();
-            ruleObject[i].RuleInstantiate(currentLevel.rules[i]);
+            ruleObject[i].RuleInstantiate(currentLevel.rules[i], i + 1);
             ruleObject[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
             wholeRuleHeight += ruleObject[i].ruleHeight + ImageManager.Inst.ruleGap;
         }
