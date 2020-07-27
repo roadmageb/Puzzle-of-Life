@@ -20,6 +20,7 @@ public class CellController : MonoBehaviour
         cellSelected = transform.Find("CellSelected");
         ChangeSpriteByCell(cell);
         this.parentName = parentName;
+        replaceability = true;
         invalidPaletteMove = false;
     }
     public void CellInitialize(Cell cell, bool replaceability, string parentName)
@@ -130,7 +131,8 @@ public class CellController : MonoBehaviour
 
         cellForeground.localPosition = new Vector3(0, 0, 0);
 
-        if (LevelManager.Inst.cellUnderCursor != null && replaceability) // 놓을 수 있는 공간이라면
+        if (LevelManager.Inst.cellUnderCursor != null && LevelManager.Inst.cellUnderCursor.replaceability) // 놓을 수 있는 공간이라면
+            // 지금 버그: 놓을수 없는 공간일 때 palette 개수 복구를 안해줌
         {
             if (string.Equals(parentName, "Palette")) // palette -> any로의 이동
             {
@@ -167,6 +169,11 @@ public class CellController : MonoBehaviour
                     LevelManager.Inst.cellUnderCursor.ChangeSpriteByCell(tempCell);
                 }
             }
+        }
+        else if (string.Equals(parentName, "Palette")) // palette에서 잘못된 곳으로의 이동
+        {
+            SetCellNumOnPalette(havingCellNum + 1);
+            return;
         }
     }
     private void OnMouseDrag()

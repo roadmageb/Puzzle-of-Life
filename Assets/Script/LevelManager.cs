@@ -1,12 +1,14 @@
 ﻿using JetBrains.Annotations;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    public bool isPlaymode = false;
+    public PlayState playState { get; set; }
     public CellController cellUnderCursor { get; set; }
     public Transform mapOrigin;
     public Transform ruleOrigin;
@@ -18,12 +20,11 @@ public class LevelManager : Singleton<LevelManager>
     public Level currentLevel;
     public Cell[,] previousCells;
     public float wholeRuleHeight;
+    public float interval;
 
     public void PlayLevel()
     {
-        if (isPlaymode) return;
-        Debug.Log("playlevel called");
-        isPlaymode = true;
+        if (playState == PlayState.PLAY) return;
         previousCells = new Cell[currentLevel.size.x, currentLevel.size.y];
         for (int i = 0; i < currentLevel.size.x; ++i)
         {
@@ -33,12 +34,23 @@ public class LevelManager : Singleton<LevelManager>
             }
         }
 
+        interval = 1.0f;
         StartCoroutine("CellCoroutine");
+    }
+
+    public void FastForwardLevel()
+    {
+        interval /= 1.5f;
+    }
+
+    public void PauseLevel()
+    {
+        StopCoroutine("CellCoroutine");
     }
 
     public void StopLevel()
     {
-        isPlaymode = false;
+        playState = PlayState.EDIT;
         for (int i = 0; i < currentLevel.size.x; ++i)
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
@@ -53,6 +65,20 @@ public class LevelManager : Singleton<LevelManager>
 
     public void PlayFrame()
     {
+        if (playState == PlayState.EDIT)
+        {
+            previousCells = new Cell[currentLevel.size.x, currentLevel.size.y];
+            for (int i = 0; i < currentLevel.size.x; ++i)
+            {
+                for (int j = 0; j < currentLevel.size.y; ++j)
+                {
+                    previousCells[i, j] = currentLevel.map[i, j];
+                }
+            }
+        }
+
+        playState = PlayState.PLAYFRAME;
+
         currentLevel.NextState();
         CellUpdate();
     }
@@ -63,8 +89,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             currentLevel.NextState();
             CellUpdate();
-            Debug.Log("coroutine called");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(interval);
         }
     }
 
@@ -177,66 +202,37 @@ public class LevelManager : Singleton<LevelManager>
         CellInstantiate();
         RuleInstantiate();
         PaletteInstantiate();
-        MapScale(5);
+        MapScale(8);
+    }
+
+    private void OnMouseUp()
+    {
+        MapInstantiate();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        Rule currentRule;
-        currentLevel = new Level(new Vector2Int(6, 3));
-        currentLevel.SetCell(new Vector2Int(4, 1), Cell.TARGET1);
-        currentLevel.SwitchReplaceability(new Vector2Int(1, 0));
-        currentLevel.SwitchReplaceability(new Vector2Int(1, 1));
-        currentLevel.SwitchReplaceability(new Vector2Int(1, 2));
-        currentLevel.AddPalette(Cell.CELL1, 1);
-        currentLevel.AddPalette(Cell.TARGET1, 2);
-        currentRule = new Rule();
-        currentRule.SetConditionCell(new Vector2Int(0, 1), Cell.CELL1);
-        currentRule.SetOutcome(Cell.CELL1);
-        currentRule.AddConstraint(ConstraintType.LE, Cell.CELL1, 7, 0);
-        currentRule.AddConstraint(ConstraintType.BET, Cell.CELL1, 2, 5);
-        currentLevel.AddRule(currentRule);
-        currentRule = new Rule();
-        currentRule.SetConditionCell(new Vector2Int(0, 1), Cell.CELL1);
-        currentRule.SetConditionCell(new Vector2Int(1, 1), Cell.TARGET1);
-        currentRule.SetOutcome(Cell.NULL);
-        currentLevel.SetCell(new Vector2Int(0, 1), Cell.CELL1);
-        currentLevel.SetCell(new Vector2Int(1, 1), Cell.CELL1);
-        currentLevel.AddRule(currentRule);
-        CellInstantiate();
-        RuleInstantiate();
-        PaletteInstantiate();
-        */
+        string stageName = "teststage";
+        try
+        {
+            string str = File.ReadAllText(Application.dataPath + "/Resources/" + stageName + ".json");
+            Level level = JsonConvert.DeserializeObject<Level>(str);
+            
+            currentLevel = level;
+        }
+        catch (FileNotFoundException e)
+        {
+            Debug.Log(e);
+            return;
+        }
+        MapInstantiate();
+        Debug.Log("Load complete.");
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown("s"))
-        {
-            PlayLevel();
-        }
 
-        if (Input.GetKeyDown("d"))
-        {
-            StopLevel();
-        }
-
-        if (Input.GetKeyDown("f"))
-        {
-            PlayFrame();
-        }
-
-        if (Input.GetKeyDown("q"))
-        {
-            Debug.Log("map reset");
-            CellInstantiate();
-            RuleInstantiate();
-            PaletteInstantiate();
-        }
-        */
     }
 }

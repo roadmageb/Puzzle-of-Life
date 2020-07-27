@@ -28,6 +28,7 @@ public class ImageManager : Singleton<ImageManager>
     public Sprite[] mapBackgroundSprites;
     public Sprite[] cellNumSprites;
     public Sprite[] ruleNumSprites;
+    public Sprite[] buttonSprites;
     // Start is called before the first frame update
     void Awake()
     {
