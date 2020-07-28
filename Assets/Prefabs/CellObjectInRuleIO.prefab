@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 103613625436914613}
   - component: {fileID: 7045624770956811267}
   m_Layer: 0
-  m_Name: CellObjectInRule
+  m_Name: CellObjectInRuleIO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 806393671
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 377283983446011650, guid: af1442d5179c91249ba35eed9fb0945e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,18 +95,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4218622536935842221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91da220cf70222147998125155b16aa5, type: 3}
+  m_Script: {fileID: 11500000, guid: fe9ade94b41d0ef428564ab5db20bfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cellForeground: {fileID: 0}
   cellReplaceable: {fileID: 0}
   cellSelected: {fileID: 0}
-  cellPalette: {fileID: 0}
-  cellsNum: {fileID: 0}
+  cellControllerType: 0
   invalidPaletteMove: 0
-  parentName: 
   cell: 0
   replaceability: 0
+  havingCellNum: 0
 --- !u!61 &7045624770956811267
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,7 +200,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1968829
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 8636470562990983122, guid: af1442d5179c91249ba35eed9fb0945e,
     type: 3}
@@ -283,7 +282,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1968829
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: 6547186553067337276, guid: af1442d5179c91249ba35eed9fb0945e,
     type: 3}
@@ -365,7 +364,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1968829
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -1516060002189821814, guid: 431aa1bad67ea2245885aca8ecb6ebe3,
     type: 3}

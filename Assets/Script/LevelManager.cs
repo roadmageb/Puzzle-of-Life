@@ -13,7 +13,7 @@ public class LevelManager : Singleton<LevelManager>
     public Transform mapOrigin;
     public Transform ruleOrigin;
     public Transform paletteOrigin;
-    public CellController[,] cellObject;
+    public MapCellController[,] mapCellObject;
     public Transform[,] mapBackgroundObject;
     public RuleController[] ruleObject;
     public PaletteController paletteObject;
@@ -21,6 +21,7 @@ public class LevelManager : Singleton<LevelManager>
     public Cell[,] previousCells;
     public float wholeRuleHeight;
     public float interval;
+    public string currentLevelName;
 
     public void PlayLevel()
     {
@@ -100,14 +101,14 @@ public class LevelManager : Singleton<LevelManager>
             Destroy(child.gameObject);
         }
 
-        cellObject = new CellController[currentLevel.size.x, currentLevel.size.y];
+        mapCellObject = new MapCellController[currentLevel.size.x, currentLevel.size.y];
         for (int i = 0; i < currentLevel.size.x; ++i)
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
             {
-                cellObject[i, j] = Instantiate(ImageManager.Inst.cellPrefab, mapOrigin).GetComponent<CellController>();
-                cellObject[i, j].transform.localPosition = new Vector2(i + 1, -(j + 1));
-                cellObject[i, j].CellInitialize(currentLevel.map[i, j], currentLevel.isReplaceable[i, j], "Map");
+                mapCellObject[i, j] = Instantiate(ImageManager.Inst.cellPrefab, mapOrigin).GetComponent<MapCellController>();
+                mapCellObject[i, j].transform.localPosition = new Vector2(i + 1, -(j + 1));
+                mapCellObject[i, j].CellInitialize(currentLevel.map[i, j], currentLevel.isReplaceable[i, j], new Vector2Int(i, j));
             }
         }
 
@@ -149,7 +150,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
             {
-                cellObject[i, j].ChangeSpriteByCell(currentLevel.map[i, j]);
+                mapCellObject[i, j].ChangeSpriteByCell(currentLevel.map[i, j]);
             }
         }
     }
@@ -197,6 +198,23 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
+    public void MapReset()
+    {
+        try
+        {
+            string str = File.ReadAllText(Application.dataPath + "/Resources/" + currentLevelName + ".json");
+            Level level = JsonConvert.DeserializeObject<Level>(str);
+
+            currentLevel = level;
+        }
+        catch (FileNotFoundException e)
+        {
+            Debug.Log(e);
+            return;
+        }
+        MapInstantiate();
+    }
+
     public void MapInstantiate()
     {
         CellInstantiate();
@@ -213,21 +231,8 @@ public class LevelManager : Singleton<LevelManager>
     // Start is called before the first frame update
     void Start()
     {
-        string stageName = "teststage";
-        try
-        {
-            string str = File.ReadAllText(Application.dataPath + "/Resources/" + stageName + ".json");
-            Level level = JsonConvert.DeserializeObject<Level>(str);
-            
-            currentLevel = level;
-        }
-        catch (FileNotFoundException e)
-        {
-            Debug.Log(e);
-            return;
-        }
-        MapInstantiate();
-        Debug.Log("Load complete.");
+        currentLevelName = "teststage";
+        MapReset();
     }
 
     // Update is called once per frame

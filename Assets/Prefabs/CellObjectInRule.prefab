@@ -96,18 +96,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3859750304426361847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91da220cf70222147998125155b16aa5, type: 3}
+  m_Script: {fileID: 11500000, guid: fe9ade94b41d0ef428564ab5db20bfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cellForeground: {fileID: 0}
   cellReplaceable: {fileID: 0}
   cellSelected: {fileID: 0}
-  cellPalette: {fileID: 0}
-  cellsNum: {fileID: 0}
+  cellControllerType: 0
   invalidPaletteMove: 0
-  parentName: 
   cell: 0
   replaceability: 0
+  havingCellNum: 0
 --- !u!61 &7988276114812075609
 BoxCollider2D:
   m_ObjectHideFlags: 0

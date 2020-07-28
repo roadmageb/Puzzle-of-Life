@@ -51,7 +51,7 @@ public class InGameButton : MonoBehaviour
                     GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.EDITTOINIT);
                     break;
                 case ButtonState.RESETRED:
-                    LevelManager.Inst.MapInstantiate();
+                    LevelManager.Inst.MapReset();
                     GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.EDIT);
                     break;
                 case ButtonState.STOP:

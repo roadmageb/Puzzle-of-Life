@@ -142,7 +142,7 @@ public class LevelEditor : MonoBehaviour
         {
             for (y = 0; y < LevelManager.Inst.currentLevel.size.y; ++y)
             {
-                if (LevelManager.Inst.cellObject[x, y].Equals(LevelManager.Inst.cellUnderCursor))
+                if (LevelManager.Inst.mapCellObject[x, y].Equals(LevelManager.Inst.cellUnderCursor))
                 {
                     flag = true;
                     break;
@@ -192,12 +192,12 @@ public class LevelEditor : MonoBehaviour
             {
                 if (editMode == 1)
                 {
-                    if (Equals(LevelManager.Inst.cellUnderCursor.parentName, "Map"))
+                    if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.MAP)
                     {
                         Vector2Int coord = GetCoordinateInMap();
                         LevelManager.Inst.currentLevel.SetCell(coord, selectedCell);
                     }
-                    else if (Equals(LevelManager.Inst.cellUnderCursor.parentName, "Rule"))
+                    else if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.RULE)
                     {
                         Vector2Int coord = new Vector2Int(-1, -1);
                         for (int i = 0; i < LevelManager.Inst.currentLevel.rules.Count; ++i)
@@ -214,19 +214,19 @@ public class LevelEditor : MonoBehaviour
                             }
                         }
                     }
-                    else if (Equals(LevelManager.Inst.cellUnderCursor.parentName, "Palette"))
+                    else if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.PALETTE)
                     {
-
+                        // nothing
                     }
                 }
                 else if (editMode == 2)
                 {
-                    if (Equals(LevelManager.Inst.cellUnderCursor.parentName, "Map"))
+                    if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.MAP)
                     {
                         Vector2Int coord = GetCoordinateInMap();
                         LevelManager.Inst.currentLevel.SwitchReplaceability(new Vector2Int(coord.x, coord.y));
                     }
-                    else if (Equals(LevelManager.Inst.cellUnderCursor.parentName, "Rule"))
+                    else if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.RULE)
                     {
                         Vector2Int coord = new Vector2Int(-1, -1);
                         for (int i = 0; i < LevelManager.Inst.currentLevel.rules.Count; ++i)
@@ -243,9 +243,9 @@ public class LevelEditor : MonoBehaviour
                             }
                         }
                     }
-                    else if (Equals(LevelManager.Inst.cellUnderCursor.parentName, "Palette"))
+                    else if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.PALETTE)
                     {
-
+                        // nothing
                     }
                 }
                 LevelManager.Inst.MapInstantiate();
