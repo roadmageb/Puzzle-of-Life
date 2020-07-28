@@ -5,15 +5,15 @@ using UnityEngine;
 public class RuleController : MonoBehaviour
 {
     public GameObject[] rulePrefab;
-    public GameObject[] ruleBorders;
-    public SpriteRenderer[] ruleNumSprite;
-    public RuleCellController[,] conditionCell;
-    public RuleCellController outcomeCell;
-    public RuleCellController[] constraintCell;
-    public float ruleHeight;
+    private GameObject[] ruleBorders;
+    private SpriteRenderer[] ruleNumSprite;
+    public RuleCellController[,] conditionCell { get; private set; }
+    public RuleCellController outcomeCell { get; private set; }
+    public RuleCellController[] constraintCell { get; private set; }
+    public float ruleHeight { get; set; }
     public Transform conditionOffset, outcomeOffset, constraintOffset, ruleNumOffset;
     private int ruleNum;
-    public float GetSpriteHeight(GameObject g)
+    private float GetSpriteHeight(GameObject g)
     {
         return g.GetComponent<SpriteRenderer>().bounds.size.y;
     }
@@ -36,14 +36,14 @@ public class RuleController : MonoBehaviour
             new Vector2(0, -GetSpriteHeight(rulePrefab[0]) - (rule.constraints.Count * GetSpriteHeight(rulePrefab[1])));
         ruleHeight += GetSpriteHeight(rulePrefab[2]);
 
-        if (num < 10)
+        if (num + 1 < 10)
         {
             ruleNumSprite = new SpriteRenderer[2];
             ruleNumSprite[0] = Instantiate(ImageManager.Inst.symbolPrefab, transform).GetComponent<SpriteRenderer>();
             ruleNumSprite[0].sprite = ImageManager.Inst.ruleNumSprites[10];
             ruleNumSprite[0].transform.localPosition = ruleNumOffset.transform.localPosition;
             ruleNumSprite[1] = Instantiate(ImageManager.Inst.symbolPrefab, transform).GetComponent<SpriteRenderer>();
-            ruleNumSprite[1].sprite = ImageManager.Inst.ruleNumSprites[num % 10];
+            ruleNumSprite[1].sprite = ImageManager.Inst.ruleNumSprites[(num + 1) % 10];
             ruleNumSprite[1].transform.localPosition = ruleNumOffset.transform.localPosition + new Vector3((float)7 / 32, 0, 0);
         }
         else
@@ -53,10 +53,10 @@ public class RuleController : MonoBehaviour
             ruleNumSprite[0].sprite = ImageManager.Inst.ruleNumSprites[10];
             ruleNumSprite[0].transform.localPosition = ruleNumOffset.transform.localPosition;
             ruleNumSprite[1] = Instantiate(ImageManager.Inst.symbolPrefab, transform).GetComponent<SpriteRenderer>();
-            ruleNumSprite[1].sprite = ImageManager.Inst.ruleNumSprites[num / 10];
+            ruleNumSprite[1].sprite = ImageManager.Inst.ruleNumSprites[(num + 1) / 10];
             ruleNumSprite[1].transform.localPosition = ruleNumOffset.transform.localPosition + new Vector3((float)7 / 32, 0, 0);
             ruleNumSprite[2] = Instantiate(ImageManager.Inst.symbolPrefab, transform).GetComponent<SpriteRenderer>();
-            ruleNumSprite[2].sprite = ImageManager.Inst.ruleNumSprites[num % 10];
+            ruleNumSprite[2].sprite = ImageManager.Inst.ruleNumSprites[(num + 1) % 10];
             ruleNumSprite[2].transform.localPosition = ruleNumOffset.transform.localPosition + new Vector3((float)14 / 32, 0, 0);
         }
 
@@ -69,24 +69,24 @@ public class RuleController : MonoBehaviour
                 {
                     conditionCell[i, j] = Instantiate(ImageManager.Inst.cellPrefabInRuleIO, ruleBorders[0].transform).GetComponent<RuleCellController>();
                     conditionCell[i, j].transform.localPosition = new Vector3(i, -j) + conditionOffset.localPosition;
-                    conditionCell[i, j].CellInitialize(rule.condition[i, j], rule.isReplaceable[i, j], num, new Vector2Int(i, j));
+                    conditionCell[i, j].CellInitialize(rule.condition[i, j], rule.isReplaceable[i, j], ruleNum, new Vector2Int(i, j));
                 }
                 else
                 {
                     conditionCell[i, j] = Instantiate(ImageManager.Inst.cellPrefabInRule, ruleBorders[0].transform).GetComponent<RuleCellController>();
                     conditionCell[i, j].transform.localPosition = new Vector3(i, -j) + conditionOffset.localPosition;
-                    conditionCell[i, j].CellInitialize(rule.condition[i, j], rule.isReplaceable[i, j], num, new Vector2Int(i, j));
+                    conditionCell[i, j].CellInitialize(rule.condition[i, j], rule.isReplaceable[i, j], ruleNum, new Vector2Int(i, j));
                 }
             }
         }
         outcomeCell = Instantiate(ImageManager.Inst.cellPrefabInRuleIO, ruleBorders[0].transform).GetComponent<RuleCellController>();
         outcomeCell.transform.localPosition = outcomeOffset.localPosition;
-        outcomeCell.CellInitialize(rule.outcome, rule.isOutcomeReplaceable, num);
+        outcomeCell.CellInitialize(rule.outcome, rule.isOutcomeReplaceable, ruleNum);
 
         ConstraintInstantiate(rule.constraints);
     }
 
-    public void ConstraintInstantiate(List<Constraint> constraints)
+    private void ConstraintInstantiate(List<Constraint> constraints)
     {
         constraintCell = new RuleCellController[constraints.Count];
         for (int i = 0; i < constraints.Count; ++i)

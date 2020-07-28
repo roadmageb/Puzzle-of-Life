@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class RuleCellController : CellController
 {
-    int ruleNum, constraintNum;
-    Vector2Int coord;
+    public int ruleNum { get; private set; }
+    public int constraintNum { get; private set; }
+    public Vector2Int coord { get; private set; }
     public void CellInitialize(Cell cell, bool replaceability, int ruleNum) // for outcome cell
     {
-        CellInitialize(cell, CellControllerType.RULE, replaceability);
+        CellInitialize();
         this.ruleNum = ruleNum;
         constraintNum = -1;
         coord = new Vector2Int(-1, -1);
+        ChangeSpriteByCell(cell);
+        ShowReplaceability(replaceability);
     }
     public void CellInitialize(Cell cell, bool replaceability, int ruleNum, Vector2Int coord) // for condition cell
     {
-        CellInitialize(cell, replaceability, ruleNum);
+        CellInitialize();
+        this.ruleNum = ruleNum;
+        constraintNum = -1;
         this.coord = coord;
+        ChangeSpriteByCell(cell);
+        ShowReplaceability(replaceability);
     }
     public void CellInitialize(Cell cell, bool replaceability, int ruleNum, int constraintNum) // for constraint cell
     {
-        CellInitialize(cell, replaceability, ruleNum);
+        CellInitialize();
+        this.ruleNum = ruleNum;
         this.constraintNum = constraintNum;
+        coord = new Vector2Int(-1, -1);
+        ChangeSpriteByCell(cell);
+        ShowReplaceability(replaceability);
     }
     public override void ChangeSpriteByCell(Cell cell)
     {
@@ -41,7 +52,7 @@ public class RuleCellController : CellController
     }
     protected override void OnMouseDown()
     {
-        if (!replaceability || cell == Cell.NULL)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT)
         {
             return;
         }
@@ -53,7 +64,7 @@ public class RuleCellController : CellController
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || invalidPaletteMove)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT || invalidPaletteMove)
         {
             return;
         }
@@ -64,7 +75,7 @@ public class RuleCellController : CellController
 
         if (LevelManager.Inst.cellUnderCursor != null && LevelManager.Inst.cellUnderCursor.replaceability) // 놓을 수 있는 공간이라면
         {
-            if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.PALETTE) // !palette -> palette로의 이동
+            if (LevelManager.Inst.cellUnderCursor is PaletteCellController) // !palette -> palette로의 이동
             {
                 if (cell == LevelManager.Inst.cellUnderCursor.cell) // !palette의 cell과 palette의 cell type이 일치한다면
                 {

@@ -13,15 +13,15 @@ public class LevelManager : Singleton<LevelManager>
     public Transform mapOrigin;
     public Transform ruleOrigin;
     public Transform paletteOrigin;
-    public MapCellController[,] mapCellObject;
-    public Transform[,] mapBackgroundObject;
-    public RuleController[] ruleObject;
-    public PaletteController paletteObject;
-    public Level currentLevel;
-    public Cell[,] previousCells;
-    public float wholeRuleHeight;
-    public float interval;
-    public string currentLevelName;
+    private Transform[,] mapBackgroundObject;
+    public MapCellController[,] mapCellObject { get; private set; }
+    public RuleController[] ruleObject { get; private set; }
+    public PaletteController paletteObject { get; private set; }
+    public Level currentLevel { get; set; }
+    private Cell[,] previousCells;
+    public float wholeRuleHeight { get; private set; }
+    private float interval;
+    private string currentLevelName;
 
     public void PlayLevel()
     {
@@ -41,7 +41,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void FastForwardLevel()
     {
-        interval /= 1.5f;
+        interval = Math.Max(interval / 1.5f, 0.2f);
     }
 
     public void PauseLevel()
@@ -84,7 +84,7 @@ public class LevelManager : Singleton<LevelManager>
         CellUpdate();
     }
 
-    public IEnumerator CellCoroutine()
+    private IEnumerator CellCoroutine()
     {
         while (true)
         {
@@ -94,7 +94,7 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    public void CellInstantiate()
+    private void CellInstantiate()
     {
         foreach (Transform child in mapOrigin)
         {
@@ -144,7 +144,7 @@ public class LevelManager : Singleton<LevelManager>
         mapBackgroundObject[currentLevel.size.x + 1, currentLevel.size.y + 1].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.mapBackgroundSprites[8]; // Bottom-Right
     }
 
-    public void CellUpdate()
+    private void CellUpdate()
     {
         for (int i = 0; i < currentLevel.size.x; ++i)
         {
@@ -155,7 +155,7 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    public void RuleInstantiate()
+    private void RuleInstantiate()
     {
         foreach (Transform child in ruleOrigin)
         {
@@ -168,14 +168,14 @@ public class LevelManager : Singleton<LevelManager>
         for (int i = 0; i < currentLevel.rules.Count; ++i)
         {
             ruleObject[i] = Instantiate(ImageManager.Inst.rulePrefab, ruleOrigin).GetComponent<RuleController>();
-            ruleObject[i].RuleInstantiate(currentLevel.rules[i], i + 1);
+            ruleObject[i].RuleInstantiate(currentLevel.rules[i], i);
             ruleObject[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
             wholeRuleHeight += ruleObject[i].ruleHeight + ImageManager.Inst.ruleGap;
         }
         wholeRuleHeight -= ImageManager.Inst.ruleGap;
     }
 
-    public void PaletteInstantiate()
+    private void PaletteInstantiate()
     {
         foreach (Transform child in paletteOrigin)
         {
@@ -185,7 +185,7 @@ public class LevelManager : Singleton<LevelManager>
         paletteObject = Instantiate(ImageManager.Inst.palettePrefab, paletteOrigin).GetComponent<PaletteController>();
         paletteObject.PaletteInstantiate(currentLevel.palette);
     }
-    public void MapScale(int criteria)
+    private void MapScale(int criteria)
     {
         int maxValue = Math.Max(currentLevel.size.x, currentLevel.size.y);
         if (maxValue > criteria)

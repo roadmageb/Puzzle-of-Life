@@ -133,48 +133,48 @@ public class LevelEditor : MonoBehaviour
         File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", level);
         Debug.Log("Save complete.");
     }
-    public Vector2Int GetCoordinateInMap()
-    {
-        int x = 0, y = 0;
+    //public Vector2Int GetCoordinateInMap()
+    //{
+    //    int x = 0, y = 0;
 
-        bool flag = false;
-        for (x = 0; x < LevelManager.Inst.currentLevel.size.x; ++x)
-        {
-            for (y = 0; y < LevelManager.Inst.currentLevel.size.y; ++y)
-            {
-                if (LevelManager.Inst.mapCellObject[x, y].Equals(LevelManager.Inst.cellUnderCursor))
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag) break;
-        }
+    //    bool flag = false;
+    //    for (x = 0; x < LevelManager.Inst.currentLevel.size.x; ++x)
+    //    {
+    //        for (y = 0; y < LevelManager.Inst.currentLevel.size.y; ++y)
+    //        {
+    //            if (LevelManager.Inst.mapCellObject[x, y].Equals(LevelManager.Inst.cellUnderCursor))
+    //            {
+    //                flag = true;
+    //                break;
+    //            }
+    //        }
+    //        if (flag) break;
+    //    }
 
-        if (!flag) return new Vector2Int(-1, -1);
-        else return new Vector2Int(x, y);
-    }
-    public Vector2Int GetCoordinateInRule(int index)
-    {
-        int x = 0, y = 0;
+    //    if (!flag) return new Vector2Int(-1, -1);
+    //    else return new Vector2Int(x, y);
+    //}
+    //public Vector2Int GetCoordinateInRule(int index)
+    //{
+    //    int x = 0, y = 0;
 
-        bool flag = false;
-        for (x = 0; x < 3; ++x)
-        {
-            for (y = 0; y < 3; ++y)
-            {
-                if (LevelManager.Inst.ruleObject[index].conditionCell[x, y].Equals(LevelManager.Inst.cellUnderCursor))
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag) break;
-        }
+    //    bool flag = false;
+    //    for (x = 0; x < 3; ++x)
+    //    {
+    //        for (y = 0; y < 3; ++y)
+    //        {
+    //            if (LevelManager.Inst.ruleObject[index].conditionCell[x, y].Equals(LevelManager.Inst.cellUnderCursor))
+    //            {
+    //                flag = true;
+    //                break;
+    //            }
+    //        }
+    //        if (flag) break;
+    //    }
 
-        if (!flag) return new Vector2Int(-1, -1);
-        else return new Vector2Int(x, y);
-    }
+    //    if (!flag) return new Vector2Int(-1, -1);
+    //    else return new Vector2Int(x, y);
+    //}
     private void Start()
     {
         editMode = 1;
@@ -192,60 +192,59 @@ public class LevelEditor : MonoBehaviour
             {
                 if (editMode == 1)
                 {
-                    if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.MAP)
+                    if (LevelManager.Inst.cellUnderCursor is MapCellController)
                     {
-                        Vector2Int coord = GetCoordinateInMap();
+                        Vector2Int coord = ((MapCellController)LevelManager.Inst.cellUnderCursor).coord;
+                        //Debug.Log(coord);
                         LevelManager.Inst.currentLevel.SetCell(coord, selectedCell);
                     }
-                    else if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.RULE)
+                    else if (LevelManager.Inst.cellUnderCursor is RuleCellController)
                     {
-                        Vector2Int coord = new Vector2Int(-1, -1);
-                        for (int i = 0; i < LevelManager.Inst.currentLevel.rules.Count; ++i)
+                        int ruleNum = ((RuleCellController)LevelManager.Inst.cellUnderCursor).ruleNum;
+                        Vector2Int coord = ((RuleCellController)LevelManager.Inst.cellUnderCursor).coord;
+                        int constraintNum = ((RuleCellController)LevelManager.Inst.cellUnderCursor).constraintNum;
+
+                        if (coord.x != -1 && coord.y != -1)
                         {
-                            coord = GetCoordinateInRule(i);
-                            if (coord != new Vector2Int(-1, -1))
-                            {
-                                LevelManager.Inst.currentLevel.rules[i].SetConditionCell(coord, selectedCell);
-                                break;
-                            }
-                            else if (LevelManager.Inst.cellUnderCursor.Equals(LevelManager.Inst.ruleObject[i].outcomeCell))
-                            {
-                                LevelManager.Inst.currentLevel.rules[i].SetOutcome(selectedCell);
-                            }
+                            //Debug.Log(coord);
+                            LevelManager.Inst.currentLevel.rules[ruleNum].SetConditionCell(coord, selectedCell);
                         }
-                    }
-                    else if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.PALETTE)
-                    {
-                        // nothing
+                        else if (constraintNum == -1)
+                        {
+                            LevelManager.Inst.currentLevel.rules[ruleNum].SetOutcome(selectedCell);
+                        }
+                        else
+                        {
+                            LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].target = selectedCell;
+                        }
                     }
                 }
                 else if (editMode == 2)
                 {
-                    if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.MAP)
+                    if (LevelManager.Inst.cellUnderCursor is MapCellController)
                     {
-                        Vector2Int coord = GetCoordinateInMap();
-                        LevelManager.Inst.currentLevel.SwitchReplaceability(new Vector2Int(coord.x, coord.y));
+                        Vector2Int coord = ((MapCellController)LevelManager.Inst.cellUnderCursor).coord;
+                        LevelManager.Inst.currentLevel.SwitchReplaceability(coord);
                     }
-                    else if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.RULE)
+                    else if (LevelManager.Inst.cellUnderCursor is RuleCellController)
                     {
-                        Vector2Int coord = new Vector2Int(-1, -1);
-                        for (int i = 0; i < LevelManager.Inst.currentLevel.rules.Count; ++i)
+                        int ruleNum = ((RuleCellController)LevelManager.Inst.cellUnderCursor).ruleNum;
+                        Vector2Int coord = ((RuleCellController)LevelManager.Inst.cellUnderCursor).coord;
+                        int constraintNum = ((RuleCellController)LevelManager.Inst.cellUnderCursor).constraintNum;
+
+                        if (coord.x != -1 && coord.y != -1)
                         {
-                            coord = GetCoordinateInRule(i);
-                            if (coord != new Vector2Int(-1, -1))
-                            {
-                                LevelManager.Inst.currentLevel.rules[i].SwitchReplaceability(coord);
-                                break;
-                            }
-                            else if (LevelManager.Inst.cellUnderCursor.Equals(LevelManager.Inst.ruleObject[i].outcomeCell))
-                            {
-                                LevelManager.Inst.currentLevel.rules[i].SwitchOutcomeReplaceability();
-                            }
+                            LevelManager.Inst.currentLevel.rules[ruleNum].SwitchReplaceability(coord);
                         }
-                    }
-                    else if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.PALETTE)
-                    {
-                        // nothing
+                        else if (constraintNum == -1)
+                        {
+                            LevelManager.Inst.currentLevel.rules[ruleNum].SwitchOutcomeReplaceability();
+                        }
+                        else
+                        {
+                            LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum]
+                                .SetReplaceability(!LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].isReplaceable);
+                        }
                     }
                 }
                 LevelManager.Inst.MapInstantiate();

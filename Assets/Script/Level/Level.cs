@@ -45,16 +45,17 @@ public class Level
             }
         }
     }
-    public bool SetCell(Vector2Int pos, Cell type)
+    public bool SetCell(Vector2Int coord, Cell type)
     {
-        if (pos.x >= size.x || pos.y >= size.y || pos.x < 0 || pos.y < 0) return false;
-        map[pos.x, pos.y] = type;
+        Debug.Log(coord);
+        if (coord.x >= size.x || coord.y >= size.y || coord.x < 0 || coord.y < 0) return false;
+        map[coord.x, coord.y] = type;
         return true;
     }
-    public bool SwitchReplaceability(Vector2Int pos)
+    public bool SwitchReplaceability(Vector2Int coord)
     {
-        if (pos.x >= size.x || pos.y >= size.y || pos.x < 0 || pos.y < 0) return false;
-        isReplaceable[pos.x, pos.y] = !isReplaceable[pos.x, pos.y];
+        if (coord.x >= size.x || coord.y >= size.y || coord.x < 0 || coord.y < 0) return false;
+        isReplaceable[coord.x, coord.y] = !isReplaceable[coord.x, coord.y];
         return true;
     }
     public void AddPalette(Cell type, int num)
@@ -79,7 +80,7 @@ public class Level
             rules.RemoveAt(index);
         }
     }
-    public int RuleMatchCheck(Vector2Int pos)
+    public int RuleMatchCheck(Vector2Int coord)
     {
         int matchRuleNo = -1;
         for (int k = 0; k < rules.Count; ++k)
@@ -89,8 +90,8 @@ public class Level
             Dictionary<Cell, int> count = new Dictionary<Cell, int>();
             bool constraintFlag = false;
 
-            if (rules[k].condition[1, 1] == Cell.ANY && map[pos.x, pos.y] == Cell.NULL) continue;
-            else if (rules[k].condition[1, 1] != map[pos.x, pos.y]) continue;
+            if (rules[k].condition[1, 1] == Cell.ANY && map[coord.x, coord.y] == Cell.NULL) continue;
+            else if (rules[k].condition[1, 1] != map[coord.x, coord.y]) continue;
 
             for (int i = 0; i < 3; ++i)
             {
@@ -107,14 +108,14 @@ public class Level
                     }
                     count[rules[k].condition[i, j]]++;
 
-                    if (pos.x + i - 1 < 0 || pos.y + j - 1 < 0 || pos.x + i - 1 >= size.x || pos.y + j - 1 >= size.y)
+                    if (coord.x + i - 1 < 0 || coord.y + j - 1 < 0 || coord.x + i - 1 >= size.x || coord.y + j - 1 >= size.y)
                     {
                         continue;
                     }
                     // 정상적인 좌표 값이라면 map의 좌표와 rules[k]이 일치하는지 확인함
-                    else if ((map[pos.x + i - 1, pos.y + j - 1] == rules[k].condition[i, j])
-                        || (rules[k].condition[i, j] == Cell.ANY && map[pos.x + i - 1, pos.y + j - 1] != Cell.NULL)
-                        || (rules[k].condition[i, j] == Cell.EMPTY && map[pos.x + i - 1, pos.y + j - 1] == Cell.NULL))
+                    else if ((map[coord.x + i - 1, coord.y + j - 1] == rules[k].condition[i, j])
+                        || (rules[k].condition[i, j] == Cell.ANY && map[coord.x + i - 1, coord.y + j - 1] != Cell.NULL)
+                        || (rules[k].condition[i, j] == Cell.EMPTY && map[coord.x + i - 1, coord.y + j - 1] == Cell.NULL))
                     {
                         check[rules[k].condition[i, j]]++;
                     }
@@ -124,7 +125,6 @@ public class Level
             for (int i = 0; i < rules[k].constraints.Count; ++i) // constraint도 일치하는지 확인함
             {
                 int val = check[rules[k].constraints[i].target];
-                Debug.Log(val);
                 if (rules[k].constraints[i].ConstraintMatches(val))
                 {
                     checkBool[rules[k].constraints[i].target] = true;

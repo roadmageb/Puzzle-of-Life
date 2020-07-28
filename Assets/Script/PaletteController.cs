@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PaletteController : MonoBehaviour
 {
-    public PaletteCellController[] cells;
-    public int[] cellsNum { get; set; }
+    private PaletteCellController[] cells;
+    private int[] cellsNum;
     public void PaletteInstantiate(List<CellNumPair> palette)
     {
         cells = new PaletteCellController[palette.Count];
@@ -18,7 +18,6 @@ public class PaletteController : MonoBehaviour
             cells[i].transform.localPosition = new Vector2(i, 0);
             cells[i].CellInitialize(palette[i].cell, i);
             cells[i].CellNumInitialize(cellsNum[i] = palette[i].num);
-            cells[i].havingCellNum = palette[i].num;
         }
     }
 }

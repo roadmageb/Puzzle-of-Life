@@ -98,14 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe9ade94b41d0ef428564ab5db20bfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellForeground: {fileID: 0}
-  cellReplaceable: {fileID: 0}
-  cellSelected: {fileID: 0}
-  cellControllerType: 0
-  invalidPaletteMove: 0
-  cell: 0
-  replaceability: 0
-  havingCellNum: 0
+  cellForeground: {fileID: 773202297922730357}
+  cellReplaceable: {fileID: 3045318927970343299}
+  cellSelected: {fileID: 5712060897207962740}
 --- !u!61 &7045624770956811267
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PaletteCellController : CellController
 {
-    public Transform cellPalette, cellsNum;
-    public int coord;
+    private Transform cellPalette, cellsNum;
+    public int coord { get; private set; }
     public void CellInitialize(Cell cell, int coord)
     {
-        CellInitialize(cell, CellControllerType.PALETTE, true);
+        CellInitialize();
         this.coord = coord;
+        ChangeSpriteByCell(cell);
+        ShowReplaceability(true);
     }
     public override void ChangeSpriteByCell(Cell cell)
     {
@@ -63,7 +65,7 @@ public class PaletteCellController : CellController
         }
         SetCellNumOnPalette(cellNum);
 
-        if (!replaceability || cell == Cell.NULL)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT)
         {
             return;
         }
@@ -76,7 +78,7 @@ public class PaletteCellController : CellController
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || invalidPaletteMove)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT || invalidPaletteMove)
         {
             return;
         }

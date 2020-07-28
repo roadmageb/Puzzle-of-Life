@@ -42,6 +42,7 @@ public class InGameButton : MonoBehaviour
                     break;
                 case ButtonState.PAUSE:
                     LevelManager.Inst.PauseLevel();
+                    GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.PLAYFRAME);
                     break;
                 case ButtonState.PLAYFRAME:
                     LevelManager.Inst.PlayFrame();

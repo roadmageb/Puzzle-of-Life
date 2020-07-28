@@ -7,19 +7,12 @@ using UnityEngine;
 public abstract class CellController : MonoBehaviour
 {
     public Transform cellForeground, cellReplaceable, cellSelected;
-    public CellControllerType cellControllerType;
-    public bool invalidPaletteMove;
-    public Cell cell;
-    public bool replaceability;
-    public int havingCellNum;
-    public void CellInitialize(Cell cell, CellControllerType cellControllerType, bool replaceability)
+    protected bool invalidPaletteMove;
+    public Cell cell { get; protected set; }
+    public bool replaceability { get; private set; }
+    public int havingCellNum { get; protected set; }
+    public void CellInitialize()
     {
-        cellForeground = transform.Find("CellForeground");
-        cellSelected = transform.Find("CellSelected");
-        cellReplaceable = transform.Find("CellReplaceable");
-        this.cellControllerType = cellControllerType;
-        ChangeSpriteByCell(cell);
-        ShowReplaceability(replaceability);
         invalidPaletteMove = false;
         havingCellNum = 0;
     }
@@ -55,7 +48,7 @@ public abstract class CellController : MonoBehaviour
     protected abstract void OnMouseUp();
     protected void OnMouseDrag()
     {
-        if (!replaceability || cell == Cell.NULL || invalidPaletteMove)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT || invalidPaletteMove)
         {
             return;
         }

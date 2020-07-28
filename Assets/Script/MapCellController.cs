@@ -6,21 +6,23 @@ using UnityEngine;
 
 public class MapCellController : CellController
 {
-    Vector2Int coord;
+    public Vector2Int coord { get; private set; }
     public void CellInitialize(Cell cell, bool replaceability, Vector2Int coord)
     {
-        CellInitialize(cell, CellControllerType.MAP, replaceability);
+        CellInitialize();
         this.coord = coord;
+        ChangeSpriteByCell(cell);
+        ShowReplaceability(replaceability);
     }
     public override void ChangeSpriteByCell(Cell cell)
     {
         cellForeground.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellSpriteDict[cell];
-        LevelManager.Inst.currentLevel.map[coord.x, coord.y] = cell;
+        LevelManager.Inst.currentLevel.SetCell(coord, cell);
         this.cell = cell;
     }
     protected override void OnMouseDown()
     {
-        if (!replaceability || cell == Cell.NULL)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT)
         {
             return;
         }
@@ -32,7 +34,7 @@ public class MapCellController : CellController
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || invalidPaletteMove)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT || invalidPaletteMove)
         {
             return;
         }
@@ -43,7 +45,7 @@ public class MapCellController : CellController
 
         if (LevelManager.Inst.cellUnderCursor != null && LevelManager.Inst.cellUnderCursor.replaceability)
         {
-            if (LevelManager.Inst.cellUnderCursor.cellControllerType == CellControllerType.PALETTE) // !palette -> palette로의 이동
+            if (LevelManager.Inst.cellUnderCursor is PaletteCellController) // !palette -> palette로의 이동
             {
                 if (cell == LevelManager.Inst.cellUnderCursor.cell) // !palette의 cell과 palette의 cell type이 일치한다면
                 {
