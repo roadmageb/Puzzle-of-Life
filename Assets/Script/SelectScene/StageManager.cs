@@ -48,7 +48,7 @@ public class StageManager : Singleton<StageManager>
         for (int i = 0; i < level_count[selected_stage - 1]; i++)
         {
             GameObject created_instance = Instantiate(prefLevelSelectButton, objLevelSelectScreen.transform);
-            created_instance.GetComponent<Transform>().position = new Vector2(-6 + (i % 5) * 3, 3 - (i / 5));
+            created_instance.GetComponent<Transform>().position = new Vector2(-3 + (i % 5) * 1.5f, 3 - (i / 5) * 1.5f);
             created_instance.GetComponent<LevelSelectButton>().level_to_go = i + 1;
             LevelSelectScreen_LevelSelectButton_List.Add(created_instance);
         }

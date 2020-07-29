@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stage_count: 5
-  level_count: 050000000200000008000000090000000c000000
+  level_count: 0c0000000a0000000d0000000f00000014000000
   objStageSelectScreen: {fileID: 1048247605}
   objLevelSelectScreen: {fileID: 112585405}
   prefStageSelectButton: {fileID: 8072128613410259599, guid: fb6d8c0a872022840b26ecd65613159e,
