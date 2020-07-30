@@ -97,6 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5ef3be4bdd5534dadc265a81e5aa2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprUnClicked: {fileID: -4903574058177876785, guid: 217b305ce7e2b85439ebc5bc4d92d482,
+    type: 3}
+  sprClicked: {fileID: -1180702502588685813, guid: 217b305ce7e2b85439ebc5bc4d92d482,
+    type: 3}
   level_to_go: 0
 --- !u!61 &6639628886646571114
 BoxCollider2D:

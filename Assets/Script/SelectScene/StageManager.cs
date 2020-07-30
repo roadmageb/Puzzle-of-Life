@@ -23,7 +23,7 @@ public class StageManager : Singleton<StageManager>
         for (int i = 0; i < stage_count; i++)
         {
             GameObject created_instance = Instantiate(prefStageSelectButton, objStageSelectScreen.transform);
-            created_instance.GetComponent<Transform>().position = new Vector2(-5 + (i % 3) * 5, -2.5f - (i / 3));
+            created_instance.GetComponent<Transform>().position = new Vector2(i * 15, -3);
             created_instance.GetComponent<StageSelectButton>().stage_to_go = i + 1;
         }
     }

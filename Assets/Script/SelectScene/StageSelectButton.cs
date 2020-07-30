@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class StageSelectButton : MonoBehaviour
 {
+    public Sprite sprUnClicked;
+    public Sprite sprClicked;
+
     public int stage_to_go;
 
-    void OnMouseDown()
+    private void OnMouseUpAsButton()
     {
         StageManager.Inst.StageSelected(stage_to_go);
+    }
+
+    private void OnMouseDown()
+    {
+        GetComponent<SpriteRenderer>().sprite = sprClicked;
+    }
+
+    private void OnMouseUp()
+    {
+        GetComponent<SpriteRenderer>().sprite = sprUnClicked;
     }
 }
