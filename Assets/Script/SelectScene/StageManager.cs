@@ -37,7 +37,7 @@ public class StageManager : Singleton<StageManager>
     public void BackSelected()
     {
         StartCoroutine(ScreenSlide(objLevelSelectScreen, objStageSelectScreen, 1));
-        closeLevelSelctScreen();
+        closeLevelSelectScreen();
     }
 
     void setLevelSelectScreen()
@@ -52,7 +52,7 @@ public class StageManager : Singleton<StageManager>
         }
     }
 
-    void closeLevelSelctScreen()
+    void closeLevelSelectScreen()
     {
         for (int i = 0; i < level_count[selected_stage - 1]; i++)
         {
