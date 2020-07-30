@@ -30,7 +30,7 @@ public class StageManager : Singleton<StageManager>
 
     public void StageSelected(int n)
     {
-        objStageSelectScreen.SetActive(false);
+        objStageSelectScreen.GetComponent<Transform>().position = new Vector2(0, -10);
         selected_stage = n;
         setLevelSelectScreen();
     }
@@ -38,12 +38,12 @@ public class StageManager : Singleton<StageManager>
     public void BackSelected()
     {
         closeLevelSelctScreen();
-        objStageSelectScreen.SetActive(true);
+        objStageSelectScreen.GetComponent<Transform>().position = new Vector2(0, 0);
     }
 
     void setLevelSelectScreen()
     {
-        objLevelSelectScreen.SetActive(true);
+        objLevelSelectScreen.GetComponent<Transform>().position = new Vector2(0, 0);
         LevelSelectScreen_LevelSelectButton_List = new List<GameObject>();
         for (int i = 0; i < level_count[selected_stage - 1]; i++)
         {
@@ -60,6 +60,6 @@ public class StageManager : Singleton<StageManager>
         {
             Destroy(LevelSelectScreen_LevelSelectButton_List[i].gameObject);
         }
-        objLevelSelectScreen.SetActive(false);
+        objLevelSelectScreen.GetComponent<Transform>().position = new Vector2(0, 10);
     }
 }
