@@ -12,7 +12,6 @@ public class StageManager : Singleton<StageManager>
     public GameObject objLevelSelectScreen;
     public GameObject prefStageSelectButton;
     public GameObject prefLevelSelectButton;
-    public GameObject prefBackSelectButton;
 
     int selected_stage;
     int selected_level;
