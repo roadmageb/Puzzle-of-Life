@@ -9,22 +9,40 @@ public class StageManager : Singleton<StageManager>
     public int[] level_count;
     public GameObject objCamera;
     public GameObject objStageSelectScreen;
+    public GameObject objStageSelectButtonsScreen;
     public GameObject objLevelSelectScreen;
     public GameObject prefStageSelectButton;
     public GameObject prefLevelSelectButton;
 
     int selected_stage = 0;
     int selected_level;
+    int now_stage = 1;
     List<GameObject> LevelSelectScreen_LevelSelectButton_List;
 
     public void Start()
     {
         for (int i = 0; i < stage_count; i++)
         {
-            GameObject created_instance = Instantiate(prefStageSelectButton, objStageSelectScreen.transform);
-            created_instance.GetComponent<Transform>().position += new Vector3(i * 15, -3, 0);
+            GameObject created_instance = Instantiate(prefStageSelectButton, objStageSelectButtonsScreen.transform);
+            created_instance.GetComponent<Transform>().position += new Vector3(i * 15, 0, 0);
             created_instance.GetComponent<StageSelectButton>().stage_to_go = i + 1;
         }
+    }
+
+    public void StageChange(int i)
+    {
+        Debug.Log(i);
+        int last_stage = now_stage;
+        now_stage += i;
+        if (now_stage < 1)
+        {
+            now_stage = stage_count;
+        }
+        if (now_stage > stage_count)
+        {
+            now_stage = 1;
+        }
+        StartCoroutine(ScreenSlide(objStageSelectButtonsScreen, new Vector3(-15 * (last_stage - 1), -3, 0), new Vector3(-15 * (now_stage - 1), -3, 0), 0.5f));
     }
 
     public void StageSelected(int n)
@@ -32,12 +50,12 @@ public class StageManager : Singleton<StageManager>
         closeLevelSelectScreen();
         selected_stage = n;
         setLevelSelectScreen();
-        StartCoroutine(ScreenSlide(objStageSelectScreen, objLevelSelectScreen, 1));
+        StartCoroutine(ScreenSlide(objCamera, objStageSelectScreen.GetComponent<Transform>().position + new Vector3(0, 0, -10), objLevelSelectScreen.GetComponent<Transform>().position + new Vector3(0, 0, -10), 1));
     }
 
     public void BackSelected()
     {
-        StartCoroutine(ScreenSlide(objLevelSelectScreen, objStageSelectScreen, 1));
+        StartCoroutine(ScreenSlide(objCamera, objLevelSelectScreen.GetComponent<Transform>().position + new Vector3(0, 0, -10), objStageSelectScreen.GetComponent<Transform>().position + new Vector3(0, 0, -10), 1));
     }
 
     void setLevelSelectScreen()
@@ -64,14 +82,14 @@ public class StageManager : Singleton<StageManager>
         }
     }
 
-    public IEnumerator ScreenSlide(GameObject from, GameObject to, float animTime)
+    public IEnumerator ScreenSlide(GameObject target, Vector3 from, Vector3 to, float animTime)
     {
         for (float t = 0; t <= animTime; t += Time.deltaTime)
         {
-            objCamera.GetComponent<Transform>().position = Vector3.Lerp(from.GetComponent<Transform>().position, to.GetComponent<Transform>().position, animFunc(t / animTime)) + new Vector3(0, 0, -10);
+            target.GetComponent<Transform>().position = Vector3.Lerp(from, to, animFunc(t / animTime));
             yield return null;
         }
-        objCamera.GetComponent<Transform>().position = to.GetComponent<Transform>().position + new Vector3(0, 0, -10);
+        target.GetComponent<Transform>().position = to;
     }
 
     float animFunc(float t)

@@ -10,7 +10,7 @@ public class StageArrowButton : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        //StageManager.Inst.StageSelected(stage_to_go);
+        StageManager.Inst.StageChange((int)GetComponent<Transform>().localScale.x);
     }
 
     private void OnMouseDown()
