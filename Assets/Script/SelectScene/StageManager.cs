@@ -1,7 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class StageManager : Singleton<StageManager>
@@ -23,7 +22,7 @@ public class StageManager : Singleton<StageManager>
         for (int i = 0; i < stage_count; i++)
         {
             GameObject created_instance = Instantiate(prefStageSelectButton, objStageSelectScreen.transform);
-            created_instance.GetComponent<Transform>().position = new Vector3(i * 15, -3, 0);
+            created_instance.GetComponent<Transform>().position += new Vector3(i * 15, -3, 0);
             created_instance.GetComponent<StageSelectButton>().stage_to_go = i + 1;
         }
     }
@@ -32,12 +31,12 @@ public class StageManager : Singleton<StageManager>
     {
         selected_stage = n;
         setLevelSelectScreen();
-        objCamera.GetComponent<Transform>().position = new Vector3(objLevelSelectScreen.GetComponent<Transform>().position.x, objLevelSelectScreen.GetComponent<Transform>().position.y, -10);
+        StartCoroutine(ScreenSlide(objStageSelectScreen, objLevelSelectScreen, 1));
     }
 
     public void BackSelected()
     {
-        objCamera.GetComponent<Transform>().position = new Vector3(objStageSelectScreen.GetComponent<Transform>().position.x, objStageSelectScreen.GetComponent<Transform>().position.y, -10);
+        StartCoroutine(ScreenSlide(objLevelSelectScreen, objStageSelectScreen, 1));
         closeLevelSelctScreen();
     }
 
@@ -59,5 +58,20 @@ public class StageManager : Singleton<StageManager>
         {
             Destroy(LevelSelectScreen_LevelSelectButton_List[i].gameObject);
         }
+    }
+
+    public IEnumerator ScreenSlide(GameObject from, GameObject to, float animTime)
+    {
+        for (float t = 0; t <= animTime; t += Time.deltaTime)
+        {
+            objCamera.GetComponent<Transform>().position = Vector3.Lerp(from.GetComponent<Transform>().position, to.GetComponent<Transform>().position, animFunc(t / animTime)) + new Vector3(0, 0, -10);
+            yield return null;
+        }
+        objCamera.GetComponent<Transform>().position = to.GetComponent<Transform>().position + new Vector3(0, 0, -10);
+    }
+
+    float animFunc(float t)
+    {
+        return (float)Math.Pow(Math.Sin(t * Math.PI / 2), 2.0);
     }
 }
