@@ -13,7 +13,7 @@ public class StageManager : Singleton<StageManager>
     public GameObject prefStageSelectButton;
     public GameObject prefLevelSelectButton;
 
-    int selected_stage;
+    int selected_stage = 0;
     int selected_level;
     List<GameObject> LevelSelectScreen_LevelSelectButton_List;
 
@@ -29,6 +29,7 @@ public class StageManager : Singleton<StageManager>
 
     public void StageSelected(int n)
     {
+        closeLevelSelectScreen();
         selected_stage = n;
         setLevelSelectScreen();
         StartCoroutine(ScreenSlide(objStageSelectScreen, objLevelSelectScreen, 1));
@@ -37,7 +38,6 @@ public class StageManager : Singleton<StageManager>
     public void BackSelected()
     {
         StartCoroutine(ScreenSlide(objLevelSelectScreen, objStageSelectScreen, 1));
-        closeLevelSelectScreen();
     }
 
     void setLevelSelectScreen()
@@ -54,6 +54,10 @@ public class StageManager : Singleton<StageManager>
 
     void closeLevelSelectScreen()
     {
+        if (selected_stage == 0)
+        {
+            return;
+        }
         for (int i = 0; i < level_count[selected_stage - 1]; i++)
         {
             Destroy(LevelSelectScreen_LevelSelectButton_List[i].gameObject);
