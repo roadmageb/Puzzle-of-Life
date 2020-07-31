@@ -31,7 +31,6 @@ public class StageManager : Singleton<StageManager>
 
     public void StageChange(int i)
     {
-        Debug.Log(i);
         int last_stage = now_stage;
         now_stage += i;
         if (now_stage < 1)
