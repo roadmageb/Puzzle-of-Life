@@ -47,19 +47,26 @@ public class PaletteCellController : CellController
             tens.sprite = ImageManager.Inst.cellNumSprites[num / 10];
         }
     }
+
     protected override void OnMouseDown()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT)
+        if (!CheckMoveValid())
         {
             return;
         }
+        if (LevelManager.Inst.GetPlayState() == PlayState.EDITTOINIT)
+        {
+            invalidMove = true;
+            return;
+        }
+
         cellPalette = Instantiate(cellForeground, transform).GetComponent<Transform>();
         int cellNum = havingCellNum - 1;
-        invalidPaletteMove = false;
+        invalidMove = false;
         if (cellNum < 0) // Palette에서 이 cell을 선택했을 때 남은 cell의 개수가 음수일 때
         {
             Destroy(cellPalette.gameObject);
-            invalidPaletteMove = true;
+            invalidMove = true;
             // flag를 true로 하고 return함 (이 flag를 이용하여 OnMouseDrag와 OnMouseUp event에서도 활용)
             return;
         }
@@ -82,8 +89,9 @@ public class PaletteCellController : CellController
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidPaletteMove)
+        if (!CheckMoveValid())
         {
+            invalidMove = false;
             return;
         }
         Destroy(cellPalette.gameObject);

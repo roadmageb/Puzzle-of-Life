@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -131,6 +132,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             Destroy(child.gameObject);
         }
+        Vector2 offset = new Vector2((currentLevel.size.x + 1) / 2.0f, -(currentLevel.size.y + 1) / 2.0f);
 
         mapCellObject = new MapCellController[currentLevel.size.x, currentLevel.size.y];
         for (int i = 0; i < currentLevel.size.x; ++i)
@@ -138,7 +140,7 @@ public class LevelManager : Singleton<LevelManager>
             for (int j = 0; j < currentLevel.size.y; ++j)
             {
                 mapCellObject[i, j] = Instantiate(ImageManager.Inst.cellPrefab, mapOrigin).GetComponent<MapCellController>();
-                mapCellObject[i, j].transform.localPosition = new Vector2(i + 1, -(j + 1));
+                mapCellObject[i, j].transform.localPosition = new Vector2(i + 1, -(j + 1)) - offset;
                 mapCellObject[i, j].CellInitialize(currentLevel.map[i, j], currentLevel.isReplaceable[i, j], new Vector2Int(i, j));
             }
         }
@@ -149,7 +151,7 @@ public class LevelManager : Singleton<LevelManager>
             for (int j = 0; j < currentLevel.size.y + 2; ++j)
             {
                 mapBackgroundObject[i, j] = Instantiate(ImageManager.Inst.mapBackgroundPrefab, mapOrigin).GetComponent<Transform>();
-                mapBackgroundObject[i, j].localPosition = new Vector2(i, -j);
+                mapBackgroundObject[i, j].localPosition = new Vector2(i, -j) - offset;
             }
         }
         for (int i = 1; i < currentLevel.size.x + 1; ++i)
@@ -188,6 +190,7 @@ public class LevelManager : Singleton<LevelManager>
         if (currentLevel.ClearCheck())
         {
             Debug.Log("clear");
+            SceneManager.LoadScene("SelectScene");
         }
     }
 
@@ -263,7 +266,7 @@ public class LevelManager : Singleton<LevelManager>
         CellInstantiate();
         RuleInstantiate();
         PaletteInstantiate();
-        MapScale(8);
+        MapScale(7);
     }
 
     private void OnMouseUp()
@@ -274,8 +277,7 @@ public class LevelManager : Singleton<LevelManager>
     // Start is called before the first frame update
     void Start()
     {
-        currentLevelName = "teststage";
-        MapReset();
+        MapReset("map" + GameManager.Inst.stage.ToString());
     }
 
     // Update is called once per frame

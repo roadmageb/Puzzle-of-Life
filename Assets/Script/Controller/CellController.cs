@@ -8,13 +8,13 @@ public abstract class CellController : MonoBehaviour
 {
     public Transform cellForeground, cellReplaceable, cellSelected;
     public Sprite selectedEnabled, selectedDisabled;
-    protected bool invalidPaletteMove;
+    protected bool invalidMove;
     public Cell cell { get; protected set; }
     public bool replaceability { get; private set; }
     public int havingCellNum { get; protected set; }
     public void CellInitialize()
     {
-        invalidPaletteMove = false;
+        invalidMove = false;
         havingCellNum = 0;
     }
     public abstract void ChangeCell(Cell cell);
@@ -50,6 +50,19 @@ public abstract class CellController : MonoBehaviour
         }
     }
 
+    protected bool CheckMoveValid()
+    {
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidMove)
+        {
+            invalidMove = true;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     private void OnMouseEnter()
     {
         ShowSelection(true);
@@ -65,7 +78,7 @@ public abstract class CellController : MonoBehaviour
     protected abstract void OnMouseUp();
     protected void OnMouseDrag()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidPaletteMove)
+        if (!CheckMoveValid())
         {
             return;
         }

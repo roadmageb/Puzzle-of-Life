@@ -22,8 +22,13 @@ public class MapCellController : CellController
     }
     protected override void OnMouseDown()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT)
+        if (!CheckMoveValid())
         {
+            return;
+        }
+        if (LevelManager.Inst.GetPlayState() == PlayState.EDITTOINIT)
+        {
+            invalidMove = true;
             return;
         }
 
@@ -34,8 +39,9 @@ public class MapCellController : CellController
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidPaletteMove)
+        if (!CheckMoveValid())
         {
+            invalidMove = false;
             return;
         }
 

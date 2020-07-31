@@ -31,7 +31,7 @@ public class ImageManager : Singleton<ImageManager>
     public Sprite[] buttonSprites;
     public Sprite[] backgroundSprites;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         cellSpriteDict = new Dictionary<Cell, Sprite>();
         symbolSpriteDict = new Dictionary<ConstraintType, Sprite>();

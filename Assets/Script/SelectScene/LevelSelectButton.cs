@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectButton : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class LevelSelectButton : MonoBehaviour
     private void OnMouseUpAsButton()
     {
         Debug.Log("level selected: " + level_to_go);
+        GameManager.Inst.stage = level_to_go;
+        SceneManager.LoadScene("PuzzleScene");
     }
     private void OnMouseDown()
     {
@@ -21,5 +24,9 @@ public class LevelSelectButton : MonoBehaviour
     private void OnMouseUp()
     {
         GetComponent<SpriteRenderer>().sprite = sprUnClicked;
+    }
+
+    private void Awake()
+    {
     }
 }

@@ -52,24 +52,32 @@ public class RuleCellController : CellController
     }
     protected override void OnMouseDown()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT)
+        if (!CheckMoveValid())
         {
+            return;
+        }
+        if (LevelManager.Inst.GetPlayState() == PlayState.EDITTOINIT)
+        {
+            invalidMove = true;
             return;
         }
 
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "SelectedCell";
+        cellForeground.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
 
         Vector3 tempVec = Input.mousePosition;
         cellForeground.position = (Vector2)(Camera.main.ScreenToWorldPoint(tempVec));
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidPaletteMove)
+        if (!CheckMoveValid())
         {
+            invalidMove = false;
             return;
         }
 
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "Cell";
+        cellForeground.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
 
         cellForeground.localPosition = new Vector3(0, 0, 0);
 
