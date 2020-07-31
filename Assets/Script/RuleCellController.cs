@@ -13,7 +13,7 @@ public class RuleCellController : CellController
         this.ruleNum = ruleNum;
         constraintNum = -1;
         coord = new Vector2Int(-1, -1);
-        ChangeSpriteByCell(cell);
+        ChangeCell(cell);
         ShowReplaceability(replaceability);
     }
     public void CellInitialize(Cell cell, bool replaceability, int ruleNum, Vector2Int coord) // for condition cell
@@ -22,7 +22,7 @@ public class RuleCellController : CellController
         this.ruleNum = ruleNum;
         constraintNum = -1;
         this.coord = coord;
-        ChangeSpriteByCell(cell);
+        ChangeCell(cell);
         ShowReplaceability(replaceability);
     }
     public void CellInitialize(Cell cell, bool replaceability, int ruleNum, int constraintNum) // for constraint cell
@@ -31,10 +31,10 @@ public class RuleCellController : CellController
         this.ruleNum = ruleNum;
         this.constraintNum = constraintNum;
         coord = new Vector2Int(-1, -1);
-        ChangeSpriteByCell(cell);
+        ChangeCell(cell);
         ShowReplaceability(replaceability);
     }
-    public override void ChangeSpriteByCell(Cell cell)
+    public override void ChangeCell(Cell cell)
     {
         cellForeground.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellSpriteDict[cell];
         if (coord.x != -1 && coord.y != -1) {
@@ -52,7 +52,7 @@ public class RuleCellController : CellController
     }
     protected override void OnMouseDown()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT)
         {
             return;
         }
@@ -64,7 +64,7 @@ public class RuleCellController : CellController
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT || invalidPaletteMove)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidPaletteMove)
         {
             return;
         }
@@ -81,7 +81,7 @@ public class RuleCellController : CellController
                 {
                     LevelManager.Inst.cellUnderCursor.SetCellNumOnPalette(LevelManager.Inst.cellUnderCursor.havingCellNum + 1);
                     LevelManager.Inst.cellUnderCursor.cellForeground.GetComponent<SpriteRenderer>().color = Color.white;
-                    ChangeSpriteByCell(Cell.NULL);
+                    ChangeCell(Cell.NULL);
                 }
                 else
                 {
@@ -91,8 +91,8 @@ public class RuleCellController : CellController
             else // !palette -> !palette로의 이동
             {
                 Cell tempCell = cell;
-                ChangeSpriteByCell(LevelManager.Inst.cellUnderCursor.cell);
-                LevelManager.Inst.cellUnderCursor.ChangeSpriteByCell(tempCell);
+                ChangeCell(LevelManager.Inst.cellUnderCursor.cell);
+                LevelManager.Inst.cellUnderCursor.ChangeCell(tempCell);
             }
         }
     }

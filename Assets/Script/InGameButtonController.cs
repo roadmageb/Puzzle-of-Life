@@ -7,10 +7,8 @@ public class InGameButtonController : MonoBehaviour
     public InGameButton[] button;
     private float time;
 
-    public void ChangePlayState(PlayState playState)
+    public void SetButtonForPlayState(PlayState playState)
     {
-        LevelManager.Inst.playState = playState;
-
         switch (playState)
         {
             case PlayState.EDIT:
@@ -39,7 +37,8 @@ public class InGameButtonController : MonoBehaviour
 
     private void Start()
     {
-        ChangePlayState(PlayState.EDIT);
+        LevelManager.Inst.SetPlayState(PlayState.EDIT);
+        SetButtonForPlayState(PlayState.EDIT);
         time = 0.0f;
     }
 
@@ -49,10 +48,11 @@ public class InGameButtonController : MonoBehaviour
         {
             time -= Time.deltaTime;
         }
-        else if (LevelManager.Inst.playState == PlayState.EDITTOINIT)
+        else if (LevelManager.Inst.GetPlayState() == PlayState.EDITTOINIT)
         {
             time = 0.0f;
-            ChangePlayState(PlayState.EDIT);
+            LevelManager.Inst.SetPlayState(PlayState.EDIT);
+            SetButtonForPlayState(PlayState.EDIT);
         }
     }
 }

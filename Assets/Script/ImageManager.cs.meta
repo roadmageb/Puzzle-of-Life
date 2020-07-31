@@ -3,7 +3,23 @@ guid: b244136033ecea844b0c78a385a048ec
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cellPrefab: {fileID: 1706446717806624136, guid: 583698f7a1577c1499acd9b627708066,
+      type: 3}
+  - cellPrefabInRule: {fileID: 8348255106239354341, guid: f64b9045d02684943886a482c7f3017e,
+      type: 3}
+  - cellPrefabInRuleIO: {fileID: 4218622536935842221, guid: adb547173dd83a748860619f42e073ac,
+      type: 3}
+  - cellPrefabInPalette: {fileID: 8348255106239354341, guid: f64b9045d02684943886a482c7f3017e,
+      type: 3}
+  - mapBackgroundPrefab: {fileID: 4754780052482861629, guid: 12afa0fb6b6aa114384a9f2e1afea9be,
+      type: 3}
+  - rulePrefab: {fileID: 943466755731619821, guid: 6403115c54f72cf4eae292ff0a46e740,
+      type: 3}
+  - palettePrefab: {fileID: 6632063439822609789, guid: 9d10e963481949244b8a8808c10e0673,
+      type: 3}
+  - symbolPrefab: {fileID: 425133091056583138, guid: 81c95da3c514f7c458e54243e7d22def,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

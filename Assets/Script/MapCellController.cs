@@ -11,10 +11,10 @@ public class MapCellController : CellController
     {
         CellInitialize();
         this.coord = coord;
-        ChangeSpriteByCell(cell);
+        ChangeCell(cell);
         ShowReplaceability(replaceability);
     }
-    public override void ChangeSpriteByCell(Cell cell)
+    public override void ChangeCell(Cell cell)
     {
         cellForeground.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellSpriteDict[cell];
         LevelManager.Inst.currentLevel.SetCell(coord, cell);
@@ -22,7 +22,7 @@ public class MapCellController : CellController
     }
     protected override void OnMouseDown()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT)
         {
             return;
         }
@@ -34,7 +34,7 @@ public class MapCellController : CellController
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT || invalidPaletteMove)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidPaletteMove)
         {
             return;
         }
@@ -51,7 +51,7 @@ public class MapCellController : CellController
                 {
                     LevelManager.Inst.cellUnderCursor.SetCellNumOnPalette(LevelManager.Inst.cellUnderCursor.havingCellNum + 1);
                     LevelManager.Inst.cellUnderCursor.cellForeground.GetComponent<SpriteRenderer>().color = Color.white;
-                    ChangeSpriteByCell(Cell.NULL);
+                    ChangeCell(Cell.NULL);
                 }
                 else
                 {
@@ -61,8 +61,8 @@ public class MapCellController : CellController
             else // !palette -> !palette로의 이동
             {
                 Cell tempCell = cell;
-                ChangeSpriteByCell(LevelManager.Inst.cellUnderCursor.cell);
-                LevelManager.Inst.cellUnderCursor.ChangeSpriteByCell(tempCell);
+                ChangeCell(LevelManager.Inst.cellUnderCursor.cell);
+                LevelManager.Inst.cellUnderCursor.ChangeCell(tempCell);
             }
         }
     }

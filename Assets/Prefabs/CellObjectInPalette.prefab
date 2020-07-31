@@ -411,6 +411,10 @@ MonoBehaviour:
   cellForeground: {fileID: 4894159858184179005}
   cellReplaceable: {fileID: 4373571105602543069}
   cellSelected: {fileID: 438021303769937980}
+  selectedEnabled: {fileID: -3571566284071874363, guid: af1442d5179c91249ba35eed9fb0945e,
+    type: 3}
+  selectedDisabled: {fileID: -6522068525590307137, guid: af1442d5179c91249ba35eed9fb0945e,
+    type: 3}
 --- !u!61 &2924645365953767499
 BoxCollider2D:
   m_ObjectHideFlags: 0

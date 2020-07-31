@@ -8,11 +8,13 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    public PlayState playState { get; set; }
+    private PlayState playState;
     public CellController cellUnderCursor { get; set; }
     public Transform mapOrigin;
     public Transform ruleOrigin;
     public Transform paletteOrigin;
+    public SpriteRenderer background;
+    public InGameButtonController buttonController;
     private Transform[,] mapBackgroundObject;
     public MapCellController[,] mapCellObject { get; private set; }
     public RuleController[] ruleObject { get; private set; }
@@ -23,15 +25,40 @@ public class LevelManager : Singleton<LevelManager>
     private float interval;
     private string currentLevelName;
 
+    public void SetPlayState(PlayState playState)
+    {
+        this.playState = playState;
+        buttonController.SetButtonForPlayState(playState);
+        switch (playState)
+        {
+            case PlayState.PLAY:
+            case PlayState.PLAYFRAME:
+                background.sprite = ImageManager.Inst.backgroundSprites[1];
+                break;
+            case PlayState.EDIT:
+            case PlayState.EDITTOINIT:
+                background.sprite = ImageManager.Inst.backgroundSprites[0];
+                break;
+        }
+    }
+
+    public PlayState GetPlayState()
+    {
+        return playState;
+    }
+
     public void PlayLevel()
     {
         if (playState == PlayState.PLAY) return;
-        previousCells = new Cell[currentLevel.size.x, currentLevel.size.y];
-        for (int i = 0; i < currentLevel.size.x; ++i)
+        if (playState == PlayState.EDIT)
         {
-            for (int j = 0; j < currentLevel.size.y; ++j)
+            previousCells = new Cell[currentLevel.size.x, currentLevel.size.y];
+            for (int i = 0; i < currentLevel.size.x; ++i)
             {
-                previousCells[i, j] = currentLevel.map[i, j];
+                for (int j = 0; j < currentLevel.size.y; ++j)
+                {
+                    previousCells[i, j] = currentLevel.map[i, j];
+                }
             }
         }
 
@@ -51,7 +78,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void StopLevel()
     {
-        playState = PlayState.EDIT;
+        background.sprite = ImageManager.Inst.backgroundSprites[0];
         for (int i = 0; i < currentLevel.size.x; ++i)
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
@@ -78,19 +105,23 @@ public class LevelManager : Singleton<LevelManager>
             }
         }
 
-        playState = PlayState.PLAYFRAME;
-
         currentLevel.NextState();
         CellUpdate();
     }
 
     private IEnumerator CellCoroutine()
     {
+        float timer = 0;
         while (true)
         {
-            currentLevel.NextState();
-            CellUpdate();
-            yield return new WaitForSeconds(interval);
+            timer += Time.deltaTime;
+            if (timer >= interval)
+            {
+                timer = 0;
+                currentLevel.NextState();
+                CellUpdate();
+            }
+            yield return null;
         }
     }
 
@@ -150,8 +181,13 @@ public class LevelManager : Singleton<LevelManager>
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
             {
-                mapCellObject[i, j].ChangeSpriteByCell(currentLevel.map[i, j]);
+                mapCellObject[i, j].ChangeCell(currentLevel.map[i, j]);
             }
+        }
+
+        if (currentLevel.ClearCheck())
+        {
+            Debug.Log("clear");
         }
     }
 
@@ -200,6 +236,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void MapReset()
     {
+        background.sprite = ImageManager.Inst.backgroundSprites[0];
         try
         {
             string str = File.ReadAllText(Application.dataPath + "/Resources/" + currentLevelName + ".json");
@@ -213,6 +250,12 @@ public class LevelManager : Singleton<LevelManager>
             return;
         }
         MapInstantiate();
+    }
+
+    public void MapReset(string str)
+    {
+        currentLevelName = str;
+        MapReset();
     }
 
     public void MapInstantiate()

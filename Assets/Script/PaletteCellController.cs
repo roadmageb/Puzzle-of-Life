@@ -10,10 +10,10 @@ public class PaletteCellController : CellController
     {
         CellInitialize();
         this.coord = coord;
-        ChangeSpriteByCell(cell);
+        ChangeCell(cell);
         ShowReplaceability(true);
     }
-    public override void ChangeSpriteByCell(Cell cell)
+    public override void ChangeCell(Cell cell)
     {
         cellForeground.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.cellSpriteDict[cell];
         LevelManager.Inst.currentLevel.palette[coord].cell = cell;
@@ -49,6 +49,10 @@ public class PaletteCellController : CellController
     }
     protected override void OnMouseDown()
     {
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT)
+        {
+            return;
+        }
         cellPalette = Instantiate(cellForeground, transform).GetComponent<Transform>();
         int cellNum = havingCellNum - 1;
         invalidPaletteMove = false;
@@ -65,7 +69,7 @@ public class PaletteCellController : CellController
         }
         SetCellNumOnPalette(cellNum);
 
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT)
         {
             return;
         }
@@ -78,7 +82,7 @@ public class PaletteCellController : CellController
     }
     protected override void OnMouseUp()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT || invalidPaletteMove)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidPaletteMove)
         {
             return;
         }
@@ -99,7 +103,7 @@ public class PaletteCellController : CellController
             {
                 cellForeground.GetComponent<SpriteRenderer>().color = Color.grey; // sprite를 어둡게 함
             }
-            LevelManager.Inst.cellUnderCursor.ChangeSpriteByCell(cell);
+            LevelManager.Inst.cellUnderCursor.ChangeCell(cell);
         }
         else // palette에서 잘못된 곳으로의 이동
         {

@@ -47,7 +47,6 @@ public class Level
     }
     public bool SetCell(Vector2Int coord, Cell type)
     {
-        Debug.Log(coord);
         if (coord.x >= size.x || coord.y >= size.y || coord.x < 0 || coord.y < 0) return false;
         map[coord.x, coord.y] = type;
         return true;
@@ -188,5 +187,17 @@ public class Level
                 map[i, j] = tempMap[i, j];
             }
         }
+    }
+
+    public bool ClearCheck()
+    {
+        for (int i = 0; i < size.x; ++i)
+        {
+            for (int j = 0; j < size.x; ++j)
+            {
+                if (map[i, j] == Cell.TARGET1 || map[i, j] == Cell.TARGET2 || map[i, j] == Cell.TARGET3) return false;
+            }
+        }
+        return true;
     }
 }

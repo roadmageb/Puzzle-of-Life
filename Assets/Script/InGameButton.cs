@@ -34,30 +34,30 @@ public class InGameButton : MonoBehaviour
             {
                 case ButtonState.PLAY:
                     LevelManager.Inst.PlayLevel();
-                    GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.PLAY);
+                    LevelManager.Inst.SetPlayState(PlayState.PLAY);
                     break;
                 case ButtonState.FASTFORWARD:
                     LevelManager.Inst.FastForwardLevel();
-                    GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.PLAY);
+                    LevelManager.Inst.SetPlayState(PlayState.PLAY);
                     break;
                 case ButtonState.PAUSE:
                     LevelManager.Inst.PauseLevel();
-                    GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.PLAYFRAME);
+                    LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
                     break;
                 case ButtonState.PLAYFRAME:
                     LevelManager.Inst.PlayFrame();
-                    GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.PLAYFRAME);
+                    LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
                     break;
                 case ButtonState.RESETGRAY:
-                    GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.EDITTOINIT);
+                    LevelManager.Inst.SetPlayState(PlayState.EDITTOINIT);
                     break;
                 case ButtonState.RESETRED:
                     LevelManager.Inst.MapReset();
-                    GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.EDIT);
+                    LevelManager.Inst.SetPlayState(PlayState.EDIT);
                     break;
                 case ButtonState.STOP:
                     LevelManager.Inst.StopLevel();
-                    GetComponentInParent<InGameButtonController>().ChangePlayState(PlayState.EDIT);
+                    LevelManager.Inst.SetPlayState(PlayState.EDIT);
                     break;
             }
         }

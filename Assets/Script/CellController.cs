@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class CellController : MonoBehaviour
 {
     public Transform cellForeground, cellReplaceable, cellSelected;
+    public Sprite selectedEnabled, selectedDisabled;
     protected bool invalidPaletteMove;
     public Cell cell { get; protected set; }
     public bool replaceability { get; private set; }
@@ -16,7 +17,7 @@ public abstract class CellController : MonoBehaviour
         invalidPaletteMove = false;
         havingCellNum = 0;
     }
-    public abstract void ChangeSpriteByCell(Cell cell);
+    public abstract void ChangeCell(Cell cell);
     public void ShowReplaceability(bool replaceability)
     {
         cellReplaceable.gameObject.SetActive(replaceability);
@@ -34,9 +35,25 @@ public abstract class CellController : MonoBehaviour
     {
         return;
     }
+
+    public void ChangeCellSelectionBorder()
+    {
+        if (LevelManager.Inst.GetPlayState() == PlayState.PLAY || LevelManager.Inst.GetPlayState() == PlayState.PLAYFRAME)
+        {
+            cellSelected.GetComponent<SpriteRenderer>().sprite = selectedDisabled;
+        }
+        else if (replaceability) {
+            cellSelected.GetComponent<SpriteRenderer>().sprite = selectedEnabled;
+        }
+        else if (!replaceability) {
+            cellSelected.GetComponent<SpriteRenderer>().sprite = selectedDisabled;
+        }
+    }
+
     private void OnMouseEnter()
     {
         ShowSelection(true);
+        ChangeCellSelectionBorder();
         LevelManager.Inst.cellUnderCursor = this;
     }
     private void OnMouseExit()
@@ -48,7 +65,7 @@ public abstract class CellController : MonoBehaviour
     protected abstract void OnMouseUp();
     protected void OnMouseDrag()
     {
-        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.playState != PlayState.EDIT || invalidPaletteMove)
+        if (!replaceability || cell == Cell.NULL || LevelManager.Inst.GetPlayState() != PlayState.EDIT || invalidPaletteMove)
         {
             return;
         }
