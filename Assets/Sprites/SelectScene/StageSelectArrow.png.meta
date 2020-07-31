@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: 95f3f45044550734c9a9cdd89488d6f5
+guid: 03f631983b50302408300c4d4a649c96
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8936296597398277325
-    second: BackSelectButton_0
+      213: -2531103450635476330
+    second: StageSelectArrow_0
   - first:
-      213: 5631717980434704186
-    second: BackSelectButton_1
+      213: 514971912577105291
+    second: StageSelectArrow_1
+  - first:
+      213: 2593575652535105741
+    second: StageSelectArrow_2
+  - first:
+      213: 2342796246784731140
+    second: StageSelectArrow_3
+  - first:
+      213: 5538576381918458777
+    second: StageSelectArrow_0
+  - first:
+      213: 5858758160597885769
+    second: StageSelectArrow_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -93,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BackSelectButton_0
+      name: StageSelectArrow_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 62
-        height: 45
+        width: 41
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3333b885795ebf380800000000000000
-      internalID: -8936296597398277325
+      spriteID: 9933e9defd9fcdc40800000000000000
+      internalID: 5538576381918458777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BackSelectButton_1
+      name: StageSelectArrow_1
       rect:
         serializedVersion: 2
-        x: 62
+        x: 41
         y: 0
-        width: 62
-        height: 45
+        width: 41
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a37adf24aa1e72e40800000000000000
-      internalID: 5631717980434704186
+      spriteID: 943ab5b818d7e4150800000000000000
+      internalID: 5858758160597885769
       vertices: []
       indices: 
       edges: []
