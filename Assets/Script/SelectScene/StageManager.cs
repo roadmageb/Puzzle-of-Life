@@ -2,11 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageManager : Singleton<StageManager>
 {
-    public int StageCount;
-    public int[] LevelCount;
     public GameObject objCamera;
     public GameObject objStageSelectScreen;
     public GameObject objStageSelectButtonsScreen;
@@ -23,7 +22,7 @@ public class StageManager : Singleton<StageManager>
 
     public void Start()
     {
-        for (int i = 0; i < StageCount; i++)
+        for (int i = 0; i < GameManager.Inst.StageCount; i++)
         {
             GameObject created_instance = Instantiate(prefStageSelectButton, objStageSelectButtonsScreen.transform);
             created_instance.transform.position += new Vector3(i * 15, 0, 0);
@@ -37,9 +36,9 @@ public class StageManager : Singleton<StageManager>
         NowStage += i;
         if (NowStage < 1)
         {
-            NowStage = StageCount;
+            NowStage = GameManager.Inst.StageCount;
         }
-        if (NowStage > StageCount)
+        if (NowStage > GameManager.Inst.StageCount)
         {
             NowStage = 1;
         }
@@ -54,6 +53,14 @@ public class StageManager : Singleton<StageManager>
         StartCoroutine(ScreenSlide(objCamera, objStageSelectScreen.transform.position + CameraZPosition, objLevelSelectScreen.transform.position + CameraZPosition, 1));
     }
 
+    public void LevelSelected(int n)
+    {
+        SelectedLevel = n;
+        GameManager.Inst.stage = SelectedStage;
+        GameManager.Inst.level = SelectedLevel;
+        SceneManager.LoadScene("PuzzleScene");
+    }
+
     public void BackSelected()
     {
         StartCoroutine(ScreenSlide(objCamera, objLevelSelectScreen.transform.position + CameraZPosition, objStageSelectScreen.transform.position + CameraZPosition, 1));
@@ -62,7 +69,7 @@ public class StageManager : Singleton<StageManager>
     void SetLevelSelectScreen()
     {
         LevelSelectScreenLevelSelectButtonList = new List<GameObject>();
-        for (int i = 0; i < LevelCount[SelectedStage - 1]; i++)
+        for (int i = 0; i < GameManager.Inst.LevelCount[SelectedStage - 1]; i++)
         {
             GameObject created_instance = Instantiate(prefLevelSelectButton, objLevelSelectScreen.transform);
             created_instance.transform.position += new Vector3(-3 + (i % 5) * 1.5f, 3 - (i / 5) * 1.5f, 0);
@@ -77,7 +84,7 @@ public class StageManager : Singleton<StageManager>
         {
             return;
         }
-        for (int i = 0; i < LevelCount[SelectedStage - 1]; i++)
+        for (int i = 0; i < GameManager.Inst.LevelCount[SelectedStage - 1]; i++)
         {
             Destroy(LevelSelectScreenLevelSelectButtonList[i].gameObject);
         }

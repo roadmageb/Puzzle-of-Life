@@ -12,9 +12,7 @@ public class LevelSelectButton : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        Debug.Log("level selected: " + LevelToGo);
-        GameManager.Inst.stage = LevelToGo;
-        SceneManager.LoadScene("PuzzleScene");
+        StageManager.Inst.LevelSelected(LevelToGo);
     }
     private void OnMouseDown()
     {

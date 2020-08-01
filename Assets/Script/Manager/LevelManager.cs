@@ -278,6 +278,9 @@ public class LevelManager : Singleton<LevelManager>
     void Start()
     {
         MapReset("map" + GameManager.Inst.stage.ToString());
+        //레벨 디자이너들이 맵 이름을 "Stage1-4" 이런 방식으로 지을 것입니다.
+        //그래서 GameManager에는 stage에 추가로 level이라는 변수를 추가하였습니다.
+        //"Stage1-4"로 예를 들자면 '1'이 stage 변수 부분이고 '4'가 level 변수 부분입니다.
     }
 
     // Update is called once per frame
