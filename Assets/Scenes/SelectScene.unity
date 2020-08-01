@@ -1258,8 +1258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af64802e4da6a3a42bc5fb94873fba54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageCount: 5
-  LevelCount: 070000000a0000000c0000000f00000014000000
+  StageCount: 2
+  LevelCount: 0a00000000000000
   stage: 0
   level: 0
 --- !u!4 &1950560195
