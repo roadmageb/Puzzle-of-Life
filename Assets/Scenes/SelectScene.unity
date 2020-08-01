@@ -942,9 +942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087447ad93ead844c96f4d58cf79daff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPersistant: 0
-  stage_count: 5
-  level_count: 140000000a0000000d0000000f00000014000000
+  StageCount: 5
+  LevelCount: 110000000a0000000c0000000f00000014000000
   objCamera: {fileID: 1925819853}
   objStageSelectScreen: {fileID: 1048247605}
   objStageSelectButtonsScreen: {fileID: 931547224}
@@ -953,7 +952,6 @@ MonoBehaviour:
     type: 3}
   prefLevelSelectButton: {fileID: 6639628886646571118, guid: 8e9efa4235666a14583f8cb1dfb62e08,
     type: 3}
-  selected_stage: 0
 --- !u!4 &538896234
 Transform:
   m_ObjectHideFlags: 0
@@ -1262,7 +1260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af64802e4da6a3a42bc5fb94873fba54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPersistant: 1
+  stage: 0
 --- !u!4 &1950560195
 Transform:
   m_ObjectHideFlags: 0

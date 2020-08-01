@@ -7,11 +7,11 @@ public class StageSelectButton : MonoBehaviour
     public Sprite sprUnClicked;
     public Sprite sprClicked;
 
-    public int stage_to_go;
+    public int StageToGo;
 
     private void OnMouseUpAsButton()
     {
-        StageManager.Inst.StageSelected(stage_to_go);
+        StageManager.Inst.StageSelected(StageToGo);
     }
 
     private void OnMouseDown()
