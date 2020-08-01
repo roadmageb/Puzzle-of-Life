@@ -10,7 +10,7 @@ public class BackSelectButton  : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        StageManager.Inst.BackSelected();
+        SelectSceneManager.Inst.BackSelected();
     }
     private void OnMouseDown()
     {

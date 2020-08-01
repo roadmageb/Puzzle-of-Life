@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 538896234}
   - component: {fileID: 538896233}
   m_Layer: 0
-  m_Name: StageManager
+  m_Name: SelectSceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,8 +942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087447ad93ead844c96f4d58cf79daff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageCount: 0
-  LevelCount: 0000000000000000000000000000000000000000
   objCamera: {fileID: 1925819853}
   objStageSelectScreen: {fileID: 1048247605}
   objStageSelectButtonsScreen: {fileID: 931547224}

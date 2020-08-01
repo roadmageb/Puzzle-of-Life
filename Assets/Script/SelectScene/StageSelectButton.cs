@@ -11,7 +11,7 @@ public class StageSelectButton : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        StageManager.Inst.StageSelected(StageToGo);
+        SelectSceneManager.Inst.StageSelected(StageToGo);
     }
 
     private void OnMouseDown()
