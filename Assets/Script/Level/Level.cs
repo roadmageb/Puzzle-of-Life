@@ -193,7 +193,7 @@ public class Level
     {
         for (int i = 0; i < size.x; ++i)
         {
-            for (int j = 0; j < size.x; ++j)
+            for (int j = 0; j < size.y; ++j)
             {
                 if (map[i, j] == Cell.TARGET1 || map[i, j] == Cell.TARGET2 || map[i, j] == Cell.TARGET3) return false;
             }
