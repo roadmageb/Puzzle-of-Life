@@ -72,7 +72,7 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         for (int i = 0; i < GameManager.Inst.LevelCount[SelectedStage - 1]; i++)
         {
             GameObject created_instance = Instantiate(prefLevelSelectButton, objLevelSelectScreen.transform);
-            created_instance.transform.position += new Vector3(-3 + (i % 5) * 1.5f, 3 - (i / 5) * 1.5f, 0);
+            created_instance.transform.position += new Vector3(-3 + (i % 5) * 1.5f, 1 - (i / 5) * 1.5f, 0);
             created_instance.GetComponent<LevelSelectButton>().LevelToGo = i + 1;
             LevelSelectScreenLevelSelectButtonList.Add(created_instance);
         }
