@@ -3,22 +3,10 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
-public class BackSelectButton  : MonoBehaviour
+public class BackSelectButton  : SelectButton
 {
-    public Sprite sprUnClicked;
-    public Sprite sprClicked;
-
-    private void OnMouseUpAsButton()
+    protected override void ButtonAction()
     {
         SelectSceneManager.Inst.BackSelected();
-    }
-    private void OnMouseDown()
-    {
-        GetComponent<SpriteRenderer>().sprite = sprClicked;
-    }
-
-    private void OnMouseUp()
-    {
-        GetComponent<SpriteRenderer>().sprite = sprUnClicked;
     }
 }

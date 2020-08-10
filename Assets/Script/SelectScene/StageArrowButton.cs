@@ -2,24 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageArrowButton : MonoBehaviour
+public class StageArrowButton : SelectButton
 {
-    public Sprite sprUnClicked;
-    public Sprite sprClicked;
-
-
-    private void OnMouseUpAsButton()
+    protected override void ButtonAction()
     {
         SelectSceneManager.Inst.StageChange((int)GetComponent<Transform>().localScale.x);
-    }
-
-    private void OnMouseDown()
-    {
-        GetComponent<SpriteRenderer>().sprite = sprClicked;
-    }
-
-    private void OnMouseUp()
-    {
-        GetComponent<SpriteRenderer>().sprite = sprUnClicked;
     }
 }

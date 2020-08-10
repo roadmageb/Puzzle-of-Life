@@ -2,25 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageSelectButton : MonoBehaviour
+public class StageSelectButton : SelectButton
 {
-    public Sprite sprUnClicked;
-    public Sprite sprClicked;
-
     public int StageToGo;
 
-    private void OnMouseUpAsButton()
+    protected override void ButtonAction()
     {
         SelectSceneManager.Inst.StageSelected(StageToGo);
-    }
-
-    private void OnMouseDown()
-    {
-        GetComponent<SpriteRenderer>().sprite = sprClicked;
-    }
-
-    private void OnMouseUp()
-    {
-        GetComponent<SpriteRenderer>().sprite = sprUnClicked;
     }
 }
