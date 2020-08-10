@@ -26,6 +26,8 @@ public class LevelManager : Singleton<LevelManager>
     private float interval;
     private string currentLevelName;
 
+    public GameObject ClearWindow;
+
     public void SetPlayState(PlayState playState)
     {
         this.playState = playState;
@@ -190,7 +192,7 @@ public class LevelManager : Singleton<LevelManager>
         if (currentLevel.ClearCheck())
         {
             Debug.Log("clear");
-            SceneManager.LoadScene("SelectScene");
+            ClearWindow.SetActive(true);
         }
     }
 
@@ -259,6 +261,11 @@ public class LevelManager : Singleton<LevelManager>
     {
         currentLevelName = str;
         MapReset();
+    }
+
+    public void MapReset(int stage, int level)
+    {
+        MapReset("Maps/Stage" + GameManager.Inst.stage + "/" + GameManager.Inst.stage + "-" + GameManager.Inst.level);
     }
 
     public void MapInstantiate()
