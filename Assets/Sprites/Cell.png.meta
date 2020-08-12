@@ -8,6 +8,30 @@ TextureImporter:
   - first:
       213: 3240621668641761797
     second: Cell_TARGET1
+  - first:
+      213: -7260676804709280353
+    second: Cell_0
+  - first:
+      213: 2510834204885918321
+    second: Cell_1
+  - first:
+      213: 3857691771022356991
+    second: Cell_2
+  - first:
+      213: -2061980447685304011
+    second: Cell_3
+  - first:
+      213: -8360775731568085536
+    second: Cell_4
+  - first:
+      213: -2748257779863613883
+    second: Cell_5
+  - first:
+      213: -2724734513243535182
+    second: Cell_6
+  - first:
+      213: 8162570633322581015
+    second: Cell_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -93,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cell_CELL1
+      name: Cell_0
       rect:
         serializedVersion: 2
         x: 0
@@ -107,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c4545a96efecad50800000000000000
-      internalID: 6750033715232265413
+      spriteID: f9592623ae4ec3b90800000000000000
+      internalID: -7260676804709280353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cell_TARGET1
+      name: Cell_1
       rect:
         serializedVersion: 2
         x: 32
@@ -128,8 +152,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50a63d2fc3009fc20800000000000000
-      internalID: 3240621668641761797
+      spriteID: 1722028086648d220800000000000000
+      internalID: 2510834204885918321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cell_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff13cb01a36498530800000000000000
+      internalID: 3857691771022356991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cell_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 531aae925bf5263e0800000000000000
+      internalID: -2061980447685304011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cell_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e57d29f4ce88fb80800000000000000
+      internalID: -8360775731568085536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cell_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54e86003c1a3cd9d0800000000000000
+      internalID: -2748257779863613883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cell_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b84fde756ccf2ad0800000000000000
+      internalID: -2724734513243535182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cell_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c4a3d6eb6474170800000000000000
+      internalID: 8162570633322581015
       vertices: []
       indices: 
       edges: []
