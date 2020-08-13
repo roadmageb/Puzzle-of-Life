@@ -13,6 +13,8 @@ public class RuleController : MonoBehaviour
     public float ruleHeight { get; set; }
     public Transform conditionOffset, outcomeOffset, constraintOffset, ruleNumOffset;
     private int ruleNum;
+    public bool isEditMode { get; set; }
+    private ConstraintButtonController[][] constraintButton;
     private float GetSpriteHeight(GameObject g)
     {
         return g.GetComponent<SpriteRenderer>().bounds.size.y;
@@ -89,9 +91,102 @@ public class RuleController : MonoBehaviour
     private void ConstraintInstantiate(List<Constraint> constraints)
     {
         constraintCell = new RuleCellController[constraints.Count];
+        constraintButton = new ConstraintButtonController[constraints.Count][];
+
         for (int i = 0; i < constraints.Count; ++i)
         {
-            if (constraints[i].type != ConstraintType.BET)
+            if (constraints[i].state == ConstraintState.DUMMY)
+            {
+                constraintButton[i] = new ConstraintButtonController[1];
+                constraintButton[i][0] = Instantiate(ImageManager.Inst.constraintButtonPrefab, ruleBorders[i + 1].transform).GetComponent<ConstraintButtonController>();
+                constraintButton[i][0].transform.localPosition = new Vector3(1, 0, 0) + constraintOffset.localPosition;
+                constraintButton[i][0].ruleNum = ruleNum;
+                constraintButton[i][0].constraintNum = i;
+                constraintButton[i][0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleEditButtonSprites[2];
+                constraintButton[i][0].editorButtonType = EditorButtonType.ADD;
+            }
+            else if (constraints[i].state == ConstraintState.SELTYPE)
+            {
+                constraintButton[i] = new ConstraintButtonController[5];
+                for (int j = 0; j < 5; ++j)
+                {
+                    constraintButton[i][j] = Instantiate(ImageManager.Inst.constraintButtonPrefab, ruleBorders[i + 1].transform).GetComponent<ConstraintButtonController>();
+                    constraintButton[i][j].transform.localPosition = new Vector3(j - 1, 0, 0) + constraintOffset.localPosition;
+                    constraintButton[i][j].ruleNum = ruleNum;
+                    constraintButton[i][j].constraintNum = i;
+                    constraintButton[i][j].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleEditButtonSprites[4 + j * 2];
+                    constraintButton[i][j].editorButtonType = EditorButtonType.CONSTTYPE;
+                }
+                constraintButton[i][0].constraintType = ConstraintType.LE;
+                constraintButton[i][1].constraintType = ConstraintType.GE;
+                constraintButton[i][2].constraintType = ConstraintType.EQ;
+                constraintButton[i][3].constraintType = ConstraintType.NE;
+                constraintButton[i][4].constraintType = ConstraintType.BET;
+            }
+            else if (constraints[i].state == ConstraintState.SELNUM)
+            {
+                if (constraints[i].type != ConstraintType.BET)
+                {
+                    GameObject tmp;
+                    tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform); // prefab 없이 instantiate 하는 방법이 있는지?
+                    tmp.transform.localPosition = new Vector3(0, 0, 0) + constraintOffset.localPosition;
+                    tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleCellSprite;
+                    tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
+                    tmp.transform.localPosition = new Vector3(1, 0, 0) + constraintOffset.localPosition;
+                    tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.symbolSpriteDict[constraints[i].type];
+                    constraintButton[i] = new ConstraintButtonController[1];
+                    constraintButton[i][0] = Instantiate(ImageManager.Inst.constraintNumButtonPrefab, ruleBorders[i + 1].transform).GetComponent<ConstraintButtonController>();
+                    constraintButton[i][0].transform.localPosition = new Vector3(2, 0, 0) + constraintOffset.localPosition;
+                    constraintButton[i][0].ruleNum = ruleNum;
+                    constraintButton[i][0].constraintNum = i;
+                    constraintButton[i][0].editorButtonType = EditorButtonType.CONSTNUM;
+                }
+                else
+                {
+                    GameObject tmp;
+                    tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
+                    tmp.transform.localPosition = new Vector3(0, 0, 0) + constraintOffset.localPosition;
+                    tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.symbolSpriteDict[ConstraintType.LE];
+                    tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
+                    tmp.transform.localPosition = new Vector3(1, 0, 0) + constraintOffset.localPosition;
+                    tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleCellSprite;
+                    tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
+                    tmp.transform.localPosition = new Vector3(2, 0, 0) + constraintOffset.localPosition;
+                    tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.symbolSpriteDict[ConstraintType.LE];
+                    constraintButton[i] = new ConstraintButtonController[2];
+                    if (constraints[i].param1 == -1)
+                    {
+                        constraintButton[i][0] = Instantiate(ImageManager.Inst.constraintNumButtonPrefab, ruleBorders[i + 1].transform).GetComponent<ConstraintButtonController>();
+                        constraintButton[i][0].transform.localPosition = new Vector3(-1, 0, 0) + constraintOffset.localPosition;
+                        constraintButton[i][0].ruleNum = ruleNum;
+                        constraintButton[i][0].constraintNum = i;
+                        constraintButton[i][0].paramNum = 0;
+                        constraintButton[i][0].editorButtonType = EditorButtonType.CONSTNUM;
+                    }
+                    else
+                    {
+                        tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
+                        tmp.transform.localPosition = new Vector3(-1, 0, 0) + constraintOffset.localPosition;
+                        tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.numberSprites[constraints[i].param1];
+                    }
+                    if (constraints[i].param2 == -1)
+                    {
+                        constraintButton[i][1] = Instantiate(ImageManager.Inst.constraintNumButtonPrefab, ruleBorders[i + 1].transform).GetComponent<ConstraintButtonController>();
+                        constraintButton[i][1].transform.localPosition = new Vector3(3, 0, 0) + constraintOffset.localPosition;
+                        constraintButton[i][1].ruleNum = ruleNum;
+                        constraintButton[i][1].constraintNum = i;
+                        constraintButton[i][1].paramNum = 1;
+                        constraintButton[i][1].editorButtonType = EditorButtonType.CONSTNUM;
+                    }
+                    else
+                    {
+                        tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
+                        tmp.transform.localPosition = new Vector3(3, 0, 0) + constraintOffset.localPosition;
+                        tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.numberSprites[constraints[i].param2];
+                    }
+                }
+            }
+            else if (constraints[i].type != ConstraintType.BET)
             {
                 constraintCell[i] = Instantiate(ImageManager.Inst.cellPrefabInRule, ruleBorders[i + 1].transform).GetComponent<RuleCellController>();
                 constraintCell[i].transform.localPosition = new Vector3(0, 0, 0) + constraintOffset.localPosition;

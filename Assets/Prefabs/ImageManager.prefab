@@ -60,6 +60,10 @@ MonoBehaviour:
     type: 3}
   symbolPrefab: {fileID: 425133091056583138, guid: 81c95da3c514f7c458e54243e7d22def,
     type: 3}
+  constraintButtonPrefab: {fileID: 5843629587770408952, guid: fc5e6912eb87a23469e74cbc6673fb95,
+    type: 3}
+  constraintNumButtonPrefab: {fileID: 8012889757285473715, guid: a1fd81db1852db7428c3f85b585dd923,
+    type: 3}
   cellSprites:
   - cell: 0
     sprite: {fileID: 0}
@@ -162,3 +166,20 @@ MonoBehaviour:
   backgroundSprites:
   - {fileID: -1955448553306655712, guid: b48646e2f85f79c46a14cd314038d266, type: 3}
   - {fileID: 7014286043975846214, guid: b48646e2f85f79c46a14cd314038d266, type: 3}
+  ruleEditButtonSprites:
+  - {fileID: 5181724513682309668, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -5382554249850218175, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -1281928876534280456, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -8083746405929904069, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -7317208236968686288, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -397600534285100255, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: 4103378468376226915, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -7719151340911073643, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: 6293181503808844435, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -7789967988623545379, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -7256536143108979594, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -4440916184098578547, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -5401757034488179245, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  - {fileID: -8501693404590747596, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  ruleCellSprite: {fileID: -4161725722352587115, guid: a88117c4af0b5794fb037772f768b12d,
+    type: 3}

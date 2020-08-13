@@ -194,7 +194,7 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    private void RuleInstantiate()
+    private void RuleInstantiate(bool isEditMode)
     {
         foreach (Transform child in ruleOrigin)
         {
@@ -209,6 +209,7 @@ public class LevelManager : Singleton<LevelManager>
             ruleObject[i] = Instantiate(ImageManager.Inst.rulePrefab, ruleOrigin).GetComponent<RuleController>();
             ruleObject[i].RuleInstantiate(currentLevel.rules[i], i);
             ruleObject[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
+            ruleObject[i].isEditMode = isEditMode;
             wholeRuleHeight += ruleObject[i].ruleHeight + ImageManager.Inst.ruleGap;
         }
         wholeRuleHeight -= ImageManager.Inst.ruleGap;
@@ -252,7 +253,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.Log(e);
             return;
         }
-        MapInstantiate();
+        MapInstantiate(false); // TEST
     }
 
     public void MapReset(string str)
@@ -261,17 +262,17 @@ public class LevelManager : Singleton<LevelManager>
         MapReset();
     }
 
-    public void MapInstantiate()
+    public void MapInstantiate(bool isEditMode)
     {
         CellInstantiate();
-        RuleInstantiate();
+        RuleInstantiate(isEditMode);
         PaletteInstantiate();
         MapScale(7);
     }
 
     private void OnMouseUp()
     {
-        MapInstantiate();
+        MapInstantiate(false); // TEST
     }
 
     // Start is called before the first frame update
