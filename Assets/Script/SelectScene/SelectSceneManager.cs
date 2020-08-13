@@ -14,7 +14,6 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
     public GameObject prefLevelSelectButton;
 
     int SelectedStage = 0;
-    int SelectedLevel;
     int NowStage = 1;
     List<GameObject> LevelSelectScreenLevelSelectButtonList;
 
@@ -53,11 +52,10 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         StartCoroutine(ScreenSlide(objCamera, objStageSelectScreen.transform.position + CameraZPosition, objLevelSelectScreen.transform.position + CameraZPosition, 1));
     }
 
-    public void LevelSelected(int n)
+    public void LevelSelected(int StageToGo, int LevelToGo)
     {
-        SelectedLevel = n;
-        GameManager.Inst.stage = SelectedStage;
-        GameManager.Inst.level = SelectedLevel;
+        GameManager.Inst.stage = StageToGo;
+        GameManager.Inst.level = LevelToGo;
         SceneManager.LoadScene("PuzzleScene");
     }
 
@@ -73,7 +71,7 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         {
             GameObject created_instance = Instantiate(prefLevelSelectButton, objLevelSelectScreen.transform);
             created_instance.transform.position += new Vector3(-3 + (i % 5) * 1.5f, 1 - (i / 5) * 1.5f, 0);
-            created_instance.GetComponent<LevelSelectButton>().LevelToGo = i + 1;
+            created_instance.GetComponent<LevelSelectButton>().SetLight(SelectedStage, i + 1);
             LevelSelectScreenLevelSelectButtonList.Add(created_instance);
         }
     }

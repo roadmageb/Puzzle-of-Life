@@ -101,7 +101,10 @@ MonoBehaviour:
     type: 3}
   sprClicked: {fileID: -1180702502588685813, guid: 217b305ce7e2b85439ebc5bc4d92d482,
     type: 3}
-  level_to_go: 0
+  Light: {fileID: 6639628886646571119}
+  LightOff: {fileID: -7016302082945307069, guid: 217b305ce7e2b85439ebc5bc4d92d482,
+    type: 3}
+  Cell: {fileID: 7384456874705470090}
 --- !u!61 &6639628886646571114
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197,6 +200,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98a9ab9ec93c1bd4db18a45d3e489d77, type: 3}
+--- !u!1 &7384456874705470090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7113484647745758077, guid: 98a9ab9ec93c1bd4db18a45d3e489d77,
+    type: 3}
+  m_PrefabInstance: {fileID: 343101495414514167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7384456874705470088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7113484647745758079, guid: 98a9ab9ec93c1bd4db18a45d3e489d77,
