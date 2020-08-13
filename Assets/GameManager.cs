@@ -24,17 +24,18 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
-
+        LoadLevelClearData();
+        /*
         LevelClearData.IsClear = new bool[StageCount, 10];
         for (int i = 0; i < StageCount; i++)
         {
             for (int j = 0; j < 10; j++)
             {
                 LevelClearData.IsClear[i, j] = false;
-                //Debug.Log("[" + i + ", " + j + "] " + LevelClearData.IsClear[i, j]);
             }
         }
         SaveLevelClearData();
+        */
     }
 
     void SaveLevelClearData()
@@ -64,6 +65,7 @@ public class GameManager : Singleton<GameManager>
     public void ClearPuzzle(int SelectedStage, int SelectedLevel)
     {
         LevelClearData.IsClear[SelectedStage - 1, SelectedLevel - 1] = true;
+        SaveLevelClearData();
     }
 
     public bool IsCleared(int IdentifiedStage, int IdentifiredLevel)
