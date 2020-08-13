@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using Newtonsoft.Json;
+using UnityEditor;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -58,6 +59,11 @@ public class GameManager : Singleton<GameManager>
             level = LevelToGo;
             SceneManager.LoadScene("PuzzleScene");
         }
+    }
+
+    public void ClearPuzzle(int SelectedStage, int SelectedLevel)
+    {
+        LevelClearData.IsClear[SelectedStage - 1, SelectedLevel - 1] = true;
     }
 
     public bool IsCleared(int IdentifiedStage, int IdentifiredLevel)
