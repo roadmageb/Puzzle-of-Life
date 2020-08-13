@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class StageSelectButton : SelectButton
 {
-    public int StageToGo;
+    private int StageToGo;
 
     protected override void ButtonAction()
     {
         SelectSceneManager.Inst.StageSelected(StageToGo);
+    }
+
+    public void SetStageSelectButton(int Stage)
+    {
+        StageToGo = Stage;
     }
 }

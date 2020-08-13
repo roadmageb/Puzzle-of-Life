@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -47,6 +48,44 @@ public class GameManager : Singleton<GameManager>
         string path = Path.Combine(Application.dataPath + "/Resources/Save/LevelClearData.json");
         string jsonData = File.ReadAllText(path);
         LevelClearData = JsonConvert.DeserializeObject<LevelClearDataStruct>(jsonData);
+    }
+
+    public void LoadPuzzle(int StageToGo, int LevelToGo)
+    {
+        if (IsPlayable(StageToGo, LevelToGo))
+        {
+            stage = StageToGo;
+            level = LevelToGo;
+            SceneManager.LoadScene("PuzzleScene");
+        }
+    }
+
+    public bool IsCleared(int IdentifiedStage, int IdentifiredLevel)
+    {
+        return LevelClearData.IsClear[IdentifiedStage - 1, IdentifiredLevel - 1];
+    }
+
+    public bool IsPlayable(int IdentifiedStage, int IdentifiedLevel)
+    {
+        if (IsCleared(IdentifiedStage, IdentifiedLevel))
+        {
+            return true;
+        }
+        else
+        {
+            int last_stage = IdentifiedStage;
+            int last_level = IdentifiedLevel - 1;
+            if (last_level == 0)
+            {
+                last_level = 10;
+                last_stage -= 1;
+                if (last_stage == 0)
+                {
+                    return true;
+                }
+            }
+            return IsCleared(last_stage, last_level);
+        }
     }
 }
 

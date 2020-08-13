@@ -9,33 +9,20 @@ public class LevelSelectButton : SelectButton
     public Sprite LightOff;
     public GameObject Cell;
 
-    private int StageToGo;
     private int LevelToGo;
 
     protected override void ButtonAction()
     {
-        SelectSceneManager.Inst.LevelSelected(StageToGo, LevelToGo);
+        SelectSceneManager.Inst.LevelSelected(LevelToGo);
     }
 
-    public void SetLight(int STG, int LTG)
+    public void SetLevelSelectButton(int Level, bool IsCleared, bool IsPlayable)
     {
-        StageToGo = STG;
-        LevelToGo = LTG;
-        if (GameManager.Inst.LevelClearData.IsClear[StageToGo - 1, LevelToGo - 1] == false)
+        LevelToGo = Level;
+        if (IsCleared == false)
         {
             Cell.SetActive(false);
-            int last_stage = StageToGo;
-            int last_level = LevelToGo - 1;
-            if (last_level == 0)
-            {
-                last_level = 10;
-                last_stage -= 1;
-                if (last_stage == 0)
-                {
-                    return;
-                }
-            }
-            if (GameManager.Inst.LevelClearData.IsClear[last_stage - 1, last_level - 1] == false)
+            if (IsPlayable == false)
             {
                 Light.sprite = LightOff;
                 sprClicked = LightOff;
