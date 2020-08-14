@@ -1,0 +1,416 @@
+fileFormatVersion: 2
+guid: 001ceab6835340d409d6e0910f417722
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7076849823780904278
+    second: TopBaordStep_0
+  - first:
+      213: -7725736650351999077
+    second: TopBaordStep_1
+  - first:
+      213: 5228844203070151303
+    second: TopBaordStep_2
+  - first:
+      213: -3487118528917420004
+    second: TopBaordStep_3
+  - first:
+      213: -6541927988120423205
+    second: TopBaordStep_4
+  - first:
+      213: -3521480785261866592
+    second: TopBaordStep_5
+  - first:
+      213: -6404950986246319293
+    second: TopBaordStep_6
+  - first:
+      213: -8752544875689568161
+    second: TopBaordStep_7
+  - first:
+      213: 1759818404783177089
+    second: TopBaordStep_8
+  - first:
+      213: -8714496704479155463
+    second: TopBaordStep_9
+  - first:
+      213: 7603510543437388435
+    second: TopBaordStep_10
+  - first:
+      213: -4356136146289345971
+    second: TopBaordStep_11
+  - first:
+      213: 5320220490753802353
+    second: TopBaordStep_12
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TopBaordStep_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 51
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65d1f338b65063260800000000000000
+      internalID: 7076849823780904278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_1
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 51
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b978d8ff27ba8c490800000000000000
+      internalID: -7725736650351999077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_2
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 51
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a5bdd5916909840800000000000000
+      internalID: 5228844203070151303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_3
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 51
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c18c13a6c244b9fc0800000000000000
+      internalID: -3487118528917420004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 34
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd475e9c7276635a0800000000000000
+      internalID: -6541927988120423205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_5
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 34
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a15a1722ef212fc0800000000000000
+      internalID: -3521480785261866592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_6
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 34
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 343100d430b0d17a0800000000000000
+      internalID: -6404950986246319293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_7
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 34
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f589bdbfec6b88680800000000000000
+      internalID: -8752544875689568161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 17
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18dbb46e3812c6810800000000000000
+      internalID: 1759818404783177089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_9
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 17
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fa253d2b63ef0780800000000000000
+      internalID: -8714496704479155463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_10
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 17
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ad58bdd88158960800000000000000
+      internalID: 7603510543437388435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_11
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 17
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4a3f273145eb83c0800000000000000
+      internalID: -4356136146289345971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBaordStep_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 11
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 170822e395835d940800000000000000
+      internalID: 5320220490753802353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
