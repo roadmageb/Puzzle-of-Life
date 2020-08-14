@@ -66,6 +66,11 @@ public class RuleController : MonoBehaviour
 
         foreach (RuleResetButtonController rrbc in ruleResetButtonControllers)
         {
+            if (!LevelManager.Inst.isEditorMode)
+            {
+                rrbc.gameObject.SetActive(false);
+                continue;
+            }
             rrbc.ruleNum = ruleNum;
             rrbc.constraintNum = -1;
         }

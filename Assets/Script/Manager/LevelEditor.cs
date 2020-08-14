@@ -70,6 +70,11 @@ public class LevelEditor : MonoBehaviour
         {
             string str = File.ReadAllText(Application.dataPath + "/Resources/" + stageName.text + ".json");
             Level level = JsonConvert.DeserializeObject<Level>(str);
+            foreach (Rule rule in level.rules)
+            {
+                Constraint constraint = new Constraint();
+                rule.AddConstraint(constraint);
+            }
             LevelManager.Inst.currentLevel = level;
         }
         catch (FileNotFoundException e)
@@ -82,8 +87,13 @@ public class LevelEditor : MonoBehaviour
     }
     public void SaveLevelIntoJson()
     {
-        string level = JsonConvert.SerializeObject(LevelManager.Inst.currentLevel);
-        File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", level);
+        Level level = LevelManager.Inst.currentLevel;
+        foreach (Rule rule in level.rules)
+        {
+            rule.RemoveConstraint(rule.constraints.Count - 1);
+        }
+        string levelstr = JsonConvert.SerializeObject(level);
+        File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", levelstr);
         Debug.Log("Save complete.");
     }
     private void Start()

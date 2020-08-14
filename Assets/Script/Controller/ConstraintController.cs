@@ -15,6 +15,11 @@ public class ConstraintController : MonoBehaviour
         this.constraintNum = constraintNum;
         foreach (RuleResetButtonController rrbc in ruleResetButtonControllers)
         {
+            if (!LevelManager.Inst.isEditorMode)
+            {
+                rrbc.gameObject.SetActive(false);
+                continue;
+            }
             rrbc.ruleNum = ruleNum;
             rrbc.constraintNum = constraintNum;
         }

@@ -279,7 +279,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnMouseUp()
     {
-        MapInstantiate(); // TEST
+        MapInstantiate();
     }
 
     // Start is called before the first frame update
@@ -294,7 +294,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.Log(e);
         }
 
-        if (GameObject.Find("LevelEditor") == null)
+        if (GameObject.Find("LevelEditor") == null) // maybe there is a better way to check this
         {
             isEditorMode = false;
         }
