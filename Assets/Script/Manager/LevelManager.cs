@@ -20,11 +20,13 @@ public class LevelManager : Singleton<LevelManager>
     public MapCellController[,] mapCellObject { get; private set; }
     public RuleController[] ruleObject { get; private set; }
     public PaletteController paletteObject { get; private set; }
+    public RuleButtonController ruleButtonObject { get; private set; }
     public Level currentLevel { get; set; }
     private Cell[,] previousCells;
     public float wholeRuleHeight { get; private set; }
     private float interval;
     private string currentLevelName;
+    public bool isEditorMode { get; private set; }
 
     public void SetPlayState(PlayState playState)
     {
@@ -194,7 +196,7 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    private void RuleInstantiate(bool isEditMode)
+    private void RuleInstantiate()
     {
         foreach (Transform child in ruleOrigin)
         {
@@ -209,10 +211,15 @@ public class LevelManager : Singleton<LevelManager>
             ruleObject[i] = Instantiate(ImageManager.Inst.rulePrefab, ruleOrigin).GetComponent<RuleController>();
             ruleObject[i].RuleInstantiate(currentLevel.rules[i], i);
             ruleObject[i].transform.localPosition = new Vector2(0, -wholeRuleHeight);
-            ruleObject[i].isEditMode = isEditMode;
             wholeRuleHeight += ruleObject[i].ruleHeight + ImageManager.Inst.ruleGap;
         }
         wholeRuleHeight -= ImageManager.Inst.ruleGap;
+
+        if (isEditorMode)
+        {
+            ruleButtonObject = Instantiate(ImageManager.Inst.ruleButtonPrefab, ruleOrigin).GetComponent<RuleButtonController>();
+            ruleButtonObject.transform.localPosition = new Vector2(0, -wholeRuleHeight - 0.75f);
+        }
     }
 
     private void PaletteInstantiate()
@@ -253,7 +260,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.Log(e);
             return;
         }
-        MapInstantiate(false); // TEST
+        MapInstantiate(); // TEST
     }
 
     public void MapReset(string str)
@@ -262,23 +269,39 @@ public class LevelManager : Singleton<LevelManager>
         MapReset();
     }
 
-    public void MapInstantiate(bool isEditMode)
+    public void MapInstantiate()
     {
         CellInstantiate();
-        RuleInstantiate(isEditMode);
+        RuleInstantiate();
         PaletteInstantiate();
         MapScale(7);
     }
 
     private void OnMouseUp()
     {
-        MapInstantiate(false); // TEST
+        MapInstantiate(); // TEST
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+        try
+        {
+            MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+
+        if (GameObject.Find("LevelEditor") == null)
+        {
+            isEditorMode = false;
+        }
+        else
+        {
+            isEditorMode = true;
+        }
     }
 
     // Update is called once per frame

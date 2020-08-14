@@ -60,6 +60,8 @@ MonoBehaviour:
     type: 3}
   symbolPrefab: {fileID: 425133091056583138, guid: 81c95da3c514f7c458e54243e7d22def,
     type: 3}
+  ruleButtonPrefab: {fileID: 2474483409115234876, guid: bf74e6bb85ef02f4d9b589c1fef720cd,
+    type: 3}
   constraintButtonPrefab: {fileID: 5843629587770408952, guid: fc5e6912eb87a23469e74cbc6673fb95,
     type: 3}
   constraintNumButtonPrefab: {fileID: 8012889757285473715, guid: a1fd81db1852db7428c3f85b585dd923,

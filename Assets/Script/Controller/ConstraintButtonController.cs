@@ -20,12 +20,12 @@ public class ConstraintButtonController : MonoBehaviour
                 LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].state = ConstraintState.SELTYPE;
                 Constraint constraint = new Constraint();
                 LevelManager.Inst.currentLevel.rules[ruleNum].AddConstraint(constraint);
-                LevelManager.Inst.MapInstantiate(true);
+                LevelManager.Inst.MapInstantiate();
                 break;
             case EditorButtonType.CONSTTYPE:
                 LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].state = ConstraintState.SELNUM;
                 LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].type = constraintType;
-                LevelManager.Inst.MapInstantiate(true);
+                LevelManager.Inst.MapInstantiate();
                 break;
         }
     }
@@ -48,7 +48,7 @@ public class ConstraintButtonController : MonoBehaviour
             {
                 LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].state = ConstraintState.NORMAL;
             }
-            LevelManager.Inst.MapInstantiate(true);
+            LevelManager.Inst.MapInstantiate();
         }
     }
 }

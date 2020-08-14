@@ -21,7 +21,7 @@ public class LevelEditor : MonoBehaviour
     public void MapInitialize()
     {
         LevelManager.Inst.currentLevel = new Level(new Vector2Int(int.Parse(sizeInput[0].text), int.Parse(sizeInput[1].text)));
-        LevelManager.Inst.MapInstantiate(true);
+        LevelManager.Inst.MapInstantiate();
     }
     public void SwitchEditMode()
     {
@@ -52,76 +52,17 @@ public class LevelEditor : MonoBehaviour
         {
             LevelManager.Inst.currentLevel.AddPalette(selectedCell, 1);
         }
-        LevelManager.Inst.MapInstantiate(true);
+        LevelManager.Inst.MapInstantiate();
     }
     public void DeletePaletteCell()
     {
         if (LevelManager.Inst.currentLevel.palette.Count - 1 < 0) return;
         LevelManager.Inst.currentLevel.RemovePalette(LevelManager.Inst.currentLevel.palette.Count - 1);
-        LevelManager.Inst.MapInstantiate(true);
+        LevelManager.Inst.MapInstantiate();
     }
     public void ChangeSelectedCell()
     {
         selectedCell = (Cell)System.Enum.Parse(typeof(Cell), cellPalette.options[cellPalette.value].text);
-    }
-    public void ChangeSelectedConstraintType()
-    {
-        selectedConstraintType = (ConstraintType)System.Enum.Parse(typeof(ConstraintType), constraintType.options[constraintType.value].text);
-        if (selectedConstraintType == ConstraintType.BET)
-        {
-            constraintInput[1].interactable = true;
-        }
-        else
-        {
-            constraintInput[1].interactable = false;
-        }
-        Debug.Log(selectedConstraintType);
-    }
-    public void AddRule()
-    {
-        Rule rule = new Rule();
-        Constraint constraint = new Constraint();
-        rule.AddConstraint(constraint);
-        LevelManager.Inst.currentLevel.AddRule(rule);
-        LevelManager.Inst.MapInstantiate(true);
-    }
-    public void DeleteRule()
-    {
-        if (LevelManager.Inst.currentLevel.rules.Count - 1 < 0) return;
-        LevelManager.Inst.currentLevel.RemoveRule(LevelManager.Inst.currentLevel.rules.Count - 1);
-        LevelManager.Inst.MapInstantiate(true);
-    }
-    public void DeleteRule(int ruleNum)
-    {
-        LevelManager.Inst.currentLevel.RemoveRule(ruleNum);
-        LevelManager.Inst.MapInstantiate(true);
-    }
-    public void AddConstraint()
-    {
-        Constraint constraint;
-        if (selectedConstraintType != ConstraintType.BET)
-        {
-            constraint = new Constraint(selectedConstraintType, selectedCell, int.Parse(constraintInput[0].text), 0);
-        }
-        else
-        {
-            constraint = new Constraint(selectedConstraintType, selectedCell, int.Parse(constraintInput[0].text), int.Parse(constraintInput[1].text));
-        }
-        constraint.SetReplaceability(constraintReplaceability.isOn);
-        LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].AddConstraint(constraint);
-        LevelManager.Inst.MapInstantiate(true);
-    }
-    public void DeleteConstraint()
-    {
-        if (LevelManager.Inst.currentLevel.rules.Count - 1 < 0 || LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].constraints.Count - 1 < 0) return;
-        LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1]
-            .RemoveConstraint(LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].constraints.Count - 1);
-        LevelManager.Inst.MapInstantiate(true);
-    }
-    public void DeleteConstraint(int ruleNum, int constraintNum)
-    {
-        LevelManager.Inst.currentLevel.rules[ruleNum].RemoveConstraint(constraintNum);
-        LevelManager.Inst.MapInstantiate(true);
     }
     public void LoadLevelIntoJson()
     {
@@ -136,7 +77,7 @@ public class LevelEditor : MonoBehaviour
             Debug.Log(e);
             return;
         }
-        LevelManager.Inst.MapInstantiate(true);
+        LevelManager.Inst.MapInstantiate();
         Debug.Log("Load complete.");
     }
     public void SaveLevelIntoJson()
@@ -217,7 +158,7 @@ public class LevelEditor : MonoBehaviour
                         }
                     }
                 }
-                LevelManager.Inst.MapInstantiate(true);
+                LevelManager.Inst.MapInstantiate();
             }
         }
 }
