@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: b48646e2f85f79c46a14cd314038d266
+guid: 3b7fae18f5126c145a2b73ad98e9d867
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1955448553306655712
-    second: Background_Edit
+      213: -7291354179811568019
+    second: TopBoardSpeed_0
   - first:
-      213: 7014286043975846214
-    second: Background_Play
+      213: 6615893728083086744
+    second: TopBoardSpeed_1
   - first:
-      213: -6884224323981422677
-    second: Background_0
+      213: 4430535048620884327
+    second: TopBoardSpeed_2
   - first:
-      213: -3696051380107271510
-    second: Background_1
+      213: -7230632202461114163
+    second: TopBoardSpeed_3
   - first:
-      213: -9078219959484023005
-    second: Background_2
+      213: 4262881596476656122
+    second: TopBoardSpeed_4
+  - first:
+      213: -1725071309993302274
+    second: TopBoardSpeed_5
+  - first:
+      213: 1884656282896633165
+    second: TopBoardSpeed_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -49,15 +55,15 @@ TextureImporter:
     filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -76,7 +82,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -88,7 +94,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -102,64 +108,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_0
+      name: TopBoardSpeed_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 17
+        width: 20
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6695c43108efca90800000000000000
+      internalID: -7291354179811568019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardSpeed_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 17
+        width: 20
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d802e0b4060db50800000000000000
+      internalID: 6615893728083086744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardSpeed_2
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 17
+        width: 20
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76147f9172c6c7d30800000000000000
+      internalID: 4430535048620884327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardSpeed_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 20
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bafcbf693725670a0800000000000000
-      internalID: -6884224323981422677
+      spriteID: dc01ec64252a7ab90800000000000000
+      internalID: -7230632202461114163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Background_1
+      name: TopBoardSpeed_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 20
         y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 20
+        height: 17
+      alignment: 9
+      pivot: {x: 0, y: 0.64705884}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa22d113adcf4bcc0800000000000000
-      internalID: -3696051380107271510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32ff71a9b0fa30280800000000000000
-      internalID: -9078219959484023005
+      spriteID: af98a8de93cc82b30800000000000000
+      internalID: 4262881596476656122
       vertices: []
       indices: 
       edges: []

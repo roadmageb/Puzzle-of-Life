@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using Newtonsoft.Json;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,9 +16,45 @@ public class GameManager : Singleton<GameManager>
     public int stage;//선택된 스테이지 번호입니다.
     public int level;//선택된 레벨 번호입니다.
 
+    public LevelClearDataStruct LevelClearData;
+
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+
+        LevelClearData.IsClear = new bool[StageCount, 10];
+        for (int i = 0; i < StageCount; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                LevelClearData.IsClear[i, j] = false;
+                //Debug.Log("[" + i + ", " + j + "] " + LevelClearData.IsClear[i, j]);
+            }
+        }
+        SaveLevelClearData();
+    }
+
+    void SaveLevelClearData()
+    {
+        string path = Path.Combine(Application.dataPath + "/Resources/Save/LevelClearData.json");
+        string jsonData = JsonConvert.SerializeObject(LevelClearData);
+        File.WriteAllText(path, jsonData);
+    }
+
+    void LoadLevelClearData()
+    {
+        string path = Path.Combine(Application.dataPath + "/Resources/Save/LevelClearData.json");
+        string jsonData = File.ReadAllText(path);
+        LevelClearData = JsonConvert.DeserializeObject<LevelClearDataStruct>(jsonData);
+    }
+}
+
+[System.Serializable]
+public class LevelClearDataStruct
+{
+    public bool[,] IsClear;
+    public LevelClearDataStruct()
+    {
     }
 }

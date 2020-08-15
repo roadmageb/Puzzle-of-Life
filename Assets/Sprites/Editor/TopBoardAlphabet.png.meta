@@ -1,0 +1,806 @@
+fileFormatVersion: 2
+guid: c5a74a32185e4b94a9a1e4c7b6718e00
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8268466204271227567
+    second: TopBoardAlphabet_0
+  - first:
+      213: 104075140142625766
+    second: TopBoardAlphabet_1
+  - first:
+      213: -8099675956751372347
+    second: TopBoardAlphabet_2
+  - first:
+      213: -8847355957490165063
+    second: TopBoardAlphabet_3
+  - first:
+      213: 2962614615239164082
+    second: TopBoardAlphabet_4
+  - first:
+      213: 6567432109836020014
+    second: TopBoardAlphabet_5
+  - first:
+      213: -1805619895168124848
+    second: TopBoardAlphabet_6
+  - first:
+      213: 1411365058522394823
+    second: TopBoardAlphabet_7
+  - first:
+      213: -8680152497061281588
+    second: TopBoardAlphabet_8
+  - first:
+      213: 4759675602647849540
+    second: TopBoardAlphabet_9
+  - first:
+      213: -5791457871414727242
+    second: TopBoardAlphabet_10
+  - first:
+      213: 8562537941533893908
+    second: TopBoardAlphabet_11
+  - first:
+      213: 8212672499145328863
+    second: TopBoardAlphabet_12
+  - first:
+      213: 5495737231188480930
+    second: TopBoardAlphabet_13
+  - first:
+      213: -5200298045234235833
+    second: TopBoardAlphabet_14
+  - first:
+      213: 8850822865488463856
+    second: TopBoardAlphabet_15
+  - first:
+      213: 6936954547209570807
+    second: TopBoardAlphabet_16
+  - first:
+      213: -713764818322305676
+    second: TopBoardAlphabet_17
+  - first:
+      213: 6301552108616330587
+    second: TopBoardAlphabet_18
+  - first:
+      213: -926447467216877548
+    second: TopBoardAlphabet_19
+  - first:
+      213: -4819611610887030124
+    second: TopBoardAlphabet_20
+  - first:
+      213: 7553485264424033922
+    second: TopBoardAlphabet_21
+  - first:
+      213: 791092547464140969
+    second: TopBoardAlphabet_22
+  - first:
+      213: -4013688154957786186
+    second: TopBoardAlphabet_23
+  - first:
+      213: 2123917506719467342
+    second: TopBoardAlphabet_24
+  - first:
+      213: 4496539599025346295
+    second: TopBoardAlphabet_25
+  - first:
+      213: -2056230871656758654
+    second: TopBoardAlphabet_0
+  - first:
+      213: 7510105252135376091
+    second: TopBoardAlphabet_1
+  - first:
+      213: 8498286179441771226
+    second: TopBoardAlphabet_2
+  - first:
+      213: -817459429918886598
+    second: TopBoardAlphabet_3
+  - first:
+      213: -7722511043743886625
+    second: TopBoardAlphabet_4
+  - first:
+      213: -1372900366333908951
+    second: TopBoardAlphabet_5
+  - first:
+      213: -3819162341701000733
+    second: TopBoardAlphabet_6
+  - first:
+      213: 4436943732717367655
+    second: TopBoardAlphabet_7
+  - first:
+      213: 8253896464040896026
+    second: TopBoardAlphabet_8
+  - first:
+      213: 3506502384710345862
+    second: TopBoardAlphabet_9
+  - first:
+      213: -6039690986366806087
+    second: TopBoardAlphabet_10
+  - first:
+      213: -7214443979974289630
+    second: TopBoardAlphabet_11
+  - first:
+      213: 1822898058596450552
+    second: TopBoardAlphabet_12
+  - first:
+      213: 1200943206560908506
+    second: TopBoardAlphabet_13
+  - first:
+      213: 526763383151510388
+    second: TopBoardAlphabet_14
+  - first:
+      213: 5613832139502523957
+    second: TopBoardAlphabet_15
+  - first:
+      213: 6524859378058274479
+    second: TopBoardAlphabet_16
+  - first:
+      213: -5841448315675341786
+    second: TopBoardAlphabet_17
+  - first:
+      213: -5036161358184728977
+    second: TopBoardAlphabet_18
+  - first:
+      213: 5263831376257640707
+    second: TopBoardAlphabet_19
+  - first:
+      213: -6639182574271877423
+    second: TopBoardAlphabet_20
+  - first:
+      213: 1679677860423422088
+    second: TopBoardAlphabet_21
+  - first:
+      213: -5848015046906118588
+    second: TopBoardAlphabet_22
+  - first:
+      213: -1082768621585706614
+    second: TopBoardAlphabet_23
+  - first:
+      213: -351136940939299724
+    second: TopBoardAlphabet_24
+  - first:
+      213: 5255023552551502406
+    second: TopBoardAlphabet_25
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TopBoardAlphabet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28205b6aaecc673e0800000000000000
+      internalID: -2056230871656758654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_1
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 80
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd41353cfe0493860800000000000000
+      internalID: 7510105252135376091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_2
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 80
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad20d3d114affe570800000000000000
+      internalID: 8498286179441771226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_3
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 80
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a353465cafcc7a4f0800000000000000
+      internalID: -817459429918886598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 80
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd25d9f0f1124d490800000000000000
+      internalID: -7722511043743886625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_5
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 80
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 928e9a8046a72fce0800000000000000
+      internalID: -1372900366333908951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e1ec53c51c9ffac0800000000000000
+      internalID: -3819162341701000733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_7
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 60
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761b30521d0339d30800000000000000
+      internalID: 4436943732717367655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_8
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 60
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a16a2006a1bbb8270800000000000000
+      internalID: 8253896464040896026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_9
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 60
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68468b4375999a030800000000000000
+      internalID: 3506502384710345862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_10
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 60
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b75a7c2c05be2ca0800000000000000
+      internalID: -6039690986366806087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_11
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 60
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2275da98c6521eb90800000000000000
+      internalID: -7214443979974289630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f0046c402c3c4910800000000000000
+      internalID: 1822898058596450552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_13
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 40
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad44b76cb7b9aa010800000000000000
+      internalID: 1200943206560908506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_14
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 40
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 473cd6d81807f4700800000000000000
+      internalID: 526763383151510388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_15
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 40
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53618b7669658ed40800000000000000
+      internalID: 5613832139502523957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_16
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 40
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa62a8eb805fc8a50800000000000000
+      internalID: 6524859378058274479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_17
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 40
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c0e5ac4b10feea0800000000000000
+      internalID: -5841448315675341786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 20
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66b9dd6de5fb1ab0800000000000000
+      internalID: -5036161358184728977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_19
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 20
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 309646b6fb2ec0940800000000000000
+      internalID: 5263831376257640707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_20
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 20
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1deaf85ef92ecd3a0800000000000000
+      internalID: -6639182574271877423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_21
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 20
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88050af5d1a6f4710800000000000000
+      internalID: 1679677860423422088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_22
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 20
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44e75088c4da7dea0800000000000000
+      internalID: -5848015046906118588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_23
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 20
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81d178ecab39f0f0800000000000000
+      internalID: -1082768621585706614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 474bbc700d2802bf0800000000000000
+      internalID: -351136940939299724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TopBoardAlphabet_25
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 15
+        height: 20
+      alignment: 9
+      pivot: {x: 0, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 642c42824189de840800000000000000
+      internalID: 5255023552551502406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
