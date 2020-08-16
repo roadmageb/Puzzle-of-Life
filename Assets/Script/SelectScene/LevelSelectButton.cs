@@ -9,15 +9,28 @@ public class LevelSelectButton : SelectButton
     public Sprite LightOff;
     public GameObject Cell;
 
+    public AudioSource ClickSound;
+    public AudioSource UnClickable;
+
     private int LevelToGo;
+    private bool possible;
 
     protected override void ButtonAction()
     {
         SelectSceneManager.Inst.LevelSelected(LevelToGo);
+        if (possible)
+        {
+            ClickSound.Play();
+        }
+        else
+        {
+            UnClickable.Play();
+        }
     }
 
     public void SetLevelSelectButton(int Level, bool IsCleared, bool IsPlayable)
     {
+        possible = IsPlayable;
         LevelToGo = Level;
         if (IsCleared == false)
         {

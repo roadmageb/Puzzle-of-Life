@@ -60,12 +60,9 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadPuzzle(int StageToGo, int LevelToGo)
     {
-        if (IsPlayable(StageToGo, LevelToGo))
-        {
-            stage = StageToGo;
-            level = LevelToGo;
-            SceneManager.LoadScene("PuzzleScene");
-        }
+        stage = StageToGo;
+        level = LevelToGo;
+        SceneManager.LoadScene("PuzzleScene");
     }
 
     public void ClearPuzzle(int SelectedStage, int SelectedLevel)

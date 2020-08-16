@@ -53,7 +53,10 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
 
     public void LevelSelected(int SelectedLevel)
     {
-        GameManager.Inst.LoadPuzzle(SelectedStage, SelectedLevel);
+        if (GameManager.Inst.IsPlayable(SelectedStage, SelectedLevel))
+        {
+            GameManager.Inst.LoadPuzzle(SelectedStage, SelectedLevel);
+        }
     }
 
     public void BackSelected()
