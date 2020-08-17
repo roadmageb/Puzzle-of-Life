@@ -13,6 +13,7 @@ public class RuleButtonController : MonoBehaviour
     {
         Rule rule = new Rule();
         Constraint constraint = new Constraint();
+        constraint.SetDummy();
         rule.AddConstraint(constraint);
         LevelManager.Inst.currentLevel.AddRule(rule);
         LevelManager.Inst.MapInstantiate();

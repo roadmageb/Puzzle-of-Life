@@ -19,6 +19,7 @@ public class ConstraintButtonController : MonoBehaviour
             case EditorButtonType.ADD:
                 LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].state = ConstraintState.SELTYPE;
                 Constraint constraint = new Constraint();
+                constraint.SetDummy();
                 LevelManager.Inst.currentLevel.rules[ruleNum].AddConstraint(constraint);
                 LevelManager.Inst.MapInstantiate();
                 break;

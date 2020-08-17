@@ -73,6 +73,7 @@ public class LevelEditor : MonoBehaviour
             foreach (Rule rule in level.rules)
             {
                 Constraint constraint = new Constraint();
+                constraint.SetDummy();
                 rule.AddConstraint(constraint);
             }
             LevelManager.Inst.currentLevel = level;

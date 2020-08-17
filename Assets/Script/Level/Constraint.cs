@@ -22,6 +22,11 @@ public class Constraint
 
     public Constraint()
     {
+        state = ConstraintState.NORMAL;
+    }
+
+    public void SetDummy()
+    {
         param1 = param2 = -1;
         state = ConstraintState.DUMMY;
     }

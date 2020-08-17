@@ -21,6 +21,7 @@ public class RuleResetButtonController : MonoBehaviour
             {
                 Rule rule = new Rule();
                 Constraint constraint = new Constraint();
+                constraint.SetDummy();
                 rule.AddConstraint(constraint);
                 LevelManager.Inst.currentLevel.rules[ruleNum] = rule;
                 LevelManager.Inst.MapInstantiate();
@@ -28,6 +29,7 @@ public class RuleResetButtonController : MonoBehaviour
             else
             {
                 LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum] = new Constraint();
+                LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].SetDummy();
                 LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].state = ConstraintState.SELTYPE;
                 LevelManager.Inst.MapInstantiate();
             }
