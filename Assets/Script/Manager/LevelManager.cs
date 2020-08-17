@@ -20,11 +20,13 @@ public class LevelManager : Singleton<LevelManager>
     public MapCellController[,] mapCellObject { get; private set; }
     public RuleController[] ruleObject { get; private set; }
     public PaletteController paletteObject { get; private set; }
+    public RuleButtonController ruleButtonObject { get; private set; }
     public Level currentLevel { get; set; }
     private Cell[,] previousCells;
     public float wholeRuleHeight { get; private set; }
     private float interval;
     private string currentLevelName;
+    public bool isEditorMode { get; private set; }
 
     public GameObject ClearWindow;
 
@@ -214,6 +216,12 @@ public class LevelManager : Singleton<LevelManager>
             wholeRuleHeight += ruleObject[i].ruleHeight + ImageManager.Inst.ruleGap;
         }
         wholeRuleHeight -= ImageManager.Inst.ruleGap;
+
+        if (isEditorMode)
+        {
+            ruleButtonObject = Instantiate(ImageManager.Inst.ruleButtonPrefab, ruleOrigin).GetComponent<RuleButtonController>();
+            ruleButtonObject.transform.localPosition = new Vector2(0, -wholeRuleHeight - 0.75f);
+        }
     }
 
     private void PaletteInstantiate()
@@ -254,7 +262,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.Log(e);
             return;
         }
-        MapInstantiate();
+        MapInstantiate(); // TEST
     }
 
     public void MapReset(string str)
@@ -284,7 +292,23 @@ public class LevelManager : Singleton<LevelManager>
     // Start is called before the first frame update
     void Start()
     {
-        MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+        try
+        {
+            MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+
+        if (GameObject.Find("LevelEditor") == null) // maybe there is a better way to check this
+        {
+            isEditorMode = false;
+        }
+        else
+        {
+            isEditorMode = true;
+        }
     }
 
     // Update is called once per frame

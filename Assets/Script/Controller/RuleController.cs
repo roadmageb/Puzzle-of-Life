@@ -13,6 +13,8 @@ public class RuleController : MonoBehaviour
     public float ruleHeight { get; set; }
     public Transform conditionOffset, outcomeOffset, constraintOffset, ruleNumOffset;
     private int ruleNum;
+    private ConstraintController[] constraintControllers;
+    public RuleResetButtonController[] ruleResetButtonControllers;
     private float GetSpriteHeight(GameObject g)
     {
         return g.GetComponent<SpriteRenderer>().bounds.size.y;
@@ -29,6 +31,8 @@ public class RuleController : MonoBehaviour
         {
             ruleBorders[i + 1] = Instantiate(rulePrefab[1], transform);
             ruleBorders[i + 1].transform.localPosition = new Vector2(0, -GetSpriteHeight(rulePrefab[0]) - (i * GetSpriteHeight(rulePrefab[1])));
+            ruleBorders[i + 1].GetComponent<ConstraintController>().
+                ConstraintInstantiate(ruleNum, i, rule.constraints[i], constraintOffset);
             ruleHeight += GetSpriteHeight(rulePrefab[1]);
         }
         ruleBorders[rule.constraints.Count + 1] = Instantiate(rulePrefab[2], transform);
@@ -60,6 +64,17 @@ public class RuleController : MonoBehaviour
             ruleNumSprite[2].transform.localPosition = ruleNumOffset.transform.localPosition + new Vector3((float)14 / 32, 0, 0);
         }
 
+        foreach (RuleResetButtonController rrbc in ruleResetButtonControllers)
+        {
+            if (!LevelManager.Inst.isEditorMode)
+            {
+                rrbc.gameObject.SetActive(false);
+                continue;
+            }
+            rrbc.ruleNum = ruleNum;
+            rrbc.constraintNum = -1;
+        }
+
         conditionCell = new RuleCellController[3, 3];
         for (int i = 0; i < 3; ++i)
         {
@@ -82,47 +97,5 @@ public class RuleController : MonoBehaviour
         outcomeCell = Instantiate(ImageManager.Inst.cellPrefabInRuleIO, ruleBorders[0].transform).GetComponent<RuleCellController>();
         outcomeCell.transform.localPosition = outcomeOffset.localPosition;
         outcomeCell.CellInitialize(rule.outcome, rule.isOutcomeReplaceable, ruleNum);
-
-        ConstraintInstantiate(rule.constraints);
-    }
-
-    private void ConstraintInstantiate(List<Constraint> constraints)
-    {
-        constraintCell = new RuleCellController[constraints.Count];
-        for (int i = 0; i < constraints.Count; ++i)
-        {
-            if (constraints[i].type != ConstraintType.BET)
-            {
-                constraintCell[i] = Instantiate(ImageManager.Inst.cellPrefabInRule, ruleBorders[i + 1].transform).GetComponent<RuleCellController>();
-                constraintCell[i].transform.localPosition = new Vector3(0, 0, 0) + constraintOffset.localPosition;
-                constraintCell[i].CellInitialize(constraints[i].target, constraints[i].isReplaceable, ruleNum, i);
-                GameObject tmp;
-                tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
-                tmp.transform.localPosition = new Vector3(1, 0, 0) + constraintOffset.localPosition;
-                tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.symbolSpriteDict[constraints[i].type];
-                tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
-                tmp.transform.localPosition = new Vector3(2, 0, 0) + constraintOffset.localPosition;
-                tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.numberSprites[constraints[i].param1];
-            }
-            else
-            {
-                GameObject tmp;
-                tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
-                tmp.transform.localPosition = new Vector3(-1, 0, 0) + constraintOffset.localPosition;
-                tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.numberSprites[constraints[i].param1];
-                tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
-                tmp.transform.localPosition = new Vector3(0, 0, 0) + constraintOffset.localPosition;
-                tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.symbolSpriteDict[ConstraintType.LE];
-                constraintCell[i] = Instantiate(ImageManager.Inst.cellPrefabInRule, ruleBorders[i + 1].transform).GetComponent<RuleCellController>();
-                constraintCell[i].transform.localPosition = new Vector3(1, 0, 0) + constraintOffset.localPosition;
-                constraintCell[i].CellInitialize(constraints[i].target, constraints[i].isReplaceable, ruleNum, i);
-                tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
-                tmp.transform.localPosition = new Vector3(2, 0, 0) + constraintOffset.localPosition;
-                tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.symbolSpriteDict[ConstraintType.LE];
-                tmp = Instantiate(ImageManager.Inst.symbolPrefab, ruleBorders[i + 1].transform);
-                tmp.transform.localPosition = new Vector3(3, 0, 0) + constraintOffset.localPosition;
-                tmp.GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.numberSprites[constraints[i].param2];
-            }
-        }
     }
 }

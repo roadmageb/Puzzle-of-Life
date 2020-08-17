@@ -35,7 +35,7 @@ public class LevelEditor : MonoBehaviour
             editMode = 1;
             editModeButton.GetComponentInChildren<Text>().text = "Cell Edit Mode";
         }
-    }
+    } 
     public void AddPaletteCell()
     {
         bool containFlag = false;
@@ -64,59 +64,17 @@ public class LevelEditor : MonoBehaviour
     {
         selectedCell = (Cell)System.Enum.Parse(typeof(Cell), cellPalette.options[cellPalette.value].text);
     }
-    public void ChangeSelectedConstraintType()
-    {
-        selectedConstraintType = (ConstraintType)System.Enum.Parse(typeof(ConstraintType), constraintType.options[constraintType.value].text);
-        if (selectedConstraintType == ConstraintType.BET)
-        {
-            constraintInput[1].interactable = true;
-        }
-        else
-        {
-            constraintInput[1].interactable = false;
-        }
-        Debug.Log(selectedConstraintType);
-    }
-    public void AddRule()
-    {
-        Rule rule = new Rule();
-        LevelManager.Inst.currentLevel.AddRule(rule);
-        LevelManager.Inst.MapInstantiate();
-    }
-    public void DeleteRule()
-    {
-        if (LevelManager.Inst.currentLevel.rules.Count - 1 < 0) return;
-        LevelManager.Inst.currentLevel.RemoveRule(LevelManager.Inst.currentLevel.rules.Count - 1);
-        LevelManager.Inst.MapInstantiate();
-    }
-    public void AddConstraint()
-    {
-        Constraint constraint;
-        if (selectedConstraintType != ConstraintType.BET)
-        {
-            constraint = new Constraint(selectedConstraintType, selectedCell, int.Parse(constraintInput[0].text), 0);
-        }
-        else
-        {
-            constraint = new Constraint(selectedConstraintType, selectedCell, int.Parse(constraintInput[0].text), int.Parse(constraintInput[1].text));
-        }
-        constraint.SetReplaceability(constraintReplaceability.isOn);
-        LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].AddConstraint(constraint);
-        LevelManager.Inst.MapInstantiate();
-    }
-    public void DeleteConstraint()
-    {
-        if (LevelManager.Inst.currentLevel.rules.Count - 1 < 0 || LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].constraints.Count - 1 < 0) return;
-        LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1]
-            .RemoveConstraint(LevelManager.Inst.currentLevel.rules[LevelManager.Inst.currentLevel.rules.Count - 1].constraints.Count - 1);
-        LevelManager.Inst.MapInstantiate();
-    }
     public void LoadLevelIntoJson()
     {
         try
         {
             string str = File.ReadAllText(Application.dataPath + "/Resources/" + stageName.text + ".json");
             Level level = JsonConvert.DeserializeObject<Level>(str);
+            foreach (Rule rule in level.rules)
+            {
+                Constraint constraint = new Constraint();
+                rule.AddConstraint(constraint);
+            }
             LevelManager.Inst.currentLevel = level;
         }
         catch (FileNotFoundException e)
@@ -129,52 +87,15 @@ public class LevelEditor : MonoBehaviour
     }
     public void SaveLevelIntoJson()
     {
-        string level = JsonConvert.SerializeObject(LevelManager.Inst.currentLevel);
-        File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", level);
+        Level level = LevelManager.Inst.currentLevel;
+        foreach (Rule rule in level.rules)
+        {
+            rule.RemoveConstraint(rule.constraints.Count - 1);
+        }
+        string levelstr = JsonConvert.SerializeObject(level);
+        File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", levelstr);
         Debug.Log("Save complete.");
     }
-    //public Vector2Int GetCoordinateInMap()
-    //{
-    //    int x = 0, y = 0;
-
-    //    bool flag = false;
-    //    for (x = 0; x < LevelManager.Inst.currentLevel.size.x; ++x)
-    //    {
-    //        for (y = 0; y < LevelManager.Inst.currentLevel.size.y; ++y)
-    //        {
-    //            if (LevelManager.Inst.mapCellObject[x, y].Equals(LevelManager.Inst.cellUnderCursor))
-    //            {
-    //                flag = true;
-    //                break;
-    //            }
-    //        }
-    //        if (flag) break;
-    //    }
-
-    //    if (!flag) return new Vector2Int(-1, -1);
-    //    else return new Vector2Int(x, y);
-    //}
-    //public Vector2Int GetCoordinateInRule(int index)
-    //{
-    //    int x = 0, y = 0;
-
-    //    bool flag = false;
-    //    for (x = 0; x < 3; ++x)
-    //    {
-    //        for (y = 0; y < 3; ++y)
-    //        {
-    //            if (LevelManager.Inst.ruleObject[index].conditionCell[x, y].Equals(LevelManager.Inst.cellUnderCursor))
-    //            {
-    //                flag = true;
-    //                break;
-    //            }
-    //        }
-    //        if (flag) break;
-    //    }
-
-    //    if (!flag) return new Vector2Int(-1, -1);
-    //    else return new Vector2Int(x, y);
-    //}
     private void Start()
     {
         editMode = 1;

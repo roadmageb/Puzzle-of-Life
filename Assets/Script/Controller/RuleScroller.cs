@@ -16,6 +16,10 @@ public class RuleScroller : MonoBehaviour
     private void OnMouseDown()
     {
         ruleMaxY = ruleMinY + LevelManager.Inst.wholeRuleHeight - GetComponent<BoxCollider2D>().size.y * transform.localScale.y;
+        if (LevelManager.Inst.isEditorMode)
+        {
+            ruleMaxY += 1.5f;
+        }
         mouseCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
     private void OnMouseDrag()

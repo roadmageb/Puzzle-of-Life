@@ -5,9 +5,11 @@ using UnityEngine;
 public class Constraint
 {
     public ConstraintType type;
+    public ConstraintState state;
     public Cell target;
     public bool isReplaceable;
     public int param1, param2;
+
     public Constraint(ConstraintType type, Cell target, int param1, int param2)
     {
         this.type = type;
@@ -15,7 +17,15 @@ public class Constraint
         this.param1 = param1;
         this.param2 = param2;
         isReplaceable = false;
+        state = ConstraintState.NORMAL;
     }
+
+    public Constraint()
+    {
+        param1 = param2 = -1;
+        state = ConstraintState.DUMMY;
+    }
+
     public void SetReplaceability(bool isReplaceable)
     {
         this.isReplaceable = isReplaceable;
