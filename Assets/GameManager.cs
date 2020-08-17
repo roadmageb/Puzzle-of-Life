@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         DontDestroyOnLoad(gameObject);
 
-        LevelClearDataPath = Path.Combine(Application.dataPath + "/Resources/Save/LevelClearData.json");
+        LevelClearDataPath = Path.Combine(Application.persistentDataPath + "/LevelClearData.json");
         FileInfo savefile = new FileInfo(LevelClearDataPath);
         if (savefile.Exists)
         {
