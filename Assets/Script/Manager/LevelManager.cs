@@ -194,6 +194,7 @@ public class LevelManager : Singleton<LevelManager>
         if (currentLevel.ClearCheck())
         {
             Debug.Log("clear");
+            GameManager.Inst.ClearPuzzle(GameManager.Inst.stage, GameManager.Inst.level);
             ClearWindow.SetActive(true);
         }
     }

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SelectSceneManager : Singleton<SelectSceneManager>
 {
@@ -14,7 +13,6 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
     public GameObject prefLevelSelectButton;
 
     int SelectedStage = 0;
-    int SelectedLevel;
     int NowStage = 1;
     List<GameObject> LevelSelectScreenLevelSelectButtonList;
 
@@ -26,7 +24,7 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         {
             GameObject created_instance = Instantiate(prefStageSelectButton, objStageSelectButtonsScreen.transform);
             created_instance.transform.position += new Vector3(i * 15, 0, 0);
-            created_instance.GetComponent<StageSelectButton>().StageToGo = i + 1;
+            created_instance.GetComponent<StageSelectButton>().SetStageSelectButton(i + 1);
         }
     }
 
@@ -53,12 +51,12 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         StartCoroutine(ScreenSlide(objCamera, objStageSelectScreen.transform.position + CameraZPosition, objLevelSelectScreen.transform.position + CameraZPosition, 1));
     }
 
-    public void LevelSelected(int n)
+    public void LevelSelected(int SelectedLevel)
     {
-        SelectedLevel = n;
-        GameManager.Inst.stage = SelectedStage;
-        GameManager.Inst.level = SelectedLevel;
-        SceneManager.LoadScene("PuzzleScene");
+        if (GameManager.Inst.IsPlayable(SelectedStage, SelectedLevel))
+        {
+            GameManager.Inst.LoadPuzzle(SelectedStage, SelectedLevel);
+        }
     }
 
     public void BackSelected()
@@ -73,7 +71,7 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         {
             GameObject created_instance = Instantiate(prefLevelSelectButton, objLevelSelectScreen.transform);
             created_instance.transform.position += new Vector3(-3 + (i % 5) * 1.5f, 1 - (i / 5) * 1.5f, 0);
-            created_instance.GetComponent<LevelSelectButton>().LevelToGo = i + 1;
+            created_instance.GetComponent<LevelSelectButton>().SetLevelSelectButton(i + 1, GameManager.Inst.IsCleared(SelectedStage, i + 1), GameManager.Inst.IsPlayable(SelectedStage, i + 1));
             LevelSelectScreenLevelSelectButtonList.Add(created_instance);
         }
     }

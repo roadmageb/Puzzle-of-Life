@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class StageSelectButton : SelectButton
 {
-    public int StageToGo;
+    private int StageToGo;
+
+    public AudioSource ClickSound;
 
     protected override void ButtonAction()
     {
         SelectSceneManager.Inst.StageSelected(StageToGo);
+        ClickSound.Play();
+    }
+
+    public void SetStageSelectButton(int Stage)
+    {
+        StageToGo = Stage;
     }
 }
