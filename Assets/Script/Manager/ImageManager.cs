@@ -30,6 +30,7 @@ public class ImageManager : Singleton<ImageManager>
     public Sprite[] ruleNumSprites;
     public Sprite[] buttonSprites;
     public Sprite[] backgroundSprites;
+    public Sprite[] topBoardSprites;
     // Start is called before the first frame update
     void Start()
     {

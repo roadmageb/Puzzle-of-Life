@@ -5,4 +5,4 @@ public enum ConstraintType { GE, LE, EQ, NE, BET }
 public enum PlayState { EDIT, EDITTOINIT, PLAY, PLAYFRAME }
 public enum ButtonState { PLAY, FASTFORWARD, PAUSE, PLAYFRAME, RESETGRAY, RESETRED, STOP }
 
-public enum BoardState { MENU, NEXTLEVEL }
+public enum BoardState { MENUBLACK, MENUYELLOW, NEXTLEVELNOTABLE, NEXTLEVELBLACK, NEXTLEVELGREEN }
