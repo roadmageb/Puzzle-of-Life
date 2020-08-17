@@ -123,6 +123,10 @@ public class Level
 
             for (int i = 0; i < rules[k].constraints.Count; ++i) // constraint도 일치하는지 확인함
             {
+                if (rules[k].constraints[i].state != ConstraintState.NORMAL)
+                {
+                    continue;
+                }
                 int val = check[rules[k].constraints[i].target];
                 if (rules[k].constraints[i].ConstraintMatches(val))
                 {
