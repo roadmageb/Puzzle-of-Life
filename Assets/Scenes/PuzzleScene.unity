@@ -250,6 +250,9 @@ MonoBehaviour:
     type: 3}
   symbolPrefab: {fileID: 425133091056583138, guid: 81c95da3c514f7c458e54243e7d22def,
     type: 3}
+  ruleButtonPrefab: {fileID: 0}
+  constraintButtonPrefab: {fileID: 0}
+  constraintNumButtonPrefab: {fileID: 0}
   cellSprites:
   - cell: 0
     sprite: {fileID: -1516060002189821814, guid: 67addd64b146a0b4d9bf27d37fec1258,
@@ -339,6 +342,8 @@ MonoBehaviour:
   - {fileID: -1955448553306655712, guid: b48646e2f85f79c46a14cd314038d266, type: 3}
   - {fileID: 7014286043975846214, guid: b48646e2f85f79c46a14cd314038d266, type: 3}
   topBoardSprites: []
+  ruleEditButtonSprites: []
+  ruleCellSprite: {fileID: 0}
 --- !u!4 &211538357
 Transform:
   m_ObjectHideFlags: 0
@@ -1630,83 +1635,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ImageManager
       objectReference: {fileID: 0}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: backgroundSprites.Array.data[0]
-      value: 
-      objectReference: {fileID: -6884224323981422677, guid: b48646e2f85f79c46a14cd314038d266,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: backgroundSprites.Array.data[1]
-      value: 
-      objectReference: {fileID: -3696051380107271510, guid: b48646e2f85f79c46a14cd314038d266,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[0]
-      value: 
-      objectReference: {fileID: -7326094753675373383, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[1]
-      value: 
-      objectReference: {fileID: 8748801663457961655, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[2]
-      value: 
-      objectReference: {fileID: 8906792879189631688, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[3]
-      value: 
-      objectReference: {fileID: -5571608111450916286, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[4]
-      value: 
-      objectReference: {fileID: 7222547185769482727, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[5]
-      value: 
-      objectReference: {fileID: -8750850900084449009, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[6]
-      value: 
-      objectReference: {fileID: 2414019176885479016, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[7]
-      value: 
-      objectReference: {fileID: 8377842773422330484, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[8]
-      value: 
-      objectReference: {fileID: 9086303678829512352, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
-    - target: {fileID: 27167830637980062, guid: 2102456b7e9685641a5f723bf52e385a,
-        type: 3}
-      propertyPath: topBoardSprites.Array.data[9]
-      value: 
-      objectReference: {fileID: -6778260589386197600, guid: 7ccd3b6896abcaa4d8dfb5119806e68c,
-        type: 3}
     - target: {fileID: 27167830637980063, guid: 2102456b7e9685641a5f723bf52e385a,
         type: 3}
       propertyPath: m_LocalPosition.x

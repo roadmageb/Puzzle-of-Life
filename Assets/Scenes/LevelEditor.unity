@@ -902,7 +902,7 @@ SpriteRenderer:
   m_SortingLayerID: 1559910197
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1955448553306655712, guid: b48646e2f85f79c46a14cd314038d266,
+  m_Sprite: {fileID: -6884224323981422677, guid: b48646e2f85f79c46a14cd314038d266,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2543,6 +2543,7 @@ MonoBehaviour:
   paletteOrigin: {fileID: 1254457162}
   background: {fileID: 478117955}
   buttonController: {fileID: 0}
+  ClearWindow: {fileID: 0}
 --- !u!4 &1166007297
 Transform:
   m_ObjectHideFlags: 0
