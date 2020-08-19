@@ -8,12 +8,20 @@ public class ConstraintButtonController : MonoBehaviour
     public ConstraintType constraintType { get; set; }
     public LevelEditor levelEditor;
     public int ruleNum, constraintNum, paramNum;
+    private int spriteNum;
     private void OnMouseDown()
     {
+        SetButtonSprite(spriteNum + 1);
+    }
+
+    private void OnMouseExit()
+    {
+        SetButtonSprite(spriteNum / 2 * 2);
     }
 
     private void OnMouseUpAsButton()
     {
+        SetButtonSprite(spriteNum / 2 * 2);
         switch (editorButtonType)
         {
             case EditorButtonType.ADD:
@@ -29,6 +37,12 @@ public class ConstraintButtonController : MonoBehaviour
                 LevelManager.Inst.MapInstantiate();
                 break;
         }
+    }
+
+    public void SetButtonSprite(int num)
+    {
+        spriteNum = num;
+        GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleEditButtonSprites[num];
     }
 
     public void EditParamNum(int num)

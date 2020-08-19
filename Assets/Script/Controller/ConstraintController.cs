@@ -31,7 +31,7 @@ public class ConstraintController : MonoBehaviour
             constraintButton[0].transform.localPosition = new Vector3(1, 0, 0) + constraintOffset.localPosition;
             constraintButton[0].ruleNum = ruleNum;
             constraintButton[0].constraintNum = constraintNum;
-            constraintButton[0].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleEditButtonSprites[2];
+            constraintButton[0].SetButtonSprite(2);
             constraintButton[0].editorButtonType = EditorButtonType.ADD;
             foreach (RuleResetButtonController rrbc in ruleResetButtonControllers)
             {
@@ -47,7 +47,7 @@ public class ConstraintController : MonoBehaviour
                 constraintButton[i].transform.localPosition = new Vector3(i - 1, 0, 0) + constraintOffset.localPosition;
                 constraintButton[i].ruleNum = ruleNum;
                 constraintButton[i].constraintNum = constraintNum;
-                constraintButton[i].GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleEditButtonSprites[4 + i * 2];
+                constraintButton[i].SetButtonSprite(4 + i * 2);
                 constraintButton[i].editorButtonType = EditorButtonType.CONSTTYPE;
             }
             constraintButton[0].constraintType = ConstraintType.LE;
