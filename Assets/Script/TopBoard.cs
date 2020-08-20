@@ -64,9 +64,14 @@ public class TopBoard : MonoBehaviour
             }
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
+        if (boardState == BoardState.NEXTLEVELNOTABLE)
+            if (GameManager.Inst.IsCleared(GameManager.Inst.stage, GameManager.Inst.level))
+                boardState = BoardState.NEXTLEVELBLACK;
+
         timeMenu = 0.0f;
         timeNextLevel = 0.0f;
     }

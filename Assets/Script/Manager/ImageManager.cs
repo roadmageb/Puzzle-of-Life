@@ -36,6 +36,9 @@ public class ImageManager : Singleton<ImageManager>
     public Sprite[] ruleResetButtonSprites;
     public Sprite[] constraintNumButtonSprites;
     public Sprite ruleCellSprite;
+    public Sprite[] topBoardAlphabetSprites;
+    public Sprite[] topBoardSpeedSprites;
+    public Sprite[] topBoardStepSprites;
     // Start is called before the first frame update
     void Start()
     {
