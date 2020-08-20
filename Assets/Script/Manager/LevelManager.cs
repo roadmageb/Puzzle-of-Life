@@ -9,7 +9,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    private PlayState playState;
+    private PlayState _playState;
+    public PlayState playState
+    {
+        get { return _playState; }
+        set { topBoardController.ChangeBoardByState(_playState, value); _playState = value; }
+    }
     public CellController cellUnderCursor { get; set; }
     public Transform mapOrigin;
     public Transform ruleOrigin;
@@ -24,11 +29,24 @@ public class LevelManager : Singleton<LevelManager>
     public Level currentLevel { get; set; }
     private Cell[,] previousCells;
     public float wholeRuleHeight { get; private set; }
-    private float interval;
+    //private float interval;
+    public float normalInterval = 1.0f;
     private string currentLevelName;
     public bool isEditorMode { get; private set; }
 
-    public GameObject ClearWindow;
+    public TopBoardController topBoardController;
+    private int _stepCount;
+    public int stepCount
+    {
+        get { return _stepCount; }
+        set { topBoardController.ChangeStepObject(value); _stepCount = value; }
+    }
+    private int _playSpeed;
+    public int playSpeed
+    {
+        get { return _playSpeed; }
+        set { topBoardController.ChangeSpeedObject(value); _playSpeed = value; }
+    }
 
     public void SetPlayState(PlayState playState)
     {
@@ -65,15 +83,16 @@ public class LevelManager : Singleton<LevelManager>
                     previousCells[i, j] = currentLevel.map[i, j];
                 }
             }
+            stepCount = 0;
         }
 
-        interval = 1.0f;
+        playSpeed = 1;
         StartCoroutine("CellCoroutine");
     }
 
     public void FastForwardLevel()
     {
-        interval = Math.Max(interval / 1.5f, 0.2f);
+        playSpeed = Math.Min(playSpeed*2, 8);
     }
 
     public void PauseLevel()
@@ -109,21 +128,25 @@ public class LevelManager : Singleton<LevelManager>
                 }
             }
         }
-
-        currentLevel.NextState();
+        NextState();
         CellUpdate();
     }
 
+    private void NextState()
+    {
+        stepCount += 1;
+        currentLevel.NextState();
+    }
     private IEnumerator CellCoroutine()
     {
         float timer = 0;
         while (true)
         {
             timer += Time.deltaTime;
-            if (timer >= interval)
+            if (timer >= normalInterval/playSpeed)
             {
                 timer = 0;
-                currentLevel.NextState();
+                NextState();
                 CellUpdate();
             }
             yield return null;
@@ -195,7 +218,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             Debug.Log("clear");
             GameManager.Inst.ClearPuzzle(GameManager.Inst.stage, GameManager.Inst.level);
-            ClearWindow.SetActive(true);
+            //ClearWindow.SetActive(true);
         }
     }
 

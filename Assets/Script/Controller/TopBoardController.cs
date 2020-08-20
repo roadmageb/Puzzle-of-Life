@@ -8,13 +8,13 @@ using UnityEngine;
 
 public class TopBoardController : MonoBehaviour
 {
-    public GameObject alphabetPrefab;
-    public Transform stringParent;
+    [SerializeField] private GameObject alphabetPrefab;
+    [SerializeField] private Transform stringParent;
     private List<SpriteRenderer> alphabets;
 
-    public SpriteRenderer speedObject;
-    public SpriteRenderer stepObject;
-    public SpriteRenderer[] stepNumberObject;
+    [SerializeField] private SpriteRenderer speedObject;
+    [SerializeField] private SpriteRenderer stepObject;
+    [SerializeField] private SpriteRenderer[] stepNumberObject;
 
     void Start()
     {
@@ -50,19 +50,32 @@ public class TopBoardController : MonoBehaviour
             ChangeAlphabet(i, str.Length > i ? str[i] : '\0');
         }
     }
+    /// <summary>
+    /// 전광판 속도 변경
+    /// </summary>
+    /// <param name="speed">속도</param>
+    public void ChangeSpeedObject(int speed)
+    {
+        
+    }
+    /// <summary>
+    /// 전광판 스텝 변경
+    /// </summary>
+    /// <param name="step">스텝</param>
+    public void ChangeStepObject(int step)
+    {
 
-    void ChangeSpeedObject(int speed)
+    }
+    /// <summary>
+    /// 전광판 스텝 초기화
+    /// </summary>
+    public void ChangeStepObject()
     {
 
     }
 
-    void ChangeStepObject(int step)
+    public void ChangeBoardByState(PlayState prevState, PlayState currState)
     {
-
-    }
-
-    void ChangeStepObject()
-    {
-
+        Debug.Log(prevState + " " + currState);
     }
 }
