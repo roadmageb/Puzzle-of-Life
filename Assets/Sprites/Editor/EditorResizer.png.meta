@@ -4,16 +4,16 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1106149179963703427
-    second: EditorResizer_0
+    second: EditorResizer_TopRight
   - first:
       213: 8070420184842157840
-    second: EditorResizer_1
+    second: EditorResizer_TopLeft
   - first:
       213: 9130493681196979688
-    second: EditorResizer_2
+    second: EditorResizer_BottomLeft
   - first:
       213: -6129768527804161566
-    second: EditorResizer_3
+    second: EditorResizer_BottomRight
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,7 +99,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EditorResizer_0
+      name: EditorResizer_TopRight
       rect:
         serializedVersion: 2
         x: 0
@@ -120,7 +120,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorResizer_1
+      name: EditorResizer_TopLeft
       rect:
         serializedVersion: 2
         x: 13
@@ -141,7 +141,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorResizer_2
+      name: EditorResizer_BottomLeft
       rect:
         serializedVersion: 2
         x: 26
@@ -162,7 +162,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorResizer_3
+      name: EditorResizer_BottomRight
       rect:
         serializedVersion: 2
         x: 39

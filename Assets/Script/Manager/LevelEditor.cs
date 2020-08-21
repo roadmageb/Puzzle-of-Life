@@ -105,6 +105,8 @@ public class LevelEditor : MonoBehaviour
         {
             cellPalette.options.Add(new Dropdown.OptionData() { text = cell.ToString() });
         }
+        LevelManager.Inst.currentLevel = new Level(new Vector2Int(3, 3));
+        LevelManager.Inst.MapInstantiate();
     }
     private void Update()
     {

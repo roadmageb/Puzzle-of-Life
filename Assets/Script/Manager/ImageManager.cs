@@ -9,6 +9,7 @@ public class ImageManager : Singleton<ImageManager>
     public GameObject cellPrefab, cellPrefabInRule, cellPrefabInRuleIO, cellPrefabInPalette;
     public GameObject mapBackgroundPrefab, rulePrefab, palettePrefab, symbolPrefab;
     public GameObject ruleButtonPrefab, constraintButtonPrefab, constraintNumButtonPrefab;
+    public GameObject editorResizerPrefab;
     [Serializable]
     public struct CellSpritePair
     {
@@ -36,6 +37,7 @@ public class ImageManager : Singleton<ImageManager>
     public Sprite[] ruleResetButtonSprites;
     public Sprite[] constraintNumButtonSprites;
     public Sprite ruleCellSprite;
+    public Sprite[] editorResizerSprites;
     // Start is called before the first frame update
     void Start()
     {
