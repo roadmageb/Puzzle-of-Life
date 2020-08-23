@@ -21,6 +21,7 @@ public class LevelEditor : MonoBehaviour
     {
         Level level = new Level(new Vector2Int(3, 3));
         LevelManager.Inst.currentLevel = level;
+        LevelManager.Inst.MapInstantiate();
     }
     public void SwitchEditMode()
     {
