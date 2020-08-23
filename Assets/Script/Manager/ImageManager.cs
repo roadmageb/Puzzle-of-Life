@@ -38,6 +38,8 @@ public class ImageManager : Singleton<ImageManager>
     public Sprite[] constraintNumButtonSprites;
     public Sprite ruleCellSprite;
     public Sprite[] mapResizerSprites;
+    public Sprite[] editorButtonSprites;
+    public Sprite editorButtonSelectedSprite;
     // Start is called before the first frame update
     void Start()
     {

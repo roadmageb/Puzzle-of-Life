@@ -51,10 +51,10 @@ public class Level
         map[coord.x, coord.y] = type;
         return true;
     }
-    public bool SwitchReplaceability(Vector2Int coord)
+    public bool ChangeReplaceability(Vector2Int coord, bool replaceability)
     {
         if (coord.x >= size.x || coord.y >= size.y || coord.x < 0 || coord.y < 0) return false;
-        isReplaceable[coord.x, coord.y] = !isReplaceable[coord.x, coord.y];
+        isReplaceable[coord.x, coord.y] = replaceability;
         return true;
     }
     public void AddPalette(Cell type, int num)

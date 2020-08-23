@@ -14,28 +14,16 @@ public class LevelEditor : MonoBehaviour
     public Dropdown cellPalette, constraintType;
     public Toggle constraintReplaceability;
     public Cell selectedCell;
+    public bool selectedReplaceability;
     public ConstraintType selectedConstraintType;
     public Button editModeButton;
-    public int editMode; // 1 = CellEdit, 2 = ReplacementEdit
+    public bool editMode { get; set; } // true = CellEdit, false = ReplacementEdit
     public void NewLevel()
     {
         Level level = new Level(new Vector2Int(3, 3));
         LevelManager.Inst.currentLevel = level;
         LevelManager.Inst.MapInstantiate();
     }
-    public void SwitchEditMode()
-    {
-        if (editMode == 1)
-        {
-            editMode = 2;
-            editModeButton.GetComponentInChildren<Text>().text = "Replacement Edit Mode";
-        }
-        else if (editMode == 2)
-        {
-            editMode = 1;
-            editModeButton.GetComponentInChildren<Text>().text = "Cell Edit Mode";
-        }
-    } 
     public void AddPaletteCell()
     {
         bool containFlag = false;
@@ -99,12 +87,7 @@ public class LevelEditor : MonoBehaviour
     }
     private void Start()
     {
-        editMode = 1;
-        cellPalette.options.Clear();
-        foreach (Cell cell in Enum.GetValues(typeof(Cell)))
-        {
-            cellPalette.options.Add(new Dropdown.OptionData() { text = cell.ToString() });
-        }
+        editMode = true;
         LevelManager.Inst.currentLevel = new Level(new Vector2Int(3, 3));
         LevelManager.Inst.MapInstantiate();
     }
@@ -114,7 +97,7 @@ public class LevelEditor : MonoBehaviour
         {
             if (LevelManager.Inst.cellUnderCursor != null)
             {
-                if (editMode == 1)
+                if (editMode)
                 {
                     if (LevelManager.Inst.cellUnderCursor is MapCellController)
                     {
@@ -143,12 +126,12 @@ public class LevelEditor : MonoBehaviour
                         }
                     }
                 }
-                else if (editMode == 2)
+                else if (!editMode)
                 {
                     if (LevelManager.Inst.cellUnderCursor is MapCellController)
                     {
                         Vector2Int coord = ((MapCellController)LevelManager.Inst.cellUnderCursor).coord;
-                        LevelManager.Inst.currentLevel.SwitchReplaceability(coord);
+                        LevelManager.Inst.currentLevel.ChangeReplaceability(coord, selectedReplaceability);
                     }
                     else if (LevelManager.Inst.cellUnderCursor is RuleCellController)
                     {
@@ -158,16 +141,15 @@ public class LevelEditor : MonoBehaviour
 
                         if (coord.x != -1 && coord.y != -1)
                         {
-                            LevelManager.Inst.currentLevel.rules[ruleNum].SwitchReplaceability(coord);
+                            LevelManager.Inst.currentLevel.rules[ruleNum].ChangeReplaceability(coord, selectedReplaceability);
                         }
                         else if (constraintNum == -1)
                         {
-                            LevelManager.Inst.currentLevel.rules[ruleNum].SwitchOutcomeReplaceability();
+                            LevelManager.Inst.currentLevel.rules[ruleNum].ChangeOutcomeReplaceability(selectedReplaceability);
                         }
                         else
                         {
-                            LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum]
-                                .SetReplaceability(!LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].isReplaceable);
+                            LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].SetReplaceability(selectedReplaceability);
                         }
                     }
                 }

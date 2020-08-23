@@ -4,40 +4,40 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1281221928498612099
-    second: EditorPalette_0
+    second: EditorPalette_NULL
   - first:
       213: -7135215907551302273
-    second: EditorPalette_1
+    second: EditorPalette_CELL1
   - first:
       213: -146765646526582521
-    second: EditorPalette_2
+    second: EditorPalette_CELL2
   - first:
       213: -4504208147977675735
-    second: EditorPalette_3
+    second: EditorPalette_CELL3
   - first:
       213: -4996891549430923839
-    second: EditorPalette_4
+    second: EditorPalette_TARGET1
   - first:
       213: 437043078766300195
-    second: EditorPalette_5
+    second: EditorPalette_TARGET2
   - first:
       213: 1873133663944349285
-    second: EditorPalette_6
+    second: EditorPalette_TARGET3
   - first:
       213: 7813326091317417356
-    second: EditorPalette_7
+    second: EditorPalette_EMPTY
   - first:
       213: 4941048660384465637
-    second: EditorPalette_8
+    second: EditorPalette_ANY
   - first:
       213: 4836384725906534239
-    second: EditorPalette_9
+    second: EditorPalette_Replaceable
   - first:
       213: 2199970741198523634
-    second: EditorPalette_10
+    second: EditorPalette_Nonreplaceable
   - first:
       213: 1421380097590498425
-    second: EditorPalette_11
+    second: EditorPalette_Selected
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EditorPalette_0
+      name: EditorPalette_NULL
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -144,7 +144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_1
+      name: EditorPalette_CELL1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,7 +152,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,7 +165,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_2
+      name: EditorPalette_CELL2
       rect:
         serializedVersion: 2
         x: 64
@@ -173,7 +173,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,7 +186,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_3
+      name: EditorPalette_CELL3
       rect:
         serializedVersion: 2
         x: 96
@@ -194,7 +194,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,7 +207,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_4
+      name: EditorPalette_TARGET1
       rect:
         serializedVersion: 2
         x: 128
@@ -215,7 +215,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,7 +228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_5
+      name: EditorPalette_TARGET2
       rect:
         serializedVersion: 2
         x: 160
@@ -236,7 +236,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,7 +249,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_6
+      name: EditorPalette_TARGET3
       rect:
         serializedVersion: 2
         x: 192
@@ -257,7 +257,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,7 +270,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_7
+      name: EditorPalette_EMPTY
       rect:
         serializedVersion: 2
         x: 224
@@ -278,7 +278,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -291,7 +291,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_8
+      name: EditorPalette_ANY
       rect:
         serializedVersion: 2
         x: 256
@@ -299,7 +299,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,7 +312,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_9
+      name: EditorPalette_Replaceable
       rect:
         serializedVersion: 2
         x: 288
@@ -320,7 +320,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -333,7 +333,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_10
+      name: EditorPalette_Nonreplaceable
       rect:
         serializedVersion: 2
         x: 320
@@ -341,7 +341,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -354,7 +354,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EditorPalette_11
+      name: EditorPalette_Selected
       rect:
         serializedVersion: 2
         x: 352
@@ -362,7 +362,7 @@ TextureImporter:
         width: 32
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
