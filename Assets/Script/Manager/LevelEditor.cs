@@ -10,7 +10,6 @@ using UnityEngine.UI;
 
 public class LevelEditor : MonoBehaviour
 {
-    public InputField[] sizeInput, constraintInput;
     public InputField stageName;
     public Dropdown cellPalette, constraintType;
     public Toggle constraintReplaceability;
@@ -18,10 +17,10 @@ public class LevelEditor : MonoBehaviour
     public ConstraintType selectedConstraintType;
     public Button editModeButton;
     public int editMode; // 1 = CellEdit, 2 = ReplacementEdit
-    public void MapInitialize()
+    public void NewLevel()
     {
-        LevelManager.Inst.currentLevel = new Level(new Vector2Int(int.Parse(sizeInput[0].text), int.Parse(sizeInput[1].text)));
-        LevelManager.Inst.MapInstantiate();
+        Level level = new Level(new Vector2Int(3, 3));
+        LevelManager.Inst.currentLevel = level;
     }
     public void SwitchEditMode()
     {

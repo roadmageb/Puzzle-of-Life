@@ -21,7 +21,7 @@ public class LevelManager : Singleton<LevelManager>
     public RuleController[] ruleObject { get; private set; }
     public PaletteController paletteObject { get; private set; }
     public RuleButtonController ruleButtonObject { get; private set; }
-    public EditorResizerController[] editorResizerController { get; private set; }
+    public MapResizerController[] mapResizerController { get; private set; }
     public Level currentLevel { get; set; }
     private Cell[,] previousCells;
     public float wholeRuleHeight { get; private set; }
@@ -141,11 +141,11 @@ public class LevelManager : Singleton<LevelManager>
 
         if (isEditorMode)
         {
-            editorResizerController = new EditorResizerController[4];
+            mapResizerController = new MapResizerController[4];
             for (int i = 0; i < 4; ++i)
             {
-                editorResizerController[i] = Instantiate(ImageManager.Inst.editorResizerPrefab, mapOrigin).GetComponent<EditorResizerController>();
-                editorResizerController[i].SetResizerType(i);
+                mapResizerController[i] = Instantiate(ImageManager.Inst.mapResizerPrefab, mapOrigin).GetComponent<MapResizerController>();
+                mapResizerController[i].SetResizerType(i);
             }
         }
 
@@ -302,7 +302,7 @@ public class LevelManager : Singleton<LevelManager>
     }
 
     // Start is called before the first frame update
-    void Start()
+    new void Awake()
     {
         try
         {
@@ -312,7 +312,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             Debug.Log(e);
         }
-
+        
         if (GameObject.Find("LevelEditor") == null) // maybe there is a better way to check this
         {
             isEditorMode = false;
@@ -321,6 +321,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             isEditorMode = true;
         }
+        
     }
 
     // Update is called once per frame

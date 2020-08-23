@@ -66,7 +66,7 @@ MonoBehaviour:
     type: 3}
   constraintNumButtonPrefab: {fileID: 8012889757285473715, guid: a1fd81db1852db7428c3f85b585dd923,
     type: 3}
-  editorResizerPrefab: {fileID: 765718359956908331, guid: 25d5af731fe01024f9d10fe8082f7687,
+  mapResizerPrefab: {fileID: 765718359956908331, guid: 25d5af731fe01024f9d10fe8082f7687,
     type: 3}
   cellSprites:
   - cell: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   - {fileID: -7334068909204652302, guid: b39403566e1161f469abf9aaa897c506, type: 3}
   ruleCellSprite: {fileID: -4161725722352587115, guid: a88117c4af0b5794fb037772f768b12d,
     type: 3}
-  editorResizerSprites:
+  mapResizerSprites:
   - {fileID: 8070420184842157840, guid: 31d9d0b071154c14a8b2587092724d02, type: 3}
   - {fileID: 1106149179963703427, guid: 31d9d0b071154c14a8b2587092724d02, type: 3}
   - {fileID: 9130493681196979688, guid: 31d9d0b071154c14a8b2587092724d02, type: 3}
