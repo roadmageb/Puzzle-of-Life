@@ -10,6 +10,11 @@ public class TopBoard : MonoBehaviour
     public Transform rule;
     private float timeMenu, timeNextLevel;
 
+    public void ThisLevelIsCleared()
+    {
+        boardState = BoardState.NEXTLEVELBLACK;
+        GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.topBoardSprites[(int)boardState * 2];
+    }
     private void OnMouseDown()
     {
         isButtonDown = true;
@@ -68,10 +73,6 @@ public class TopBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (boardState == BoardState.NEXTLEVELNOTABLE)
-            if (GameManager.Inst.IsCleared(GameManager.Inst.stage, GameManager.Inst.level))
-                boardState = BoardState.NEXTLEVELBLACK;
-
         timeMenu = 0.0f;
         timeNextLevel = 0.0f;
     }

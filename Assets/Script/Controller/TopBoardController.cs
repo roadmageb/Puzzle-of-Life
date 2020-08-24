@@ -16,10 +16,24 @@ public class TopBoardController : MonoBehaviour
     [SerializeField] private SpriteRenderer stepObject;
     [SerializeField] private SpriteRenderer[] stepNumberObject;
 
+    [SerializeField] private SpriteRenderer background;
+
+    public TopBoard nextButton;
+
+    float resetTime;
+    float stopTime;
+    float clearTime;
+    bool clearDet;
+
     void Start()
     {
+        resetTime = -100.0f;
+        stopTime = -100.0f;
+        clearTime = 0.0f;
+        clearDet = false;
         float alphabetWidth = alphabetPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
         alphabets = new List<SpriteRenderer>();
+
         for(int i=0; i<5; ++i)
         {
             GameObject obj = Instantiate(alphabetPrefab, stringParent);
@@ -27,10 +41,14 @@ public class TopBoardController : MonoBehaviour
             obj.transform.localPosition = new Vector3(alphabetWidth * i, 0, 0);
         }
         ChangeString("EDIT");
-            
+
+        if (GameManager.Inst.IsCleared(GameManager.Inst.stage, GameManager.Inst.level))
+        {
+            nextButton.ThisLevelIsCleared();
+        }
     }
 
-    void ChangeAlphabet(int index, char alphabet)
+    public void ChangeAlphabet(int index, char alphabet)
     {
         if(alphabet>='A' && alphabet <= 'Z')
         {
@@ -43,20 +61,35 @@ public class TopBoardController : MonoBehaviour
         }
     }
 
-    void ChangeString(string str)
+    public void ChangeString(string str)
     {
         for(int i=0; i<alphabets.Count; ++i)
         {
             ChangeAlphabet(i, str.Length > i ? str[i] : '\0');
         }
     }
+
     /// <summary>
     /// 전광판 속도 변경
     /// </summary>
     /// <param name="speed">속도</param>
     public void ChangeSpeedObject(int speed)
     {
-        
+        switch (speed)
+        {
+            case 1:
+                speedObject.sprite = ImageManager.Inst.topBoardSpeedSprites[1];
+                break;
+            case 2:
+                speedObject.sprite = ImageManager.Inst.topBoardSpeedSprites[2];
+                break;
+            case 4:
+                speedObject.sprite = ImageManager.Inst.topBoardSpeedSprites[3];
+                break;
+            case 8:
+                speedObject.sprite = ImageManager.Inst.topBoardSpeedSprites[4];
+                break;
+        }
     }
     /// <summary>
     /// 전광판 스텝 변경
@@ -64,18 +97,143 @@ public class TopBoardController : MonoBehaviour
     /// <param name="step">스텝</param>
     public void ChangeStepObject(int step)
     {
-
+        if(step == 0)
+        {
+            ChangeStepObject();
+        }
+        else
+        {
+            if (step < 10)
+            {
+                stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[step + 3];
+                stepNumberObject[1].sprite = ImageManager.Inst.topBoardStepSprites[3];
+            }
+            else
+            {
+                stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[(step % 10) + 3];
+                stepNumberObject[1].sprite = ImageManager.Inst.topBoardStepSprites[(step / 10) + 3];
+            }
+        }
     }
     /// <summary>
     /// 전광판 스텝 초기화
     /// </summary>
     public void ChangeStepObject()
     {
+        stepObject.sprite = ImageManager.Inst.topBoardStepSprites[0];
+        stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[2];
+        stepNumberObject[1].sprite = ImageManager.Inst.topBoardStepSprites[2];
+    }
 
+    public void ChangeResetTime()
+    {
+        resetTime = 2.0f;
     }
 
     public void ChangeBoardByState(PlayState prevState, PlayState currState)
     {
-        Debug.Log(prevState + " " + currState);
+        switch (currState)
+        {
+            case PlayState.EDIT:
+                if(prevState == PlayState.PLAY || prevState == PlayState.PLAYFRAME) // 정지 버튼 누름
+                {
+                    ChangeString("STOP");
+                    stopTime = 2.0f;
+                }
+                else
+                {
+                    ChangeString(currState.ToString());
+                }
+                speedObject.sprite = ImageManager.Inst.topBoardSpeedSprites[0];
+                break;
+            case PlayState.EDITTOINIT: // 다시하기 버튼 한 번 누른 상태임
+                break;
+            case PlayState.PLAY:
+                if (prevState == PlayState.PLAY) // 가속 버튼 누름
+                {
+                    ChangeString("FAST");
+                }
+                else // 시작 버튼 누름
+                {
+                    stopTime = -100.0f;
+                    resetTime = -100.0f;
+                    ChangeString(currState.ToString());
+                    if (prevState == PlayState.EDIT) // 편집 중이었을 경우 step00에 불 킴. 편집 중이 아니고 일시정지 중이었으면 실행 안 함.
+                    {
+                        stepObject.sprite = ImageManager.Inst.topBoardStepSprites[1];
+                        stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[3];
+                        stepNumberObject[1].sprite = ImageManager.Inst.topBoardStepSprites[3];
+                    }
+                }
+                break;
+            case PlayState.PLAYFRAME:
+                if (prevState == PlayState.PLAY) // 일시정지 버튼 누름
+                {
+                    ChangeString("PAUSE");
+                }
+                else // 스텝 버튼 누름
+                {
+                    stopTime = -100.0f;
+                    resetTime = -100.0f;
+                    speedObject.sprite = ImageManager.Inst.topBoardSpeedSprites[0];
+                    ChangeString("STEP");
+                    stepObject.sprite = ImageManager.Inst.topBoardStepSprites[1];
+
+                }
+                break;
+        }
+    }
+
+    private void Update()
+    {
+        if (LevelManager.Inst.currentLevel.ClearCheck()) // 전광판에 CLEAR 깜빡이게 하기, 백그라운드 초록색으로
+        {
+            background.sprite = ImageManager.Inst.backgroundSprites[2];
+            if(clearTime <= 0.0f && clearDet == false)
+            {
+                clearTime = 0.5f;
+                clearDet = true;
+                ChangeString("CLEAR");
+            }
+            else if(clearTime > 0.0f && clearDet == true)
+            {
+                clearTime -= Time.deltaTime;
+            }
+            else if(clearTime <= 0.0f && clearDet == true)
+            {
+                clearTime = 0.5f;
+                clearDet = false;
+                ChangeString("");
+            }
+            else if(clearTime > 0.0f && clearDet == false)
+            {
+                clearTime -= Time.deltaTime;
+            }
+        }
+
+        if (stopTime > 0.0f) // 전광판에 STOP 2초간 띄우기
+        {
+            stopTime -= Time.deltaTime;
+        }
+        else if (stopTime <= 0.0f && stopTime > -100.0f)
+        {
+            ChangeString("EDIT");
+            stopTime = -100.0f;
+        }
+
+        if(resetTime == 2.0f) // 전광판에 RESET 2초간 띄우기
+        {
+            ChangeString("RESET");
+            resetTime -= Time.deltaTime;
+        }
+        else if(resetTime > 0.0f)
+        {
+            resetTime -= Time.deltaTime;
+        }
+        else if(resetTime <= 0.0f && resetTime > -100.0f)
+        {
+            ChangeString("EDIT");
+            resetTime = -100.0f;
+        }
     }
 }

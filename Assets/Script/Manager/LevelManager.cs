@@ -83,7 +83,6 @@ public class LevelManager : Singleton<LevelManager>
                     previousCells[i, j] = currentLevel.map[i, j];
                 }
             }
-            stepCount = 0;
         }
 
         playSpeed = 1;
@@ -110,7 +109,7 @@ public class LevelManager : Singleton<LevelManager>
                 currentLevel.SetCell(new Vector2Int(i, j), previousCells[i, j]);
             }
         }
-
+        stepCount = 0;
         CellUpdate();
         StopCoroutine("CellCoroutine");
     }

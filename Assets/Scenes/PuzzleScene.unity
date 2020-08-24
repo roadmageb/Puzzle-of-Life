@@ -552,6 +552,7 @@ MonoBehaviour:
   paletteOrigin: {fileID: 1254457162}
   background: {fileID: 2110582502}
   buttonController: {fileID: 1813985615}
+  normalInterval: 1
   topBoardController: {fileID: 1756419835}
 --- !u!4 &1166007297
 Transform:
@@ -1081,6 +1082,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 4123990354636381635, guid: f73186b2c691483488603fd4780142ae,
+        type: 3}
+      propertyPath: rule
+      value: 
+      objectReference: {fileID: 2086305370}
+    - target: {fileID: 4123990355505447309, guid: f73186b2c691483488603fd4780142ae,
+        type: 3}
+      propertyPath: rule
+      value: 
+      objectReference: {fileID: 2086305370}
+    - target: {fileID: 8318465331762879546, guid: f73186b2c691483488603fd4780142ae,
+        type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 2110582502}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73186b2c691483488603fd4780142ae, type: 3}
 --- !u!114 &1756419835 stripped

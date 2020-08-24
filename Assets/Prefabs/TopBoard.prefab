@@ -219,6 +219,8 @@ MonoBehaviour:
   stepNumberObject:
   - {fileID: 4933380187199794247}
   - {fileID: 3445291226744132651}
+  background: {fileID: 0}
+  nextButton: {fileID: 4123990354636381635}
 --- !u!1 &4123990354636381636
 GameObject:
   m_ObjectHideFlags: 0
