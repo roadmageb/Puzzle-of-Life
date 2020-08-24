@@ -103,15 +103,15 @@ public class TopBoardController : MonoBehaviour
         }
         else
         {
-            if (step < 10)
-            {
-                stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[step + 3];
-                stepNumberObject[1].sprite = ImageManager.Inst.topBoardStepSprites[3];
-            }
-            else
+            if (step < 100) // 스텝이 한 자리 수 또는 두 자리 수
             {
                 stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[(step % 10) + 3];
                 stepNumberObject[1].sprite = ImageManager.Inst.topBoardStepSprites[(step / 10) + 3];
+            }
+            else // 스텝이 세 자리 수 이상일 경우: 뒤의 두 자리만 표시
+            {
+                stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[((step - (step / 100) * 100) % 10) + 3];
+                stepNumberObject[1].sprite = ImageManager.Inst.topBoardStepSprites[((step - (step / 100) * 100) / 10) + 3];
             }
         }
     }

@@ -57,6 +57,7 @@ public class TopBoard : MonoBehaviour
                         GameManager.Inst.stage += 1;
                         GameManager.Inst.level = 1;
                         rule.transform.position = new Vector3(rule.position.x, 4.5f, rule.position.z);
+
                     }
                     else
                     {
