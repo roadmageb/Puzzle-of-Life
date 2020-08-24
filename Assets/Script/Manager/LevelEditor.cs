@@ -101,8 +101,8 @@ public class LevelEditor : MonoBehaviour
                 {
                     if (LevelManager.Inst.cellUnderCursor is MapCellController)
                     {
+                        if (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY) return;
                         Vector2Int coord = ((MapCellController)LevelManager.Inst.cellUnderCursor).coord;
-                        //Debug.Log(coord);
                         LevelManager.Inst.currentLevel.SetCell(coord, selectedCell);
                     }
                     else if (LevelManager.Inst.cellUnderCursor is RuleCellController)
@@ -113,15 +113,24 @@ public class LevelEditor : MonoBehaviour
 
                         if (coord.x != -1 && coord.y != -1)
                         {
-                            //Debug.Log(coord);
+                            if ((coord.x == 1 && coord.y == 1) && (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY)) return;
+                            if (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY)
+                            {
+                                LevelManager.Inst.currentLevel.rules[ruleNum].ChangeReplaceability(coord, false);
+                            }
                             LevelManager.Inst.currentLevel.rules[ruleNum].SetConditionCell(coord, selectedCell);
                         }
                         else if (constraintNum == -1)
                         {
+                            if (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY) return;
                             LevelManager.Inst.currentLevel.rules[ruleNum].SetOutcome(selectedCell);
                         }
                         else
                         {
+                            if (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY)
+                            {
+                                LevelManager.Inst.currentLevel.rules[ruleNum].ChangeReplaceability(coord, false);
+                            }
                             LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].target = selectedCell;
                         }
                     }
