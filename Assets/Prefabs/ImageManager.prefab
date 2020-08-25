@@ -68,6 +68,8 @@ MonoBehaviour:
     type: 3}
   mapResizerPrefab: {fileID: 765718359956908331, guid: 25d5af731fe01024f9d10fe8082f7687,
     type: 3}
+  resizeHelperPrefab: {fileID: 6625761698578058231, guid: bf31e1c15c87dd64595b192b297d2f9e,
+    type: 3}
   cellSprites:
   - cell: 0
     sprite: {fileID: 0}

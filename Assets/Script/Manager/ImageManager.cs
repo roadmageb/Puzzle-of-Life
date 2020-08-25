@@ -9,7 +9,7 @@ public class ImageManager : Singleton<ImageManager>
     public GameObject cellPrefab, cellPrefabInRule, cellPrefabInRuleIO, cellPrefabInPalette;
     public GameObject mapBackgroundPrefab, rulePrefab, palettePrefab, symbolPrefab;
     public GameObject ruleButtonPrefab, constraintButtonPrefab, constraintNumButtonPrefab;
-    public GameObject mapResizerPrefab;
+    public GameObject mapResizerPrefab, resizeHelperPrefab;
     [Serializable]
     public struct CellSpritePair
     {

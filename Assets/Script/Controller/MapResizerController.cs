@@ -8,6 +8,7 @@ public class MapResizerController : MonoBehaviour
     private int value;
     private Vector2 oldCoord, newCoord;
     private Vector2 offset;
+    private Vector2Int size, diff;
     public void SetResizerType(int value) // 0 = TopLeft, 1 = TopRight, 2 = BottomLeft, 3 = BottomRight
     {
         this.value = value;
@@ -34,6 +35,31 @@ public class MapResizerController : MonoBehaviour
         }
     }
 
+    private void GetSizeAndDiff()
+    {
+        size = LevelManager.Inst.currentLevel.size;
+        diff = new Vector2Int((int)(newCoord - oldCoord).x, (int)(newCoord - oldCoord).y);
+        switch (value)
+        {
+            case 0:
+                size.x -= diff.x;
+                size.y += diff.y;
+                break;
+            case 1:
+                size.x += diff.x;
+                size.y += diff.y;
+                break;
+            case 2:
+                size.x -= diff.x;
+                size.y -= diff.y;
+                break;
+            case 3:
+                size.x += diff.x;
+                size.y -= diff.y;
+                break;
+        }
+    }
+
     private void ChangeMapSize()
     {
         Cell[,] tempMap = new Cell[LevelManager.Inst.currentLevel.size.x, LevelManager.Inst.currentLevel.size.y];
@@ -47,29 +73,8 @@ public class MapResizerController : MonoBehaviour
             }
         }
 
-        Vector2Int size = LevelManager.Inst.currentLevel.size;
-        Vector2Int diff = new Vector2Int((int)(newCoord - oldCoord).x, (int)(newCoord - oldCoord).y);
-        switch (value)
-        {
-            case 0:
-                size.x -= diff.x;
-                size.y += diff.y;
-                break; 
-            case 1:
-                size.x += diff.x;
-                size.y += diff.y;
-                break;
-            case 2:
-                size.x -= diff.x;
-                size.y -= diff.y;
-                break; 
-            case 3:
-                size.x += diff.x;
-                size.y -= diff.y;
-                break;
+        GetSizeAndDiff();
 
-        }
-        
         if (size.x <= 0 || size.y <= 0)
         {
             return;
@@ -148,10 +153,77 @@ public class MapResizerController : MonoBehaviour
         }
     }
 
+    private void ChangePosition(Vector2 pos)
+    {
+        transform.localPosition = pos;
+        ShowMapSizePreview();
+    }
+
+    private void ShowMapSizePreview()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        GetSizeAndDiff();
+
+        if (size.x <= 0 || size.y <= 0)
+        {
+            return;
+        }
+
+        GameObject[,] resizeHelpers = new GameObject[size.x, size.y];
+
+        switch (value)
+        {
+            case 0:
+                for (int i = 0; i < size.x; ++i)
+                {
+                    for (int j = 0; j < size.y; ++j)
+                    {
+                        resizeHelpers[i, j] = Instantiate(ImageManager.Inst.resizeHelperPrefab, transform);
+                        resizeHelpers[i, j].transform.localPosition = new Vector2(i, -j);
+                    }
+                }
+                break;
+            case 1:
+                for (int i = 0; i < size.x; ++i)
+                {
+                    for (int j = 0; j < size.y; ++j)
+                    {
+                        resizeHelpers[i, j] = Instantiate(ImageManager.Inst.resizeHelperPrefab, transform);
+                        resizeHelpers[i, j].transform.localPosition = new Vector2(-i, -j);
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0; i < size.x; ++i)
+                {
+                    for (int j = 0; j < size.y; ++j)
+                    {
+                        resizeHelpers[i, j] = Instantiate(ImageManager.Inst.resizeHelperPrefab, transform);
+                        resizeHelpers[i, j].transform.localPosition = new Vector2(i, j);
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < size.x; ++i)
+                {
+                    for (int j = 0; j < size.y; ++j)
+                    {
+                        resizeHelpers[i, j] = Instantiate(ImageManager.Inst.resizeHelperPrefab, transform);
+                        resizeHelpers[i, j].transform.localPosition = new Vector2(-i, j);
+                    }
+                }
+                break;
+        }
+    }
+
     private void OnMouseDown()
     {
         mouseDownFlag = true;
-        oldCoord = new Vector2(transform.localPosition.x, transform.localPosition.y);
+        oldCoord = newCoord = new Vector2(transform.localPosition.x, transform.localPosition.y);
         offset = new Vector2(0, 0);
         if (LevelManager.Inst.currentLevel.size.x % 2 == 0)
         {
@@ -161,6 +233,7 @@ public class MapResizerController : MonoBehaviour
         {
             offset.y = 0.5f;
         }
+        ShowMapSizePreview();
     }
 
     private void OnMouseUp()
@@ -180,17 +253,21 @@ public class MapResizerController : MonoBehaviour
             switch (value)
             {
                 case 0:
-                    transform.localPosition = new Vector2(Mathf.Round(coord.x + 0.484375f - offset.x) + offset.x, Mathf.Round(coord.y - 0.515625f - offset.y) + offset.y);
+                    newCoord = new Vector2(Mathf.Round(coord.x + 0.484375f - offset.x) + offset.x, Mathf.Round(coord.y - 0.515625f - offset.y) + offset.y);
                     break;
                 case 1:
-                    transform.localPosition = new Vector2(Mathf.Round(coord.x - 0.484375f - offset.x) + offset.x, Mathf.Round(coord.y - 0.515625f - offset.y) + offset.y);
+                    newCoord = new Vector2(Mathf.Round(coord.x - 0.484375f - offset.x) + offset.x, Mathf.Round(coord.y - 0.515625f - offset.y) + offset.y);
                     break;
                 case 2:
-                    transform.localPosition = new Vector2(Mathf.Round(coord.x + 0.484375f - offset.x) + offset.x, Mathf.Round(coord.y + 0.453125f - offset.y) + offset.y);
+                    newCoord = new Vector2(Mathf.Round(coord.x + 0.484375f - offset.x) + offset.x, Mathf.Round(coord.y + 0.453125f - offset.y) + offset.y);
                     break;
                 case 3:
-                    transform.localPosition = new Vector2(Mathf.Round(coord.x - 0.484375f - offset.x) + offset.x, Mathf.Round(coord.y + 0.453125f - offset.y) + offset.y);
+                    newCoord = new Vector2(Mathf.Round(coord.x - 0.484375f - offset.x) + offset.x, Mathf.Round(coord.y + 0.453125f - offset.y) + offset.y);
                     break;
+            }
+            if (newCoord != (Vector2)transform.localPosition)
+            {
+                ChangePosition(newCoord);
             }
         }
     }
