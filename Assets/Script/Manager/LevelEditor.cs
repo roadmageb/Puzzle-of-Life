@@ -28,6 +28,32 @@ public class LevelEditor : MonoBehaviour
     {
         selectedCell = (Cell)System.Enum.Parse(typeof(Cell), cellPalette.options[cellPalette.value].text);
     }
+    public void TestLevel()
+    {
+        Level level = LevelManager.Inst.currentLevel;
+        foreach (Rule rule in level.rules)
+        {
+            rule.RemoveConstraint(rule.constraints.Count - 1);
+        }
+        List<CellNumPair> palette = new List<CellNumPair>();
+        foreach (CellNumPair pair in level.palette)
+        {
+            if (pair.num == 0)
+            {
+                continue;
+            }
+            else
+            {
+                palette.Add(pair);
+            }
+        }
+        LevelManager.Inst.currentLevel.palette = palette;
+        string levelstr = JsonConvert.SerializeObject(level);
+        File.WriteAllText(Application.dataPath + "/Resources/test.json", levelstr);
+        Debug.Log("Save complete.");
+
+        GameManager.Inst.TestLevel();
+    }
     public void LoadLevelIntoJson()
     {
         try
@@ -83,8 +109,40 @@ public class LevelEditor : MonoBehaviour
     private void Start()
     {
         editMode = true;
-        LevelManager.Inst.currentLevel = new Level(new Vector2Int(3, 3));
-        LevelManager.Inst.MapInstantiate();
+
+        if (GameManager.Inst.back)
+        {
+            try
+            {
+                string str = File.ReadAllText(Application.dataPath + "/Resources/test.json");
+                Level level = JsonConvert.DeserializeObject<Level>(str);
+                foreach (Rule rule in level.rules)
+                {
+                    Constraint constraint = new Constraint();
+                    constraint.SetDummy();
+                    rule.AddConstraint(constraint);
+                }
+                List<CellNumPair> palette = level.palette;
+                level.ResetPalette();
+                foreach (CellNumPair pair in palette)
+                {
+                    level.palette[(int)pair.cell - 3] = pair;
+                }
+                LevelManager.Inst.currentLevel = level;
+            }
+            catch (FileNotFoundException e)
+            {
+                Debug.Log(e);
+                return;
+            }
+            LevelManager.Inst.MapInstantiate();
+            Debug.Log("Load complete.");
+        }
+        else
+        {
+            LevelManager.Inst.currentLevel = new Level(new Vector2Int(3, 3));
+            LevelManager.Inst.MapInstantiate();
+        }
     }
     private void Update()
     {

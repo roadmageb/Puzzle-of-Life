@@ -318,13 +318,27 @@ public class LevelManager : Singleton<LevelManager>
     {
         if (!isEditorMode)
         {
-            try
+            if (!GameManager.Inst.isTestMode)
             {
-                MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+                try
+                {
+                    MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
             }
-            catch (Exception e)
+            else
             {
-                Debug.Log(e);
+                try
+                {
+                    MapReset("test");
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
             }
         }
     }

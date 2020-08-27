@@ -21,6 +21,8 @@ public class GameManager : Singleton<GameManager>
     public LevelClearDataStruct LevelClearData;
     string LevelClearDataPath;
 
+    public bool isTestMode, back;
+
     protected override void Awake()
     {
         base.Awake();
@@ -58,6 +60,20 @@ public class GameManager : Singleton<GameManager>
         LevelClearData = JsonConvert.DeserializeObject<LevelClearDataStruct>(jsonData);
     }
 
+    public void TestLevel()
+    {
+        isTestMode = true;
+        back = false;
+        SceneManager.LoadScene("TestScene");
+    }
+
+    public void BackToLevelEditor()
+    {
+        isTestMode = true;
+        back = true;
+        SceneManager.LoadScene("LevelEditor");
+    }
+
     public void LoadPuzzle(int StageToGo, int LevelToGo)
     {
         stage = StageToGo;
@@ -67,8 +83,11 @@ public class GameManager : Singleton<GameManager>
 
     public void ClearPuzzle(int SelectedStage, int SelectedLevel)
     {
-        LevelClearData.IsClear[SelectedStage - 1, SelectedLevel - 1] = true;
-        SaveLevelClearData();
+        if (!isTestMode)
+        {
+            LevelClearData.IsClear[SelectedStage - 1, SelectedLevel - 1] = true;
+            SaveLevelClearData();
+        }
     }
 
     public bool IsCleared(int IdentifiedStage, int IdentifiredLevel)
