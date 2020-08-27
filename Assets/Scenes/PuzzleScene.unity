@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172852872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.449, y: 3.941, z: 0}
+  m_LocalPosition: {x: -7.5, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1819172332}
@@ -253,6 +253,8 @@ MonoBehaviour:
   ruleButtonPrefab: {fileID: 0}
   constraintButtonPrefab: {fileID: 0}
   constraintNumButtonPrefab: {fileID: 0}
+  mapResizerPrefab: {fileID: 0}
+  resizeHelperPrefab: {fileID: 0}
   cellSprites:
   - cell: 0
     sprite: {fileID: -1516060002189821814, guid: 67addd64b146a0b4d9bf27d37fec1258,
@@ -343,7 +345,12 @@ MonoBehaviour:
   - {fileID: 7014286043975846214, guid: b48646e2f85f79c46a14cd314038d266, type: 3}
   topBoardSprites: []
   ruleEditButtonSprites: []
+  ruleResetButtonSprites: []
+  constraintNumButtonSprites: []
   ruleCellSprite: {fileID: 0}
+  mapResizerSprites: []
+  editorButtonSprites: []
+  editorButtonSelectedSprite: {fileID: 0}
 --- !u!4 &211538357
 Transform:
   m_ObjectHideFlags: 0

@@ -24,30 +24,6 @@ public class LevelEditor : MonoBehaviour
         LevelManager.Inst.currentLevel = level;
         LevelManager.Inst.MapInstantiate();
     }
-    public void AddPaletteCell()
-    {
-        bool containFlag = false;
-        for (int i = 0; i < LevelManager.Inst.currentLevel.palette.Count; ++i)
-        {
-            if (LevelManager.Inst.currentLevel.palette[i].cell == selectedCell)
-            {
-                containFlag = true;
-                LevelManager.Inst.currentLevel.palette[i].num++;
-                break;
-            }
-        }
-        if (!containFlag)
-        {
-            LevelManager.Inst.currentLevel.AddPalette(selectedCell, 1);
-        }
-        LevelManager.Inst.MapInstantiate();
-    }
-    public void DeletePaletteCell()
-    {
-        if (LevelManager.Inst.currentLevel.palette.Count - 1 < 0) return;
-        LevelManager.Inst.currentLevel.RemovePalette(LevelManager.Inst.currentLevel.palette.Count - 1);
-        LevelManager.Inst.MapInstantiate();
-    }
     public void ChangeSelectedCell()
     {
         selectedCell = (Cell)System.Enum.Parse(typeof(Cell), cellPalette.options[cellPalette.value].text);
@@ -63,6 +39,12 @@ public class LevelEditor : MonoBehaviour
                 Constraint constraint = new Constraint();
                 constraint.SetDummy();
                 rule.AddConstraint(constraint);
+            }
+            List<CellNumPair> palette = level.palette;
+            level.ResetPalette();
+            foreach (CellNumPair pair in palette)
+            {
+                level.palette[(int)pair.cell - 3] = pair;
             }
             LevelManager.Inst.currentLevel = level;
         }
@@ -81,6 +63,19 @@ public class LevelEditor : MonoBehaviour
         {
             rule.RemoveConstraint(rule.constraints.Count - 1);
         }
+        List<CellNumPair> palette = new List<CellNumPair>();
+        foreach (CellNumPair pair in level.palette)
+        {
+            if (pair.num == 0)
+            {
+                continue;
+            }
+            else
+            {
+                palette.Add(pair);
+            }
+        }
+        LevelManager.Inst.currentLevel.palette = palette;
         string levelstr = JsonConvert.SerializeObject(level);
         File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", levelstr);
         Debug.Log("Save complete.");

@@ -33,7 +33,7 @@ public class Level
         this.size = size;
         map = new Cell[size.x, size.y];
         isReplaceable = new bool[size.x, size.y];
-        palette = new List<CellNumPair>();
+        ResetPalette();
         rules = new List<Rule>();
 
         for (int i = 0; i < size.x; ++i)
@@ -57,15 +57,16 @@ public class Level
         isReplaceable[coord.x, coord.y] = replaceability;
         return true;
     }
-    public void AddPalette(Cell type, int num)
+    public void ModifyPalette(int index, int num)
     {
-        palette.Add(new CellNumPair(type, num));
+        palette[index] = new CellNumPair(palette[index].cell, num);
     }
-    public void RemovePalette(int index)
+    public void ResetPalette()
     {
-        if (index < palette.Count)
+        palette = new List<CellNumPair>();
+        for (int i = (int)Cell.CELL1; i <= (int)Cell.TARGET3; ++i)
         {
-            palette.RemoveAt(index);
+            palette.Add(new CellNumPair((Cell)i, 0));
         }
     }
     public void AddRule(Rule rule)

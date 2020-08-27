@@ -7,6 +7,7 @@ public class PaletteController : MonoBehaviour
 {
     private PaletteCellController[] cells;
     private int[] cellsNum;
+
     public void PaletteInstantiate(List<CellNumPair> palette)
     {
         cells = new PaletteCellController[palette.Count];

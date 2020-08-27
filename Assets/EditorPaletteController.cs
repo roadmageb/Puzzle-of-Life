@@ -68,7 +68,6 @@ public class EditorPaletteController : MonoBehaviour
         else
         {
             levelEditor.selectedReplaceability = editorPaletteButtons[index].isReplaceable;
-            Debug.Log(editorPaletteButtons[index].isReplaceable);
         }
     }
 }

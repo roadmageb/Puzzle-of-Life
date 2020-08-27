@@ -50,6 +50,10 @@ public class PaletteCellController : CellController
 
     protected override void OnMouseDown()
     {
+        if (LevelManager.Inst.isEditorMode)
+        {
+            return;
+        }
         if (!CheckMoveValid())
         {
             return;
@@ -89,6 +93,10 @@ public class PaletteCellController : CellController
     }
     protected override void OnMouseUp()
     {
+        if (LevelManager.Inst.isEditorMode)
+        {
+            return;
+        }
         if (!CheckMoveValid())
         {
             invalidMove = false;
@@ -117,6 +125,25 @@ public class PaletteCellController : CellController
         {
             SetCellNumOnPalette(havingCellNum + 1);
             return;
+        }
+    }
+
+    private void OnMouseOver()
+    {
+        if (LevelManager.Inst.isEditorMode)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                havingCellNum++;
+                LevelManager.Inst.currentLevel.ModifyPalette(coord, havingCellNum);
+                LevelManager.Inst.MapInstantiate();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                havingCellNum = Mathf.Max(havingCellNum - 1, 0);
+                LevelManager.Inst.currentLevel.ModifyPalette(coord, havingCellNum);
+                LevelManager.Inst.MapInstantiate();
+            }
         }
     }
 }

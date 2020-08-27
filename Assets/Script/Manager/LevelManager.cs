@@ -274,7 +274,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.Log(e);
             return;
         }
-        MapInstantiate(); // TEST
+        MapInstantiate();
     }
 
     public void MapReset(string str)
@@ -301,18 +301,8 @@ public class LevelManager : Singleton<LevelManager>
         MapInstantiate();
     }
 
-    // Start is called before the first frame update
     new void Awake()
     {
-        try
-        {
-            MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-        
         if (GameObject.Find("LevelEditor") == null) // maybe there is a better way to check this
         {
             isEditorMode = false;
@@ -321,7 +311,22 @@ public class LevelManager : Singleton<LevelManager>
         {
             isEditorMode = true;
         }
-        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (!isEditorMode)
+        {
+            try
+            {
+                MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
+        }
     }
 
     // Update is called once per frame

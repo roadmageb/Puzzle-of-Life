@@ -94,4 +94,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c6e339cc0726547839853d09cceb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cells: []
+  levelEditor: {fileID: 8462621409274852262, guid: ed4c0d926e17bc845b75541fa7c49cb5,
+    type: 3}
