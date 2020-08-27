@@ -49,6 +49,7 @@ public class InGameButton : MonoBehaviour
             case ButtonState.RESETRED:
                 LevelManager.Inst.MapReset();
                 LevelManager.Inst.SetPlayState(PlayState.EDIT);
+                LevelManager.Inst.topBoardController.ChangeResetTime();
                 break;
             case ButtonState.STOP:
                 LevelManager.Inst.StopLevel();
