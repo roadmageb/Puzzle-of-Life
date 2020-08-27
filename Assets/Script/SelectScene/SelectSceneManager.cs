@@ -9,6 +9,7 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
     public GameObject objStageSelectScreen;
     public GameObject objStageSelectButtonsScreen;
     public GameObject objLevelSelectScreen;
+    public GameObject objEditModeScreen;
     public GameObject prefStageSelectButton;
     public GameObject prefLevelSelectButton;
 
@@ -86,6 +87,16 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         {
             Destroy(LevelSelectScreenLevelSelectButtonList[i].gameObject);
         }
+    }
+
+    public void EditModeSelected()
+    {
+        StartCoroutine(ScreenSlide(objCamera, objStageSelectScreen.transform.position + CameraZPosition, objEditModeScreen.transform.position + CameraZPosition, 1));
+    }
+
+    public void PlayModeSelected()
+    {
+        StartCoroutine(ScreenSlide(objCamera, objEditModeScreen.transform.position + CameraZPosition, objStageSelectScreen.transform.position + CameraZPosition, 1));
     }
 
     public IEnumerator ScreenSlide(GameObject target, Vector3 from, Vector3 to, float animTime)
