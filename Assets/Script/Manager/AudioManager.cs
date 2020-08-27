@@ -8,6 +8,10 @@ public class AudioManager : Singleton<AudioManager>
     public AudioSource sndPuzzleClear;
     public AudioSource sndPuzzleReset;
     public AudioSource sndGenerationReplacement;
+    public AudioSource sndCellUp;
+    public AudioSource sndCellDown;
+    public AudioSource sndButtonClicked;
+    public AudioSource sndPuzzlePlay;
     protected override void Awake()
     {
         base.Awake();
@@ -24,5 +28,21 @@ public class AudioManager : Singleton<AudioManager>
     public void GenerationReplacement()
     {
         sndGenerationReplacement.Play();
+    }
+    public void CellUp()
+    {
+        sndCellUp.Play();
+    }
+    public void CellDown()
+    {
+        sndCellDown.Play();
+    }
+    public void ButtonClicked()
+    {
+        sndButtonClicked.Play();
+    }
+    public void PuzzlePlay()
+    {
+        sndPuzzlePlay.Play();
     }
 }
