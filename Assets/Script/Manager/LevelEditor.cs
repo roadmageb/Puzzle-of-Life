@@ -137,6 +137,8 @@ public class LevelEditor : MonoBehaviour
             }
             LevelManager.Inst.MapInstantiate();
             Debug.Log("Load complete.");
+
+            GameManager.Inst.back = false;
         }
         else
         {

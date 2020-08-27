@@ -21,6 +21,14 @@ public class GameManager : Singleton<GameManager>
     public LevelClearDataStruct LevelClearData;
     string LevelClearDataPath;
 
+    /*
+     LevelEditor와 관련된 변수들.
+     isTestMode는 LevelEditor의 test 버튼을 통하여 넘어왔는지를 저장함.
+     LevelEditor<->TestScene간의 이동 동안에는 항상 true 값이 저장되어 있어야 함.
+     LevelEditor에서 TestScene이 아닌 다른 Scene으로의 이동일 경우에는 false 값이 저장되어야 함.
+     back은 TestScene의 back 버튼을 통하여 넘어왔는지를 저장함.
+     이를 통하여 LevelEditor에서는 test.json을 불러들이게 되며, LevelEditor에서 다시 back flag를 false로 지정하도록 함.
+     */
     public bool isTestMode, back;
 
     protected override void Awake()
