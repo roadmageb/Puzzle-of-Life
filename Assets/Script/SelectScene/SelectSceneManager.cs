@@ -10,7 +10,6 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
     public GameObject objStageSelectButtonsScreen;
     public GameObject objLevelSelectScreen;
     public GameObject objEditModeScreen;
-    public GameObject objEditLevelSelectScreen;
     public GameObject prefStageSelectButton;
     public GameObject prefLevelSelectButton;
 
@@ -100,19 +99,9 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         StartCoroutine(ScreenSlide(objCamera, objEditModeScreen.transform.position + CameraZPosition, objStageSelectScreen.transform.position + CameraZPosition, 1));
     }
 
-    public void EditEditSelected()
+    public void EditSelected(bool edit)
     {
         //
-    }
-
-    public void EditPlaySelected()
-    {
-        StartCoroutine(ScreenSlide(objCamera, objEditModeScreen.transform.position + CameraZPosition, objEditLevelSelectScreen.transform.position + CameraZPosition, 1));
-    }
-
-    public void EditBackSelected()
-    {
-        StartCoroutine(ScreenSlide(objCamera, objEditLevelSelectScreen.transform.position + CameraZPosition, objEditModeScreen.transform.position + CameraZPosition, 1));
     }
 
     public IEnumerator ScreenSlide(GameObject target, Vector3 from, Vector3 to, float animTime)
