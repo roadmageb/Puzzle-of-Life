@@ -49,14 +49,14 @@ public class Rule
     {
         constraints.RemoveAt(index);
     }
-    public bool SwitchReplaceability(Vector2Int pos)
+    public bool ChangeReplaceability(Vector2Int pos, bool replaceability)
     {
         if (pos.x >= 3 || pos.y >= 3 || pos.x < 0 || pos.y < 0) return false;
-        isReplaceable[pos.x, pos.y] = !isReplaceable[pos.x, pos.y];
+        isReplaceable[pos.x, pos.y] = replaceability;
         return true;
     }
-    public void SwitchOutcomeReplaceability()
+    public void ChangeOutcomeReplaceability(bool replaceability)
     {
-        isOutcomeReplaceable = !isOutcomeReplaceable;
+        isOutcomeReplaceable = replaceability;
     }
 }

@@ -10,59 +10,49 @@ using UnityEngine.UI;
 
 public class LevelEditor : MonoBehaviour
 {
-    public InputField[] sizeInput, constraintInput;
     public InputField stageName;
     public Dropdown cellPalette, constraintType;
     public Toggle constraintReplaceability;
     public Cell selectedCell;
+    public bool selectedReplaceability;
     public ConstraintType selectedConstraintType;
     public Button editModeButton;
-    public int editMode; // 1 = CellEdit, 2 = ReplacementEdit
-    public void MapInitialize()
+    public bool editMode { get; set; } // true = CellEdit, false = ReplacementEdit
+    public void NewLevel()
     {
-        LevelManager.Inst.currentLevel = new Level(new Vector2Int(int.Parse(sizeInput[0].text), int.Parse(sizeInput[1].text)));
-        LevelManager.Inst.MapInstantiate();
-    }
-    public void SwitchEditMode()
-    {
-        if (editMode == 1)
-        {
-            editMode = 2;
-            editModeButton.GetComponentInChildren<Text>().text = "Replacement Edit Mode";
-        }
-        else if (editMode == 2)
-        {
-            editMode = 1;
-            editModeButton.GetComponentInChildren<Text>().text = "Cell Edit Mode";
-        }
-    } 
-    public void AddPaletteCell()
-    {
-        bool containFlag = false;
-        for (int i = 0; i < LevelManager.Inst.currentLevel.palette.Count; ++i)
-        {
-            if (LevelManager.Inst.currentLevel.palette[i].cell == selectedCell)
-            {
-                containFlag = true;
-                LevelManager.Inst.currentLevel.palette[i].num++;
-                break;
-            }
-        }
-        if (!containFlag)
-        {
-            LevelManager.Inst.currentLevel.AddPalette(selectedCell, 1);
-        }
-        LevelManager.Inst.MapInstantiate();
-    }
-    public void DeletePaletteCell()
-    {
-        if (LevelManager.Inst.currentLevel.palette.Count - 1 < 0) return;
-        LevelManager.Inst.currentLevel.RemovePalette(LevelManager.Inst.currentLevel.palette.Count - 1);
+        Level level = new Level(new Vector2Int(3, 3));
+        LevelManager.Inst.currentLevel = level;
         LevelManager.Inst.MapInstantiate();
     }
     public void ChangeSelectedCell()
     {
         selectedCell = (Cell)System.Enum.Parse(typeof(Cell), cellPalette.options[cellPalette.value].text);
+    }
+    public void TestLevel()
+    {
+        Level level = LevelManager.Inst.currentLevel;
+        foreach (Rule rule in level.rules)
+        {
+            rule.RemoveConstraint(rule.constraints.Count - 1);
+        }
+        List<CellNumPair> palette = new List<CellNumPair>();
+        foreach (CellNumPair pair in level.palette)
+        {
+            if (pair.num == 0)
+            {
+                continue;
+            }
+            else
+            {
+                palette.Add(pair);
+            }
+        }
+        LevelManager.Inst.currentLevel.palette = palette;
+        string levelstr = JsonConvert.SerializeObject(level);
+        File.WriteAllText(Application.dataPath + "/Resources/test.json", levelstr);
+        Debug.Log("Save complete.");
+
+        GameManager.Inst.TestLevel();
     }
     public void LoadLevelIntoJson()
     {
@@ -75,6 +65,12 @@ public class LevelEditor : MonoBehaviour
                 Constraint constraint = new Constraint();
                 constraint.SetDummy();
                 rule.AddConstraint(constraint);
+            }
+            List<CellNumPair> palette = level.palette;
+            level.ResetPalette();
+            foreach (CellNumPair pair in palette)
+            {
+                level.palette[(int)pair.cell - 3] = pair;
             }
             LevelManager.Inst.currentLevel = level;
         }
@@ -93,17 +89,61 @@ public class LevelEditor : MonoBehaviour
         {
             rule.RemoveConstraint(rule.constraints.Count - 1);
         }
+        List<CellNumPair> palette = new List<CellNumPair>();
+        foreach (CellNumPair pair in level.palette)
+        {
+            if (pair.num == 0)
+            {
+                continue;
+            }
+            else
+            {
+                palette.Add(pair);
+            }
+        }
+        LevelManager.Inst.currentLevel.palette = palette;
         string levelstr = JsonConvert.SerializeObject(level);
         File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", levelstr);
         Debug.Log("Save complete.");
     }
     private void Start()
     {
-        editMode = 1;
-        cellPalette.options.Clear();
-        foreach (Cell cell in Enum.GetValues(typeof(Cell)))
+        editMode = true;
+
+        if (GameManager.Inst.back)
         {
-            cellPalette.options.Add(new Dropdown.OptionData() { text = cell.ToString() });
+            try
+            {
+                string str = File.ReadAllText(Application.dataPath + "/Resources/test.json");
+                Level level = JsonConvert.DeserializeObject<Level>(str);
+                foreach (Rule rule in level.rules)
+                {
+                    Constraint constraint = new Constraint();
+                    constraint.SetDummy();
+                    rule.AddConstraint(constraint);
+                }
+                List<CellNumPair> palette = level.palette;
+                level.ResetPalette();
+                foreach (CellNumPair pair in palette)
+                {
+                    level.palette[(int)pair.cell - 3] = pair;
+                }
+                LevelManager.Inst.currentLevel = level;
+            }
+            catch (FileNotFoundException e)
+            {
+                Debug.Log(e);
+                return;
+            }
+            LevelManager.Inst.MapInstantiate();
+            Debug.Log("Load complete.");
+
+            GameManager.Inst.back = false;
+        }
+        else
+        {
+            LevelManager.Inst.currentLevel = new Level(new Vector2Int(3, 3));
+            LevelManager.Inst.MapInstantiate();
         }
     }
     private void Update()
@@ -112,12 +152,12 @@ public class LevelEditor : MonoBehaviour
         {
             if (LevelManager.Inst.cellUnderCursor != null)
             {
-                if (editMode == 1)
+                if (editMode)
                 {
                     if (LevelManager.Inst.cellUnderCursor is MapCellController)
                     {
+                        if (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY) return;
                         Vector2Int coord = ((MapCellController)LevelManager.Inst.cellUnderCursor).coord;
-                        //Debug.Log(coord);
                         LevelManager.Inst.currentLevel.SetCell(coord, selectedCell);
                     }
                     else if (LevelManager.Inst.cellUnderCursor is RuleCellController)
@@ -128,25 +168,34 @@ public class LevelEditor : MonoBehaviour
 
                         if (coord.x != -1 && coord.y != -1)
                         {
-                            //Debug.Log(coord);
+                            if ((coord.x == 1 && coord.y == 1) && (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY)) return;
+                            if (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY)
+                            {
+                                LevelManager.Inst.currentLevel.rules[ruleNum].ChangeReplaceability(coord, false);
+                            }
                             LevelManager.Inst.currentLevel.rules[ruleNum].SetConditionCell(coord, selectedCell);
                         }
                         else if (constraintNum == -1)
                         {
+                            if (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY) return;
                             LevelManager.Inst.currentLevel.rules[ruleNum].SetOutcome(selectedCell);
                         }
                         else
                         {
+                            if (selectedCell == Cell.EMPTY || selectedCell == Cell.ANY)
+                            {
+                                LevelManager.Inst.currentLevel.rules[ruleNum].ChangeReplaceability(coord, false);
+                            }
                             LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].target = selectedCell;
                         }
                     }
                 }
-                else if (editMode == 2)
+                else if (!editMode)
                 {
                     if (LevelManager.Inst.cellUnderCursor is MapCellController)
                     {
                         Vector2Int coord = ((MapCellController)LevelManager.Inst.cellUnderCursor).coord;
-                        LevelManager.Inst.currentLevel.SwitchReplaceability(coord);
+                        LevelManager.Inst.currentLevel.ChangeReplaceability(coord, selectedReplaceability);
                     }
                     else if (LevelManager.Inst.cellUnderCursor is RuleCellController)
                     {
@@ -156,16 +205,15 @@ public class LevelEditor : MonoBehaviour
 
                         if (coord.x != -1 && coord.y != -1)
                         {
-                            LevelManager.Inst.currentLevel.rules[ruleNum].SwitchReplaceability(coord);
+                            LevelManager.Inst.currentLevel.rules[ruleNum].ChangeReplaceability(coord, selectedReplaceability);
                         }
                         else if (constraintNum == -1)
                         {
-                            LevelManager.Inst.currentLevel.rules[ruleNum].SwitchOutcomeReplaceability();
+                            LevelManager.Inst.currentLevel.rules[ruleNum].ChangeOutcomeReplaceability(selectedReplaceability);
                         }
                         else
                         {
-                            LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum]
-                                .SetReplaceability(!LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].isReplaceable);
+                            LevelManager.Inst.currentLevel.rules[ruleNum].constraints[constraintNum].SetReplaceability(selectedReplaceability);
                         }
                     }
                 }

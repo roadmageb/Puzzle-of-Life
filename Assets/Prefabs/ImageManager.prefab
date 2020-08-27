@@ -66,6 +66,10 @@ MonoBehaviour:
     type: 3}
   constraintNumButtonPrefab: {fileID: 8012889757285473715, guid: a1fd81db1852db7428c3f85b585dd923,
     type: 3}
+  mapResizerPrefab: {fileID: 765718359956908331, guid: 25d5af731fe01024f9d10fe8082f7687,
+    type: 3}
+  resizeHelperPrefab: {fileID: 6625761698578058231, guid: bf31e1c15c87dd64595b192b297d2f9e,
+    type: 3}
   cellSprites:
   - cell: 0
     sprite: {fileID: 0}
@@ -195,5 +199,48 @@ MonoBehaviour:
   - {fileID: -4440916184098578547, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
   - {fileID: -5401757034488179245, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
   - {fileID: -8501693404590747596, guid: 445bd11c9a04ed7499c5ed4d997f8d2f, type: 3}
+  ruleResetButtonSprites:
+  - {fileID: -3793913429683688617, guid: 743e98eab71c58e4295b398bd7df5033, type: 3}
+  - {fileID: 7801366694770728059, guid: 743e98eab71c58e4295b398bd7df5033, type: 3}
+  - {fileID: 8038579665559352024, guid: 743e98eab71c58e4295b398bd7df5033, type: 3}
+  - {fileID: -1873957920329756692, guid: 743e98eab71c58e4295b398bd7df5033, type: 3}
+  constraintNumButtonSprites:
+  - {fileID: -4259280843007906390, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: 3717761170266018344, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -2673581017437821974, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -4989424724416300669, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -8376888505143094106, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -7510607534152518398, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: 2155702065272197771, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -6964770770057921344, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: 3543872844915029272, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: 3326148097250224849, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -5754232622014362351, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: 2768465622664692752, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: 2652505730468355519, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -8712037980982788591, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -7026009276579062491, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: 7710797963435190994, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -8916453366766615257, guid: b39403566e1161f469abf9aaa897c506, type: 3}
+  - {fileID: -7334068909204652302, guid: b39403566e1161f469abf9aaa897c506, type: 3}
   ruleCellSprite: {fileID: -4161725722352587115, guid: a88117c4af0b5794fb037772f768b12d,
+    type: 3}
+  mapResizerSprites:
+  - {fileID: 8070420184842157840, guid: 31d9d0b071154c14a8b2587092724d02, type: 3}
+  - {fileID: 1106149179963703427, guid: 31d9d0b071154c14a8b2587092724d02, type: 3}
+  - {fileID: 9130493681196979688, guid: 31d9d0b071154c14a8b2587092724d02, type: 3}
+  - {fileID: -6129768527804161566, guid: 31d9d0b071154c14a8b2587092724d02, type: 3}
+  editorButtonSprites:
+  - {fileID: 1281221928498612099, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: -7135215907551302273, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: -146765646526582521, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: -4504208147977675735, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: -4996891549430923839, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: 437043078766300195, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: 1873133663944349285, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: 7813326091317417356, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: 4941048660384465637, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: 4836384725906534239, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  - {fileID: 2199970741198523634, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf, type: 3}
+  editorButtonSelectedSprite: {fileID: 1421380097590498425, guid: 3d0b9da21d4b3e84e94dc5b82b4125cf,
     type: 3}

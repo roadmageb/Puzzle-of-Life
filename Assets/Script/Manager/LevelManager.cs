@@ -21,6 +21,7 @@ public class LevelManager : Singleton<LevelManager>
     public RuleController[] ruleObject { get; private set; }
     public PaletteController paletteObject { get; private set; }
     public RuleButtonController ruleButtonObject { get; private set; }
+    public MapResizerController[] mapResizerController { get; private set; }
     public Level currentLevel { get; set; }
     private Cell[,] previousCells;
     public float wholeRuleHeight { get; private set; }
@@ -137,6 +138,16 @@ public class LevelManager : Singleton<LevelManager>
             Destroy(child.gameObject);
         }
         Vector2 offset = new Vector2((currentLevel.size.x + 1) / 2.0f, -(currentLevel.size.y + 1) / 2.0f);
+
+        if (isEditorMode)
+        {
+            mapResizerController = new MapResizerController[4];
+            for (int i = 0; i < 4; ++i)
+            {
+                mapResizerController[i] = Instantiate(ImageManager.Inst.mapResizerPrefab, mapOrigin).GetComponent<MapResizerController>();
+                mapResizerController[i].SetResizerType(i);
+            }
+        }
 
         mapCellObject = new MapCellController[currentLevel.size.x, currentLevel.size.y];
         for (int i = 0; i < currentLevel.size.x; ++i)
@@ -263,7 +274,7 @@ public class LevelManager : Singleton<LevelManager>
             Debug.Log(e);
             return;
         }
-        MapInstantiate(); // TEST
+        MapInstantiate();
     }
 
     public void MapReset(string str)
@@ -290,18 +301,8 @@ public class LevelManager : Singleton<LevelManager>
         MapInstantiate();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    new void Awake()
     {
-        try
-        {
-            MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-
         if (GameObject.Find("LevelEditor") == null) // maybe there is a better way to check this
         {
             isEditorMode = false;
@@ -309,6 +310,36 @@ public class LevelManager : Singleton<LevelManager>
         else
         {
             isEditorMode = true;
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (!isEditorMode)
+        {
+            if (!GameManager.Inst.isTestMode)
+            {
+                try
+                {
+                    MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
+            }
+            else
+            {
+                try
+                {
+                    MapReset("test");
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
+            }
         }
     }
 

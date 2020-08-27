@@ -22,6 +22,10 @@ public class MapCellController : CellController
     }
     protected override void OnMouseDown()
     {
+        if (LevelManager.Inst.isEditorMode)
+        {
+            return;
+        }
         if (!CheckMoveValid())
         {
             return;
@@ -39,6 +43,10 @@ public class MapCellController : CellController
     }
     protected override void OnMouseUp()
     {
+        if (LevelManager.Inst.isEditorMode)
+        {
+            return;
+        }
         if (!CheckMoveValid())
         {
             invalidMove = false;

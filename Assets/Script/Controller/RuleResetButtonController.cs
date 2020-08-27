@@ -10,13 +10,33 @@ public class RuleResetButtonController : MonoBehaviour
 
     private void OnMouseDown()
     {
-        
+        if (isReset)
+        {
+            GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleResetButtonSprites[3];
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleResetButtonSprites[1];
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (isReset)
+        {
+            GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleResetButtonSprites[2];
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleResetButtonSprites[0];
+        }
     }
 
     private void OnMouseUpAsButton()
     {
         if (isReset)
         {
+            GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleResetButtonSprites[2];
             if (isRule)
             {
                 Rule rule = new Rule();
@@ -36,6 +56,7 @@ public class RuleResetButtonController : MonoBehaviour
         }
         else
         {
+            GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.ruleResetButtonSprites[0];
             if (isRule)
             {
                 LevelManager.Inst.currentLevel.RemoveRule(ruleNum);

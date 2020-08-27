@@ -1,61 +1,43 @@
 fileFormatVersion: 2
-guid: af1442d5179c91249ba35eed9fb0945e
+guid: 3d0b9da21d4b3e84e94dc5b82b4125cf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8052726019405250904
-    second: CellBack_Map_Background
+      213: 1281221928498612099
+    second: EditorPalette_NULL
   - first:
-      213: -8255795535656324439
-    second: CellBack_Replaceable
+      213: -7135215907551302273
+    second: EditorPalette_CELL1
   - first:
-      213: 6374155101055169795
-    second: CellBack_Nonreplaceable
+      213: -146765646526582521
+    second: EditorPalette_CELL2
   - first:
-      213: -3571566284071874363
-    second: CellBack_SelectedI
+      213: -4504208147977675735
+    second: EditorPalette_CELL3
   - first:
-      213: -6522068525590307137
-    second: CellBack_Selected
+      213: -4996891549430923839
+    second: EditorPalette_TARGET1
   - first:
-      213: 4696064313214758164
-    second: CellBack_Map_Bottom
+      213: 437043078766300195
+    second: EditorPalette_TARGET2
   - first:
-      213: -8560750225007851221
-    second: CellBack_Map_BottomRight
+      213: 1873133663944349285
+    second: EditorPalette_TARGET3
   - first:
-      213: 6187047339341884877
-    second: CellBack_Map_BottomLeft
+      213: 7813326091317417356
+    second: EditorPalette_EMPTY
   - first:
-      213: 7953716319277702154
-    second: CellBack_Map_Right
+      213: 4941048660384465637
+    second: EditorPalette_ANY
   - first:
-      213: -213471873624359112
-    second: CellBack_Map_Left
+      213: 4836384725906534239
+    second: EditorPalette_Replaceable
   - first:
-      213: 6978157591622024525
-    second: CellBack_Map_TopRight
+      213: 2199970741198523634
+    second: EditorPalette_Nonreplaceable
   - first:
-      213: 6102680772611886388
-    second: CellBack_Map_TopLeft
-  - first:
-      213: 5686939123813541559
-    second: CellBack_Map_Top
-  - first:
-      213: 377283983446011650
-    second: CellBack_RuleIO_Nonreplaceable
-  - first:
-      213: 8636470562990983122
-    second: CellBack_RuleIO_Replaceable
-  - first:
-      213: 6547186553067337276
-    second: CellBack_RuleIO_SelectedI
-  - first:
-      213: -7954540176327360099
-    second: CellBack_RuleIO_Selected
-  - first:
-      213: -9210165426027640839
-    second: CellBack_Editor_ResizeHelper
+      213: 1421380097590498425
+    second: EditorPalette_Selected
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,7 +97,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -127,7 +109,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -141,328 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CellBack_Map_Background
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 851023446a701cf60800000000000000
-      internalID: 8052726019405250904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Replaceable
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a2f2fe83b58d6d80800000000000000
-      internalID: -8255795535656324439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Nonreplaceable
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30533adea4c857850800000000000000
-      internalID: 6374155101055169795
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_SelectedI
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c0522a336f3f6ec0800000000000000
-      internalID: -3571566284071874363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Selected
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbe1f6b3b35fc75a0800000000000000
-      internalID: -6522068525590307137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Map_Bottom
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41ded8fac95cb2140800000000000000
-      internalID: 4696064313214758164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Map_BottomRight
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b29cf83f60b123980800000000000000
-      internalID: -8560750225007851221
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Map_BottomLeft
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcdaff556ceccd550800000000000000
-      internalID: 6187047339341884877
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Map_Right
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0c56ce0ad6416e60800000000000000
-      internalID: 7953716319277702154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Map_Left
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83f35134678990df0800000000000000
-      internalID: -213471873624359112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Map_TopRight
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4d73539b5567d060800000000000000
-      internalID: 6978157591622024525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Map_TopLeft
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43d432d44d311b450800000000000000
-      internalID: 6102680772611886388
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_Map_Top
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b66d2e90011cee40800000000000000
-      internalID: 5686939123813541559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_RuleIO_Nonreplaceable
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20f6eb4b8c16c3500800000000000000
-      internalID: 377283983446011650
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_RuleIO_Replaceable
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d702341838ead770800000000000000
-      internalID: 8636470562990983122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CellBack_RuleIO_SelectedI
+      name: EditorPalette_NULL
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 32
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c36fac54b774cda50800000000000000
-      internalID: 6547186553067337276
+      spriteID: 387c9964e80d7c110800000000000000
+      internalID: 1281221928498612099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellBack_RuleIO_Selected
+      name: EditorPalette_CELL1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 32
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d914f66cadbcb9190800000000000000
-      internalID: -7954540176327360099
+      spriteID: f7d20b2afee9afc90800000000000000
+      internalID: -7135215907551302273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellBack_Editor_ResizeHelper
+      name: EditorPalette_CELL2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 32
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,8 +179,197 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f7c903b75bee2080800000000000000
-      internalID: -9210165426027640839
+      spriteID: 7017d8d0c6596fdf0800000000000000
+      internalID: -146765646526582521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_CELL3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92cde51cd86dd71c0800000000000000
+      internalID: -4504208147977675735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_TARGET1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cdb4074c9977aab0800000000000000
+      internalID: -4996891549430923839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_TARGET2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c88655d50b01600800000000000000
+      internalID: 437043078766300195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_TARGET3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5669a30a425bef910800000000000000
+      internalID: 1873133663944349285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_EMPTY
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c85144beea28e6c60800000000000000
+      internalID: 7813326091317417356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_ANY
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e2c22ce391229440800000000000000
+      internalID: 4941048660384465637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_Replaceable
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5fa8c0b84a4e1340800000000000000
+      internalID: 4836384725906534239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_Nonreplaceable
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc0461bbbdd78e10800000000000000
+      internalID: 2199970741198523634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EditorPalette_Selected
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97411bffaa1c9b310800000000000000
+      internalID: 1421380097590498425
       vertices: []
       indices: 
       edges: []
