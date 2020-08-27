@@ -9,9 +9,6 @@ public class LevelSelectButton : SelectButton
     public Sprite LightOff;
     public GameObject Cell;
 
-    public AudioSource ClickSound;
-    public AudioSource UnClickable;
-
     private int LevelToGo;
     private bool possible;
 
@@ -20,11 +17,11 @@ public class LevelSelectButton : SelectButton
         SelectSceneManager.Inst.LevelSelected(LevelToGo);
         if (possible)
         {
-            ClickSound.Play();
+            AudioManager.Inst.ButtonClicked();
         }
         else
         {
-            UnClickable.Play();
+            AudioManager.Inst.ButtonCantBeClicked();
         }
     }
 

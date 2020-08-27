@@ -6,12 +6,10 @@ public class StageSelectButton : SelectButton
 {
     private int StageToGo;
 
-    public AudioSource ClickSound;
-
     protected override void ButtonAction()
     {
         SelectSceneManager.Inst.StageSelected(StageToGo);
-        ClickSound.Play();
+        AudioManager.Inst.ButtonClicked();
     }
 
     public void SetStageSelectButton(int Stage)

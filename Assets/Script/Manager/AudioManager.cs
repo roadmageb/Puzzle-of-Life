@@ -11,6 +11,7 @@ public class AudioManager : Singleton<AudioManager>
     public AudioSource sndCellUp;
     public AudioSource sndCellDown;
     public AudioSource sndButtonClicked;
+    public AudioSource sndButtonCantBeClicked;
     public AudioSource sndPuzzlePlay;
     protected override void Awake()
     {
@@ -44,5 +45,9 @@ public class AudioManager : Singleton<AudioManager>
     public void PuzzlePlay()
     {
         sndPuzzlePlay.Play();
+    }
+    public void ButtonCantBeClicked()
+    {
+        sndButtonCantBeClicked.Play();
     }
 }
