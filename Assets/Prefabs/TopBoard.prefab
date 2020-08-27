@@ -221,6 +221,7 @@ MonoBehaviour:
   - {fileID: 3445291226744132651}
   background: {fileID: 0}
   nextButton: {fileID: 4123990354636381635}
+  rule: {fileID: 0}
 --- !u!1 &4123990354636381636
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +319,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardState: 2
-  rule: {fileID: 0}
 --- !u!61 &4123990354636381632
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -442,7 +442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardState: 0
-  rule: {fileID: 0}
 --- !u!61 &4123990355505447306
 BoxCollider2D:
   m_ObjectHideFlags: 0

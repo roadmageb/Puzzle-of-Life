@@ -19,11 +19,14 @@ public class TopBoardController : MonoBehaviour
     [SerializeField] private SpriteRenderer background;
 
     public TopBoard nextButton;
+    bool alreadyCleared;
 
     float resetTime;
     float stopTime;
     float clearTime;
     bool clearDet;
+
+    public Transform rule;
 
     void Start()
     {
@@ -34,7 +37,7 @@ public class TopBoardController : MonoBehaviour
         float alphabetWidth = alphabetPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
         alphabets = new List<SpriteRenderer>();
 
-        for(int i=0; i<5; ++i)
+        for (int i = 0; i < 5; ++i)
         {
             GameObject obj = Instantiate(alphabetPrefab, stringParent);
             alphabets.Add(obj.GetComponent<SpriteRenderer>());
@@ -45,6 +48,30 @@ public class TopBoardController : MonoBehaviour
         if (GameManager.Inst.IsCleared(GameManager.Inst.stage, GameManager.Inst.level))
         {
             nextButton.ThisLevelIsCleared();
+            alreadyCleared = true;
+        }
+        else
+        {
+            alreadyCleared = false;
+        }
+    }
+
+    public void NewLevelStarted()
+    {
+        resetTime = -100.0f;
+        stopTime = -100.0f;
+        clearTime = 0.0f;
+        clearDet = false;
+
+        if (GameManager.Inst.IsCleared(GameManager.Inst.stage, GameManager.Inst.level))
+        {
+            nextButton.ThisLevelIsCleared();
+            alreadyCleared = true;
+        }
+        else
+        {
+            nextButton.ThisLevelIsNotCleared();
+            alreadyCleared = false;
         }
     }
 
@@ -186,9 +213,10 @@ public class TopBoardController : MonoBehaviour
 
     private void Update()
     {
-        if (LevelManager.Inst.currentLevel.ClearCheck()) // 전광판에 CLEAR 깜빡이게 하기, 백그라운드 초록색으로
+        if (LevelManager.Inst.currentLevel.ClearCheck()) // 전광판에 CLEAR 깜빡이게, 배경 초록색으로, 다음 레벨 버튼 활성화
         {
             background.sprite = ImageManager.Inst.backgroundSprites[2];
+
             if(clearTime <= 0.0f && clearDet == false)
             {
                 clearTime = 0.5f;
@@ -208,6 +236,12 @@ public class TopBoardController : MonoBehaviour
             else if(clearTime > 0.0f && clearDet == false)
             {
                 clearTime -= Time.deltaTime;
+            }
+
+            if (!alreadyCleared) // 이미 클리어되어있던 레벨이 아닐 경우, 다음 레벨 버튼 활성화
+            {
+                alreadyCleared = true;
+                nextButton.ThisLevelIsCleared();
             }
         }
 

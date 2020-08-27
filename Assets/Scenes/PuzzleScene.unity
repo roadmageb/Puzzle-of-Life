@@ -1158,16 +1158,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopBoard
       objectReference: {fileID: 0}
-    - target: {fileID: 4123990354636381635, guid: f73186b2c691483488603fd4780142ae,
-        type: 3}
-      propertyPath: rule
-      value: 
-      objectReference: {fileID: 2086305370}
-    - target: {fileID: 4123990355505447309, guid: f73186b2c691483488603fd4780142ae,
-        type: 3}
-      propertyPath: rule
-      value: 
-      objectReference: {fileID: 2086305370}
     - target: {fileID: 8318465331762879546, guid: f73186b2c691483488603fd4780142ae,
         type: 3}
       propertyPath: background
@@ -1175,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 2110582502}
     - target: {fileID: 8318465331762879546, guid: f73186b2c691483488603fd4780142ae,
         type: 3}
-      propertyPath: rule2
+      propertyPath: rule
       value: 
       objectReference: {fileID: 2086305370}
     m_RemovedComponents: []

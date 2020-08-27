@@ -7,12 +7,19 @@ public class TopBoard : MonoBehaviour
 {
     public BoardState boardState;
     private bool isButtonDown;
-    public Transform rule;
+    //public Transform rule;
+    private Transform ruleBar;
     private float timeMenu, timeNextLevel;
 
     public void ThisLevelIsCleared()
     {
         boardState = BoardState.NEXTLEVELBLACK;
+        GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.topBoardSprites[(int)boardState * 2];
+    }
+
+    public void ThisLevelIsNotCleared()
+    {
+        boardState = BoardState.NEXTLEVELNOTABLE;
         GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.topBoardSprites[(int)boardState * 2];
     }
     private void OnMouseDown()
@@ -52,20 +59,24 @@ public class TopBoard : MonoBehaviour
                     break;
                 case BoardState.NEXTLEVELGREEN:
                     timeNextLevel = 0.0f;
+                    ruleBar = transform.parent.GetComponent<TopBoardController>().rule;
+                    ruleBar.transform.position = new Vector3(ruleBar.position.x, 4.5f, ruleBar.position.z);
+
                     if (GameManager.Inst.level == 10)
                     {
                         GameManager.Inst.stage += 1;
                         GameManager.Inst.level = 1;
-                        rule.transform.position = new Vector3(rule.position.x, 4.5f, rule.position.z);
-
                     }
                     else
                     {
                         GameManager.Inst.level += 1;
-                        rule.transform.position = new Vector3(rule.position.x, 4.5f, rule.position.z);
                     }
+                    LevelManager.Inst.StopLevel();
                     LevelManager.Inst.MapReset(GameManager.Inst.stage, GameManager.Inst.level);
+                    transform.parent.GetComponent<TopBoardController>().NewLevelStarted();
+                    transform.parent.GetComponent<TopBoardController>().ChangeStepObject();
                     LevelManager.Inst.SetPlayState(PlayState.EDIT);
+                    transform.parent.GetComponent<TopBoardController>().ChangeString("EDIT");
                     break;
             }
         }
