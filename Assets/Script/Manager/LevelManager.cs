@@ -202,7 +202,7 @@ public class LevelManager : Singleton<LevelManager>
             }
         }
 
-        if (currentLevel.ClearCheck())
+        if (currentLevel.ClearCheck() && !isEditorMode)
         {
             Debug.Log("clear");
             GameManager.Inst.ClearPuzzle(GameManager.Inst.stage, GameManager.Inst.level);

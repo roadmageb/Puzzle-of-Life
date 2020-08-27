@@ -1799,6 +1799,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EditorPaletteObject
       objectReference: {fileID: 0}
+    - target: {fileID: 4799284836044714328, guid: 7ce93dc96b99338459bcd6b0f8414035,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6296560823717102989, guid: 7ce93dc96b99338459bcd6b0f8414035,
         type: 3}
       propertyPath: levelEditor

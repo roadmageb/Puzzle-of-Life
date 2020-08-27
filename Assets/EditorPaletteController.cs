@@ -51,10 +51,13 @@ public class EditorPaletteController : MonoBehaviour
                 editorPaletteButtons[i].isReplaceable = false;
             }
         }
-        editorPaletteButtonSelected = Instantiate(new GameObject().AddComponent<SpriteRenderer>(), transform).GetComponent<SpriteRenderer>();
+        GameObject temp = new GameObject();
+        temp.AddComponent<SpriteRenderer>();
+        editorPaletteButtonSelected = Instantiate(temp, transform).GetComponent<SpriteRenderer>();
         editorPaletteButtonSelected.sprite = ImageManager.Inst.editorButtonSelectedSprite;
         editorPaletteButtonSelected.sortingOrder = 1;
         editorPaletteButtonSelected.transform.localPosition = new Vector2(0, 0);
+        Destroy(temp);
     }
 
     public void ButtonClicked(int index)
