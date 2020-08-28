@@ -71,12 +71,11 @@ public class TopBoard : MonoBehaviour
                     {
                         GameManager.Inst.level += 1;
                     }
-                    LevelManager.Inst.StopLevel();
                     LevelManager.Inst.MapReset(GameManager.Inst.stage, GameManager.Inst.level);
-                    transform.parent.GetComponent<TopBoardController>().NewLevelStarted();
-                    transform.parent.GetComponent<TopBoardController>().ChangeStepObject();
+                    LevelManager.Inst.PauseLevel();
                     LevelManager.Inst.SetPlayState(PlayState.EDIT);
-                    transform.parent.GetComponent<TopBoardController>().ChangeString("EDIT");
+                    transform.parent.GetComponent<TopBoardController>().ChangeStepObject();
+                    transform.parent.GetComponent<TopBoardController>().NewLevelStarted();
                     break;
             }
         }

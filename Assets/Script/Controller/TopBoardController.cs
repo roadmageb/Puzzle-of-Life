@@ -52,6 +52,7 @@ public class TopBoardController : MonoBehaviour
         }
         else
         {
+            nextButton.ThisLevelIsNotCleared();
             alreadyCleared = false;
         }
     }
@@ -62,6 +63,9 @@ public class TopBoardController : MonoBehaviour
         stopTime = -100.0f;
         clearTime = 0.0f;
         clearDet = false;
+        LevelManager.Inst.stepCount = 0;
+
+        ChangeString("EDIT");
 
         if (GameManager.Inst.IsCleared(GameManager.Inst.stage, GameManager.Inst.level))
         {
