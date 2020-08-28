@@ -11,7 +11,7 @@ public class EditButton : SelectButton
 
     protected override void ButtonAction()
     {
-        SelectSceneManager.Inst.EditSelected(edit);
+        SelectSceneManager.Inst.EditModeChange(!edit);
         AudioManager.Inst.ButtonClicked();
         if (edit) { edit = false; }
         else { edit = true; }

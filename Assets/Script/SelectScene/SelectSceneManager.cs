@@ -12,20 +12,34 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
     public GameObject objEditModeScreen;
     public GameObject prefStageSelectButton;
     public GameObject prefLevelSelectButton;
+    public GameObject prefEditLevelSelectButton;
 
     int SelectedStage = 0;
     int NowStage = 1;
     List<GameObject> LevelSelectScreenLevelSelectButtonList;
+    List<GameObject> EditModeScreenEditLevelSelectButtonList;
+
 
     Vector3 CameraZPosition = new Vector3(0, 0, -10);
 
     public void Start()
     {
+        //Create stage select buttons
         for (int i = 0; i < GameManager.Inst.StageCount; i++)
         {
             GameObject created_instance = Instantiate(prefStageSelectButton, objStageSelectButtonsScreen.transform);
             created_instance.transform.position += new Vector3(i * 15, 0, 0);
             created_instance.GetComponent<StageSelectButton>().SetStageSelectButton(i + 1);
+        }
+
+        //Create edit level select buttons
+        EditModeScreenEditLevelSelectButtonList = new List<GameObject>();
+        for (int i = 0; i < 54; i++)
+        {
+            GameObject created_instance = Instantiate(prefEditLevelSelectButton, objEditModeScreen.transform);
+            created_instance.transform.position += new Vector3(-6 + (i % 9) * 1.5f, 4 - (i / 9) * 1.5f, 0);
+            created_instance.GetComponent<EditLevelSelectButton>().SetEditLevelSelectButton(i + 1, false);
+            EditModeScreenEditLevelSelectButtonList.Add(created_instance);
         }
     }
 
@@ -99,9 +113,12 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         StartCoroutine(ScreenSlide(objCamera, objEditModeScreen.transform.position + CameraZPosition, objStageSelectScreen.transform.position + CameraZPosition, 1));
     }
 
-    public void EditSelected(bool edit)
+    public void EditModeChange(bool edit)
     {
-        //
+        for (int i = 0; i < 54; i++)
+        {
+            EditModeScreenEditLevelSelectButtonList[i].gameObject.GetComponent<EditLevelSelectButton>().EditModeChange(edit);
+        }
     }
 
     public IEnumerator ScreenSlide(GameObject target, Vector3 from, Vector3 to, float animTime)
