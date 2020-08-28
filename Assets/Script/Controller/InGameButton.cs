@@ -14,6 +14,10 @@ public class InGameButton : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (LevelManager.Inst.GetPlayState() == PlayState.ERROR && buttonState != ButtonState.STOP)
+        {
+            return;
+        }
         GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.buttonSprites[(int)buttonState * 2 + 1];
     }
 
@@ -28,6 +32,10 @@ public class InGameButton : MonoBehaviour
         switch (buttonState)
         {
             case ButtonState.PLAY:
+                if (LevelManager.Inst.GetPlayState() == PlayState.ERROR)
+                {
+                    return;
+                }
                 if (LevelManager.Inst.PlayLevel())
                 {
                     LevelManager.Inst.SetPlayState(PlayState.PLAY);
@@ -46,6 +54,10 @@ public class InGameButton : MonoBehaviour
                 LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
                 break;
             case ButtonState.PLAYFRAME:
+                if (LevelManager.Inst.GetPlayState() == PlayState.ERROR)
+                {
+                    return;
+                }
                 if (LevelManager.Inst.PlayFrame())
                 {
                     LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
