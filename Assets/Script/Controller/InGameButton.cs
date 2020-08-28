@@ -28,8 +28,14 @@ public class InGameButton : MonoBehaviour
         switch (buttonState)
         {
             case ButtonState.PLAY:
-                LevelManager.Inst.PlayLevel();
-                LevelManager.Inst.SetPlayState(PlayState.PLAY);
+                if (LevelManager.Inst.PlayLevel())
+                {
+                    LevelManager.Inst.SetPlayState(PlayState.PLAY);
+                }
+                else
+                {
+                    LevelManager.Inst.SetPlayState(PlayState.ERROR);
+                }
                 break;
             case ButtonState.FASTFORWARD:
                 LevelManager.Inst.FastForwardLevel();
@@ -40,8 +46,14 @@ public class InGameButton : MonoBehaviour
                 LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
                 break;
             case ButtonState.PLAYFRAME:
-                LevelManager.Inst.PlayFrame();
-                LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
+                if (LevelManager.Inst.PlayFrame())
+                {
+                    LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
+                }
+                else
+                {
+                    LevelManager.Inst.SetPlayState(PlayState.ERROR);
+                }
                 break;
             case ButtonState.RESETGRAY:
                 LevelManager.Inst.SetPlayState(PlayState.EDITTOINIT);

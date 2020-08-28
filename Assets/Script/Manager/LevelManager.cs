@@ -57,6 +57,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             case PlayState.PLAY:
             case PlayState.PLAYFRAME:
+            case PlayState.ERROR:
                 background.sprite = ImageManager.Inst.backgroundSprites[1];
                 break;
             case PlayState.EDIT:
@@ -71,19 +72,46 @@ public class LevelManager : Singleton<LevelManager>
         return playState;
     }
 
-    public void PlayLevel()
+    private void RecordPreviousCells()
     {
-        if (playState == PlayState.PLAY) return;
-        if (playState == PlayState.EDIT)
+        previousCells = new Cell[currentLevel.size.x, currentLevel.size.y];
+        for (int i = 0; i < currentLevel.size.x; ++i)
         {
-            previousCells = new Cell[currentLevel.size.x, currentLevel.size.y];
-            for (int i = 0; i < currentLevel.size.x; ++i)
+            for (int j = 0; j < currentLevel.size.y; ++j)
             {
-                for (int j = 0; j < currentLevel.size.y; ++j)
+                previousCells[i, j] = currentLevel.map[i, j];
+            }
+        }
+    }
+
+    private bool AreConstraintsValid()
+    {
+        for (int i = 0; i < currentLevel.rules.Count; ++i)
+        {
+            for (int j = 0; j < currentLevel.rules[i].constraints.Count; ++j)
+            {
+                if (currentLevel.rules[i].constraints[j].target == Cell.NULL)
                 {
-                    previousCells[i, j] = currentLevel.map[i, j];
+                    //playState = PlayState.ERROR;
+                    SetPlayState(PlayState.EDIT);
+                    return false;
                 }
             }
+        }
+
+        return true;
+    }
+
+    public bool PlayLevel()
+    {
+        if (playState == PlayState.PLAY) return true;
+        if (playState == PlayState.EDIT)
+        {
+            if (!AreConstraintsValid())
+            {
+                return false;
+            }
+            RecordPreviousCells();
         }
 
         playSpeed = 1;
@@ -92,6 +120,7 @@ public class LevelManager : Singleton<LevelManager>
         CellUpdate();
 
         StartCoroutine("CellCoroutine");
+        return true;
     }
 
     public void FastForwardLevel()
@@ -107,6 +136,10 @@ public class LevelManager : Singleton<LevelManager>
     public void StopLevel()
     {
         background.sprite = ImageManager.Inst.backgroundSprites[0];
+        if (playState == PlayState.ERROR)
+        {
+            return;
+        }
         for (int i = 0; i < currentLevel.size.x; ++i)
         {
             for (int j = 0; j < currentLevel.size.y; ++j)
@@ -119,21 +152,19 @@ public class LevelManager : Singleton<LevelManager>
         StopCoroutine("CellCoroutine");
     }
 
-    public void PlayFrame()
+    public bool PlayFrame()
     {
         if (playState == PlayState.EDIT)
         {
-            previousCells = new Cell[currentLevel.size.x, currentLevel.size.y];
-            for (int i = 0; i < currentLevel.size.x; ++i)
+            if (!AreConstraintsValid())
             {
-                for (int j = 0; j < currentLevel.size.y; ++j)
-                {
-                    previousCells[i, j] = currentLevel.map[i, j];
-                }
+                return false;
             }
+            RecordPreviousCells();
         }
         NextState();
         CellUpdate();
+        return true;
     }
 
     private void NextState()

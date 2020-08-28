@@ -32,6 +32,11 @@ public class InGameButtonController : MonoBehaviour
                 button[1].ChangeButtonState(ButtonState.PLAYFRAME);
                 button[2].ChangeButtonState(ButtonState.STOP);
                 break;
+            case PlayState.ERROR:
+                button[0].ChangeButtonState(ButtonState.STOP);
+                button[1].ChangeButtonState(ButtonState.STOP);
+                button[2].ChangeButtonState(ButtonState.STOP);
+                break;
         }
     }
 

@@ -128,10 +128,6 @@ public class Level
                 {
                     continue;
                 }
-                if (rules[k].constraints[i].target == Cell.NULL) // constraint의 target이 비어있으면 play 자체를 skip함
-                {
-                    return -2;
-                }
                 int val = check[rules[k].constraints[i].target];
                 if (rules[k].constraints[i].ConstraintMatches(val))
                 {
@@ -182,10 +178,6 @@ public class Level
             {
                 matchRuleNo = RuleMatchCheck(new Vector2Int(i, j));
                 if (matchRuleNo == -1) continue;
-                else if (matchRuleNo == -2)
-                {
-                    return -1;
-                }
                 else
                 {
                     tempMap[i, j] = rules[matchRuleNo].outcome;
