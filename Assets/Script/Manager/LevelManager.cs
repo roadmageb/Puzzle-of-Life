@@ -87,6 +87,10 @@ public class LevelManager : Singleton<LevelManager>
         }
 
         playSpeed = 1;
+
+        NextState();
+        CellUpdate();
+
         StartCoroutine("CellCoroutine");
     }
 
@@ -135,7 +139,13 @@ public class LevelManager : Singleton<LevelManager>
     private void NextState()
     {
         stepCount += 1;
-        currentLevel.NextState();
+        if (currentLevel.NextState() != 0)
+        {
+            stepCount = 0;
+            StopLevel();
+            SetPlayState(PlayState.EDIT);
+            CellUpdate();
+        }
     }
     private IEnumerator CellCoroutine()
     {
@@ -143,7 +153,7 @@ public class LevelManager : Singleton<LevelManager>
         while (true)
         {
             timer += Time.deltaTime;
-            if (timer >= normalInterval/playSpeed)
+            if (timer >= normalInterval / playSpeed)
             {
                 timer = 0;
                 NextState();
@@ -315,7 +325,7 @@ public class LevelManager : Singleton<LevelManager>
         CellInstantiate();
         RuleInstantiate();
         PaletteInstantiate();
-        MapScale(7);
+        MapScale(6);
     }
 
     private void OnMouseUp()

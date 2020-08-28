@@ -124,9 +124,13 @@ public class Level
 
             for (int i = 0; i < rules[k].constraints.Count; ++i) // constraint도 일치하는지 확인함
             {
-                if (rules[k].constraints[i].state != ConstraintState.NORMAL)
+                if (rules[k].constraints[i].state != ConstraintState.NORMAL) // constraint가 dummy 상태이면 skip함
                 {
                     continue;
+                }
+                if (rules[k].constraints[i].target == Cell.NULL) // constraint의 target이 비어있으면 play 자체를 skip함
+                {
+                    return -2;
                 }
                 int val = check[rules[k].constraints[i].target];
                 if (rules[k].constraints[i].ConstraintMatches(val))
@@ -159,7 +163,7 @@ public class Level
         }
         return matchRuleNo; // 해당하는 rule이 없으면 -1을, 있으면 해당하는 rule의 번호를 반환
     }
-    public void NextState()
+    public int NextState()
     {
         int matchRuleNo;
         // 다음 state로 이동하기 전에 현재 state의 map을 저장함
@@ -178,6 +182,10 @@ public class Level
             {
                 matchRuleNo = RuleMatchCheck(new Vector2Int(i, j));
                 if (matchRuleNo == -1) continue;
+                else if (matchRuleNo == -2)
+                {
+                    return -1;
+                }
                 else
                 {
                     tempMap[i, j] = rules[matchRuleNo].outcome;
@@ -192,6 +200,8 @@ public class Level
                 map[i, j] = tempMap[i, j];
             }
         }
+
+        return 0;
     }
 
     public bool ClearCheck()
