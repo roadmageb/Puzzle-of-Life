@@ -44,7 +44,7 @@ public class ImageManager : Singleton<ImageManager>
     public Sprite[] topBoardSpeedSprites;
     public Sprite[] topBoardStepSprites;
     // Start is called before the first frame update
-    void Start()
+    new void Awake()
     {
         cellSpriteDict = new Dictionary<Cell, Sprite>();
         symbolSpriteDict = new Dictionary<ConstraintType, Sprite>();

@@ -42,6 +42,7 @@ public class TopBoardController : MonoBehaviour
         }
         ChangeString("EDIT");
 
+        if (GameManager.Inst.isTestMode) { return; }
         if (GameManager.Inst.IsCleared(GameManager.Inst.stage, GameManager.Inst.level))
         {
             nextButton.ThisLevelIsCleared();
