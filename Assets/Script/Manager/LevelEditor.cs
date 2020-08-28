@@ -50,7 +50,7 @@ public class LevelEditor : MonoBehaviour
     {
         try
         {
-            string str = File.ReadAllText(Application.dataPath + "/Resources/" + GameManager.Inst.editNum.ToString() + ".json");
+            string str = File.ReadAllText(Application.dataPath + "/Resources/Maps/CustomStage/" + GameManager.Inst.editNum.ToString() + ".json");
             Level level = JsonConvert.DeserializeObject<Level>(str);
             foreach (Rule rule in level.rules)
             {
@@ -95,7 +95,7 @@ public class LevelEditor : MonoBehaviour
         }
         LevelManager.Inst.currentLevel.palette = palette;
         string levelstr = JsonConvert.SerializeObject(level);
-        File.WriteAllText(Application.dataPath + "/Resources/" + GameManager.Inst.editNum.ToString() + ".json", levelstr);
+        File.WriteAllText(Application.dataPath + "/Resources/Maps/CustomStage/" + GameManager.Inst.editNum.ToString() + ".json", levelstr);
         SceneManager.LoadScene("SelectScene");
     }
     private void Start()
