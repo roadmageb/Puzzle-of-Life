@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EditLevelSelectButton : SelectButton
 {
@@ -23,8 +24,8 @@ public class EditLevelSelectButton : SelectButton
 
     protected override void ButtonAction()
     {
-        //SelectSceneManager.Inst.LevelSelected(LevelToGo);
-        Debug.Log(LevelToGo);
+        GameManager.Inst.editNum = LevelToGo;
+        SceneManager.LoadScene("LevelEditor");
         if (Edit)
         {
             AudioManager.Inst.ButtonClicked();

@@ -85,6 +85,7 @@ public class PaletteCellController : CellController
             return;
         }
 
+        AudioManager.Inst.CellUp();
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "SelectedCell";
 
         Vector3 tempVec = Input.mousePosition;
@@ -106,6 +107,7 @@ public class PaletteCellController : CellController
 
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "Cell";
 
+        AudioManager.Inst.CellDown();
         cellForeground.localPosition = new Vector3(0, 0, 0);
 
         if (LevelManager.Inst.cellUnderCursor != null && LevelManager.Inst.cellUnderCursor.replaceability) // 놓을 수 있는 공간이라면

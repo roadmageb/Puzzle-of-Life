@@ -6,27 +6,19 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelEditor : MonoBehaviour
 {
-    public InputField stageName;
-    public Dropdown cellPalette, constraintType;
-    public Toggle constraintReplaceability;
     public Cell selectedCell;
     public bool selectedReplaceability;
-    public ConstraintType selectedConstraintType;
-    public Button editModeButton;
     public bool editMode { get; set; } // true = CellEdit, false = ReplacementEdit
     public void NewLevel()
     {
         Level level = new Level(new Vector2Int(3, 3));
         LevelManager.Inst.currentLevel = level;
         LevelManager.Inst.MapInstantiate();
-    }
-    public void ChangeSelectedCell()
-    {
-        selectedCell = (Cell)System.Enum.Parse(typeof(Cell), cellPalette.options[cellPalette.value].text);
     }
     public void TestLevel()
     {
@@ -50,7 +42,7 @@ public class LevelEditor : MonoBehaviour
         LevelManager.Inst.currentLevel.palette = palette;
         string levelstr = JsonConvert.SerializeObject(level);
         File.WriteAllText(Application.dataPath + "/Resources/test.json", levelstr);
-        Debug.Log("Save complete.");
+        //Debug.Log("Save complete.");
 
         GameManager.Inst.TestLevel();
     }
@@ -58,7 +50,7 @@ public class LevelEditor : MonoBehaviour
     {
         try
         {
-            string str = File.ReadAllText(Application.dataPath + "/Resources/" + stageName.text + ".json");
+            string str = File.ReadAllText(Application.dataPath + "/Resources/" + GameManager.Inst.editNum.ToString() + ".json");
             Level level = JsonConvert.DeserializeObject<Level>(str);
             foreach (Rule rule in level.rules)
             {
@@ -77,10 +69,10 @@ public class LevelEditor : MonoBehaviour
         catch (FileNotFoundException e)
         {
             Debug.Log(e);
-            return;
+            NewLevel();
+            //return;
         }
         LevelManager.Inst.MapInstantiate();
-        Debug.Log("Load complete.");
     }
     public void SaveLevelIntoJson()
     {
@@ -103,8 +95,8 @@ public class LevelEditor : MonoBehaviour
         }
         LevelManager.Inst.currentLevel.palette = palette;
         string levelstr = JsonConvert.SerializeObject(level);
-        File.WriteAllText(Application.dataPath + "/Resources/" + stageName.text + ".json", levelstr);
-        Debug.Log("Save complete.");
+        File.WriteAllText(Application.dataPath + "/Resources/" + GameManager.Inst.editNum.ToString() + ".json", levelstr);
+        SceneManager.LoadScene("SelectScene");
     }
     private void Start()
     {
@@ -136,14 +128,13 @@ public class LevelEditor : MonoBehaviour
                 return;
             }
             LevelManager.Inst.MapInstantiate();
-            Debug.Log("Load complete.");
+            //Debug.Log("Load complete.");
 
             GameManager.Inst.back = false;
         }
         else
         {
-            LevelManager.Inst.currentLevel = new Level(new Vector2Int(3, 3));
-            LevelManager.Inst.MapInstantiate();
+            LoadLevelIntoJson();
         }
     }
     private void Update()

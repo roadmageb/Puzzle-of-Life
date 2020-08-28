@@ -66,6 +66,7 @@ public class RuleCellController : CellController
             return;
         }
 
+        AudioManager.Inst.CellUp();
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "SelectedCell";
         cellForeground.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
 
@@ -84,6 +85,7 @@ public class RuleCellController : CellController
             return;
         }
 
+        AudioManager.Inst.CellDown();
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "Cell";
         cellForeground.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
 

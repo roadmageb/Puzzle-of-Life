@@ -35,6 +35,7 @@ public class MapCellController : CellController
             return;
         }
 
+        AudioManager.Inst.CellUp();
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "SelectedCell";
 
         Vector3 tempVec = Input.mousePosition;
@@ -52,6 +53,7 @@ public class MapCellController : CellController
             return;
         }
 
+        AudioManager.Inst.CellDown();
         cellForeground.GetComponent<SpriteRenderer>().sortingLayerName = "Cell";
 
         cellForeground.localPosition = new Vector3(0, 0, 0);

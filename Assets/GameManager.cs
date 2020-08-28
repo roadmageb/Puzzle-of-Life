@@ -30,6 +30,7 @@ public class GameManager : Singleton<GameManager>
      이를 통하여 LevelEditor에서는 test.json을 불러들이게 되며, LevelEditor에서 다시 back flag를 false로 지정하도록 함.
      */
     public bool isTestMode, back;
+    public int editNum;
 
     protected override void Awake()
     {
