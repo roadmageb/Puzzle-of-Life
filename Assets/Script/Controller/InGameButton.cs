@@ -34,10 +34,12 @@ public class InGameButton : MonoBehaviour
             case ButtonState.FASTFORWARD:
                 LevelManager.Inst.FastForwardLevel();
                 LevelManager.Inst.SetPlayState(PlayState.PLAY);
+                AudioManager.Inst.ButtonClicked();
                 break;
             case ButtonState.PAUSE:
                 LevelManager.Inst.PauseLevel();
                 LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
+                AudioManager.Inst.ButtonClicked();
                 break;
             case ButtonState.PLAYFRAME:
                 LevelManager.Inst.PlayFrame();
@@ -45,15 +47,18 @@ public class InGameButton : MonoBehaviour
                 break;
             case ButtonState.RESETGRAY:
                 LevelManager.Inst.SetPlayState(PlayState.EDITTOINIT);
+                AudioManager.Inst.ButtonClicked();
                 break;
             case ButtonState.RESETRED:
                 LevelManager.Inst.MapReset();
                 LevelManager.Inst.SetPlayState(PlayState.EDIT);
                 LevelManager.Inst.topBoardController.ChangeResetTime();
+                AudioManager.Inst.PuzzleReset();
                 break;
             case ButtonState.STOP:
                 LevelManager.Inst.StopLevel();
                 LevelManager.Inst.SetPlayState(PlayState.EDIT);
+                AudioManager.Inst.ButtonClicked();
                 break;
         }
     }

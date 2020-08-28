@@ -130,6 +130,7 @@ public class LevelManager : Singleton<LevelManager>
         }
         NextState();
         CellUpdate();
+        AudioManager.Inst.GenerationReplacement();
     }
 
     private void NextState()
@@ -148,6 +149,7 @@ public class LevelManager : Singleton<LevelManager>
                 timer = 0;
                 NextState();
                 CellUpdate();
+                AudioManager.Inst.GenerationReplacement();
             }
             yield return null;
         }

@@ -42,22 +42,27 @@ public class TopBoard : MonoBehaviour
             switch (boardState)
             {
                 case BoardState.MENUBLACK:
+                    AudioManager.Inst.ButtonClicked();
                     timeMenu = 1.0f;
                     boardState = BoardState.MENUYELLOW;
                     GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.topBoardSprites[(int)boardState * 2];
                     break;
                 case BoardState.MENUYELLOW:
+                    AudioManager.Inst.ButtonClicked();
                     SceneManager.LoadScene("SelectScene");
                     break;
 
                 case BoardState.NEXTLEVELNOTABLE:
+                    AudioManager.Inst.ButtonCantBeClicked();
                     break;
                 case BoardState.NEXTLEVELBLACK:
+                    AudioManager.Inst.ButtonClicked();
                     timeNextLevel = 1.0f;
                     boardState = BoardState.NEXTLEVELGREEN;
                     GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.topBoardSprites[(int)boardState * 2];
                     break;
                 case BoardState.NEXTLEVELGREEN:
+                    AudioManager.Inst.ButtonClicked();
                     timeNextLevel = 0.0f;
                     ruleBar = transform.parent.GetComponent<TopBoardController>().rule;
                     ruleBar.transform.position = new Vector3(ruleBar.position.x, 4.5f, ruleBar.position.z);

@@ -25,6 +25,7 @@ public class TopBoardController : MonoBehaviour
     float stopTime;
     float clearTime;
     bool clearDet;
+    bool clearMusicAlreadyPlayed;
 
     public Transform rule;
 
@@ -34,6 +35,7 @@ public class TopBoardController : MonoBehaviour
         stopTime = -100.0f;
         clearTime = 0.0f;
         clearDet = false;
+        clearMusicAlreadyPlayed = false;
         float alphabetWidth = alphabetPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
         alphabets = new List<SpriteRenderer>();
 
@@ -63,6 +65,7 @@ public class TopBoardController : MonoBehaviour
         stopTime = -100.0f;
         clearTime = 0.0f;
         clearDet = false;
+        clearMusicAlreadyPlayed = false;
         LevelManager.Inst.stepCount = 0;
 
         ChangeString("EDIT");
@@ -168,6 +171,7 @@ public class TopBoardController : MonoBehaviour
             case PlayState.EDIT:
                 if(prevState == PlayState.PLAY || prevState == PlayState.PLAYFRAME) // 정지 버튼 누름
                 {
+                    clearMusicAlreadyPlayed = false;
                     ChangeString("STOP");
                     stopTime = 2.0f;
                 }
@@ -186,6 +190,7 @@ public class TopBoardController : MonoBehaviour
                 }
                 else // 시작 버튼 누름
                 {
+                    AudioManager.Inst.PuzzlePlay();
                     stopTime = -100.0f;
                     resetTime = -100.0f;
                     ChangeString(currState.ToString());
@@ -246,6 +251,12 @@ public class TopBoardController : MonoBehaviour
             {
                 alreadyCleared = true;
                 nextButton.ThisLevelIsCleared();
+            }
+
+            if (!clearMusicAlreadyPlayed) // 클리어 음악이 아직 플레이 안 됐으면 플레이함
+            {
+                AudioManager.Inst.PuzzleClear();
+                clearMusicAlreadyPlayed = true;
             }
         }
 
