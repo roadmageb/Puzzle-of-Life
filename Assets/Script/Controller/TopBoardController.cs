@@ -138,6 +138,7 @@ public class TopBoardController : MonoBehaviour
         }
         else
         {
+            stepObject.sprite = ImageManager.Inst.topBoardStepSprites[1];
             if (step < 100) // 스텝이 한 자리 수 또는 두 자리 수
             {
                 stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[(step % 10) + 3];
@@ -195,12 +196,12 @@ public class TopBoardController : MonoBehaviour
                     stopTime = -100.0f;
                     resetTime = -100.0f;
                     ChangeString(currState.ToString());
-                    if (prevState == PlayState.EDIT) // 편집 중이었을 경우 step00에 불 킴. 편집 중이 아니고 일시정지 중이었으면 실행 안 함.
+                    /*if (prevState == PlayState.EDIT) // 편집 중이었을 경우 step00에 불 킴. 편집 중이 아니고 일시정지 중이었으면 실행 안 함.
                     {
                         stepObject.sprite = ImageManager.Inst.topBoardStepSprites[1];
                         stepNumberObject[0].sprite = ImageManager.Inst.topBoardStepSprites[3];
                         stepNumberObject[1].sprite = ImageManager.Inst.topBoardStepSprites[3];
-                    }
+                    }*/
                 }
                 break;
             case PlayState.PLAYFRAME:
@@ -214,7 +215,7 @@ public class TopBoardController : MonoBehaviour
                     resetTime = -100.0f;
                     speedObject.sprite = ImageManager.Inst.topBoardSpeedSprites[0];
                     ChangeString("STEP");
-                    stepObject.sprite = ImageManager.Inst.topBoardStepSprites[1];
+                    //stepObject.sprite = ImageManager.Inst.topBoardStepSprites[1];
 
                 }
                 break;
