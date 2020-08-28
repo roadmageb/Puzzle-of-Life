@@ -14,6 +14,10 @@ public class InGameButton : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (LevelManager.Inst.GetPlayState() == PlayState.ERROR && buttonState != ButtonState.STOP)
+        {
+            return;
+        }
         GetComponent<SpriteRenderer>().sprite = ImageManager.Inst.buttonSprites[(int)buttonState * 2 + 1];
     }
 
@@ -28,8 +32,18 @@ public class InGameButton : MonoBehaviour
         switch (buttonState)
         {
             case ButtonState.PLAY:
-                LevelManager.Inst.PlayLevel();
-                LevelManager.Inst.SetPlayState(PlayState.PLAY);
+                if (LevelManager.Inst.GetPlayState() == PlayState.ERROR)
+                {
+                    return;
+                }
+                if (LevelManager.Inst.PlayLevel())
+                {
+                    LevelManager.Inst.SetPlayState(PlayState.PLAY);
+                }
+                else
+                {
+                    LevelManager.Inst.SetPlayState(PlayState.ERROR);
+                }
                 break;
             case ButtonState.FASTFORWARD:
                 LevelManager.Inst.FastForwardLevel();
@@ -42,8 +56,18 @@ public class InGameButton : MonoBehaviour
                 AudioManager.Inst.ButtonClicked();
                 break;
             case ButtonState.PLAYFRAME:
-                LevelManager.Inst.PlayFrame();
-                LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
+                if (LevelManager.Inst.GetPlayState() == PlayState.ERROR)
+                {
+                    return;
+                }
+                if (LevelManager.Inst.PlayFrame())
+                {
+                    LevelManager.Inst.SetPlayState(PlayState.PLAYFRAME);
+                }
+                else
+                {
+                    LevelManager.Inst.SetPlayState(PlayState.ERROR);
+                }
                 break;
             case ButtonState.RESETGRAY:
                 LevelManager.Inst.SetPlayState(PlayState.EDITTOINIT);
