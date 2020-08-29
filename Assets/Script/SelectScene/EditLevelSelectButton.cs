@@ -24,11 +24,11 @@ public class EditLevelSelectButton : SelectButton
 
     protected override void ButtonAction()
     {
-        GameManager.Inst.editNum = LevelToGo;
-        SceneManager.LoadScene("LevelEditor");
         if (Edit)
         {
             AudioManager.Inst.ButtonClicked();
+            GameManager.Inst.editNum = LevelToGo;
+            SceneManager.LoadScene("LevelEditor");
         }
         else
         {

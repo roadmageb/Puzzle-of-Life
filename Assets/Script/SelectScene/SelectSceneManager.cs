@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class SelectSceneManager : Singleton<SelectSceneManager>
 {
@@ -38,7 +39,12 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
         {
             GameObject created_instance = Instantiate(prefEditLevelSelectButton, objEditModeScreen.transform);
             created_instance.transform.position += new Vector3(-6 + (i % 9) * 1.5f, 4 - (i / 9) * 1.5f, 0);
-            created_instance.GetComponent<EditLevelSelectButton>().SetEditLevelSelectButton(i + 1, false);
+            bool ip = false;
+            if (File.Exists(Path.Combine(Application.persistentDataPath + "/CustomStage/" + (i + 1) + ".json")))
+            {
+                ip = true;
+            }
+            created_instance.GetComponent<EditLevelSelectButton>().SetEditLevelSelectButton(i + 1, ip);
             EditModeScreenEditLevelSelectButtonList.Add(created_instance);
         }
     }
