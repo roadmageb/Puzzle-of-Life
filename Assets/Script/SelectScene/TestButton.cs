@@ -27,7 +27,11 @@ public class TestButton : SelectButton
         }
         LevelManager.Inst.currentLevel.palette = palette;
         string levelstr = JsonConvert.SerializeObject(level);
-        File.WriteAllText(Application.dataPath + "/Resources/test.json", levelstr);
+        if (!Directory.Exists(Application.persistentDataPath + "/CustomStage"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/CustomStage");
+        }
+        File.WriteAllText(Application.persistentDataPath + "/CustomStage/test.json", levelstr);
 
         GameManager.Inst.TestLevel();
     }

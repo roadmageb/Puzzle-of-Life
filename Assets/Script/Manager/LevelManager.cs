@@ -418,7 +418,7 @@ public class LevelManager : Singleton<LevelManager>
             {
                 try
                 {
-                    MapReset("test");
+                    CustomMapReset("test");
                 }
                 catch (Exception e)
                 {

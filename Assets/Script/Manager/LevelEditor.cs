@@ -20,32 +20,7 @@ public class LevelEditor : MonoBehaviour
         LevelManager.Inst.currentLevel = level;
         LevelManager.Inst.MapInstantiate();
     }
-    public void TestLevel()
-    {
-        Level level = LevelManager.Inst.currentLevel;
-        foreach (Rule rule in level.rules)
-        {
-            rule.RemoveConstraint(rule.constraints.Count - 1);
-        }
-        List<CellNumPair> palette = new List<CellNumPair>();
-        foreach (CellNumPair pair in level.palette)
-        {
-            if (pair.num == 0)
-            {
-                continue;
-            }
-            else
-            {
-                palette.Add(pair);
-            }
-        }
-        LevelManager.Inst.currentLevel.palette = palette;
-        string levelstr = JsonConvert.SerializeObject(level);
-        File.WriteAllText(Application.dataPath + "/Resources/test.json", levelstr);
-        //Debug.Log("Save complete.");
-
-        GameManager.Inst.TestLevel();
-    }
+    
     public void LoadLevelIntoJson()
     {
         try
@@ -87,7 +62,7 @@ public class LevelEditor : MonoBehaviour
         {
             try
             {
-                string str = File.ReadAllText(Application.dataPath + "/Resources/test.json");
+                string str = File.ReadAllText(Application.persistentDataPath + "/CustomStage/test.json");
                 Level level = JsonConvert.DeserializeObject<Level>(str);
                 foreach (Rule rule in level.rules)
                 {
@@ -105,7 +80,7 @@ public class LevelEditor : MonoBehaviour
             }
             catch (FileNotFoundException e)
             {
-                //Debug.Log(e);
+                Debug.Log(e);
                 return;
             }
             LevelManager.Inst.MapInstantiate();
