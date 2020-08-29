@@ -248,7 +248,7 @@ public class TopBoardController : MonoBehaviour
                 clearTime -= Time.deltaTime;
             }
 
-            if (!alreadyCleared) // 이미 클리어되어있던 레벨이 아닐 경우, 다음 레벨 버튼 활성화
+            if (!alreadyCleared && GameManager.Inst.stage != -1) // 이미 클리어되어있던 레벨이 아닐 경우, 다음 레벨 버튼 활성화
             {
                 alreadyCleared = true;
                 nextButton.ThisLevelIsCleared();

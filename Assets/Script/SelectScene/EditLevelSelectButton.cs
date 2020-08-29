@@ -28,6 +28,7 @@ public class EditLevelSelectButton : SelectButton
         {
             AudioManager.Inst.ButtonClicked();
             GameManager.Inst.editNum = LevelToGo;
+            GameManager.Inst.stage = -1;
             SceneManager.LoadScene("LevelEditor");
         }
         else

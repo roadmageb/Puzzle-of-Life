@@ -47,6 +47,19 @@ public class SelectSceneManager : Singleton<SelectSceneManager>
             created_instance.GetComponent<EditLevelSelectButton>().SetEditLevelSelectButton(i + 1, ip);
             EditModeScreenEditLevelSelectButtonList.Add(created_instance);
         }
+
+        if(GameManager.Inst.stage > 0)
+        {
+            CloseLevelSelectScreen();
+            SelectedStage = GameManager.Inst.stage;
+            SetLevelSelectScreen();
+            objCamera.transform.position = objLevelSelectScreen.transform.position + CameraZPosition;
+            objStageSelectButtonsScreen.transform.position = new Vector3(-15 * (SelectedStage - 1), -3, 0);
+        }
+        else if(GameManager.Inst.stage == -1)
+        {
+            objCamera.transform.position = objEditModeScreen.transform.position + CameraZPosition;
+        }
     }
 
     public void StageChange(int i)
