@@ -219,6 +219,9 @@ public class TopBoardController : MonoBehaviour
 
                 }
                 break;
+            case PlayState.ERROR:
+                ChangeString("ERROR");
+                break;
         }
     }
 
