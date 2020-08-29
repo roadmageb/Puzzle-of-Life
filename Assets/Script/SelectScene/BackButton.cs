@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackToLevelEditor : MonoBehaviour
+public class BackButton : SelectButton
 {
-    public void Back()
+    protected override void ButtonAction()
     {
         GameManager.Inst.BackToLevelEditor();
     }
