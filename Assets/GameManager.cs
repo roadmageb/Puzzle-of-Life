@@ -85,6 +85,7 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadPuzzle(int StageToGo, int LevelToGo)
     {
+        isTestMode = false;
         stage = StageToGo;
         level = LevelToGo;
         SceneManager.LoadScene("PuzzleScene");
@@ -92,6 +93,7 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadCustomPuzzle(int LevelToGo)
     {
+        isTestMode = false;
         stage = -1;
         level = LevelToGo;
         SceneManager.LoadScene("PuzzleScene");

@@ -329,9 +329,8 @@ public class LevelManager : Singleton<LevelManager>
         background.sprite = ImageManager.Inst.backgroundSprites[0];
         try
         {
-            string str = File.ReadAllText(currentLevelPath);
+            string str = GameManager.Inst.stage == -1 ? File.ReadAllText(currentLevelPath) : (Resources.Load(currentLevelPath) as TextAsset).ToString();
             Level level = JsonConvert.DeserializeObject<Level>(str);
-
             currentLevel = level;
         }
         catch (FileNotFoundException e)
@@ -350,7 +349,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void MapReset(string str)
     {
-        currentLevelPath = Application.dataPath + "/Resources/" + str + ".json";
+        currentLevelPath = str;
         MapReset();
     }
 

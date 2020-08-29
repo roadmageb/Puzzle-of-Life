@@ -29,7 +29,7 @@ public class TopBoardController : MonoBehaviour
 
     public Transform rule;
 
-    void Start()
+    private void Awake()
     {
         resetTime = -100.0f;
         stopTime = -100.0f;
@@ -45,6 +45,9 @@ public class TopBoardController : MonoBehaviour
             alphabets.Add(obj.GetComponent<SpriteRenderer>());
             obj.transform.localPosition = new Vector3(alphabetWidth * i, 0, 0);
         }
+    }
+    void Start()
+    {
         ChangeString("EDIT");
 
         if (GameManager.Inst.isTestMode || GameManager.Inst.stage == -1) { return; }
