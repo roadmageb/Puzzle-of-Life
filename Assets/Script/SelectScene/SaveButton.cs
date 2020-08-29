@@ -28,7 +28,11 @@ public class SaveButton : SelectButton
         }
         LevelManager.Inst.currentLevel.palette = palette;
         string levelstr = JsonConvert.SerializeObject(level);
-        File.WriteAllText(Application.dataPath + "/Resources/Maps/CustomStage/" + GameManager.Inst.editNum.ToString() + ".json", levelstr);
+        if (!Directory.Exists(Application.persistentDataPath + "/CustomStage"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/CustomStage");
+        }
+        File.WriteAllText(Application.persistentDataPath + "/CustomStage/" + GameManager.Inst.editNum.ToString() + ".json", levelstr);
         SceneManager.LoadScene("SelectScene");
     }
 }

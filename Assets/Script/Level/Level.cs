@@ -128,6 +128,11 @@ public class Level
                 {
                     continue;
                 }
+                if (!check.ContainsKey(rules[k].constraints[i].target))
+                {
+                    constraintFlag = true;
+                    break;
+                }
                 int val = check[rules[k].constraints[i].target];
                 if (rules[k].constraints[i].ConstraintMatches(val))
                 {

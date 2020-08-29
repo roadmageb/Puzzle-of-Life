@@ -50,7 +50,7 @@ public class LevelEditor : MonoBehaviour
     {
         try
         {
-            string str = File.ReadAllText(Application.dataPath + "/Resources/Maps/CustomStage/" + GameManager.Inst.editNum.ToString() + ".json");
+            string str = File.ReadAllText(Application.persistentDataPath + "/CustomStage/" + GameManager.Inst.editNum.ToString() + ".json");
             Level level = JsonConvert.DeserializeObject<Level>(str);
             foreach (Rule rule in level.rules)
             {
@@ -66,37 +66,18 @@ public class LevelEditor : MonoBehaviour
             }
             LevelManager.Inst.currentLevel = level;
         }
+        catch (DirectoryNotFoundException e)
+        {
+            //Debug.Log(e);
+            NewLevel();
+        }
         catch (FileNotFoundException e)
         {
-            Debug.Log(e);
+            //Debug.Log(e);
             NewLevel();
             //return;
         }
         LevelManager.Inst.MapInstantiate();
-    }
-    public void SaveLevelIntoJson()
-    {
-        Level level = LevelManager.Inst.currentLevel;
-        foreach (Rule rule in level.rules)
-        {
-            rule.RemoveConstraint(rule.constraints.Count - 1);
-        }
-        List<CellNumPair> palette = new List<CellNumPair>();
-        foreach (CellNumPair pair in level.palette)
-        {
-            if (pair.num == 0)
-            {
-                continue;
-            }
-            else
-            {
-                palette.Add(pair);
-            }
-        }
-        LevelManager.Inst.currentLevel.palette = palette;
-        string levelstr = JsonConvert.SerializeObject(level);
-        File.WriteAllText(Application.dataPath + "/Resources/Maps/CustomStage/" + GameManager.Inst.editNum.ToString() + ".json", levelstr);
-        SceneManager.LoadScene("SelectScene");
     }
     private void Start()
     {
@@ -124,7 +105,7 @@ public class LevelEditor : MonoBehaviour
             }
             catch (FileNotFoundException e)
             {
-                Debug.Log(e);
+                //Debug.Log(e);
                 return;
             }
             LevelManager.Inst.MapInstantiate();
