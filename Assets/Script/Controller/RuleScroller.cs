@@ -8,7 +8,7 @@ public class RuleScroller : MonoBehaviour
     public Transform rule;
     private float ruleMaxY, ruleMinY;
     private Vector2 mouseCoord;
-    private float wheelOffset;
+    private float ruleOffset, wheelOffset;
 
     private void Scroll(float diff)
     {
@@ -29,14 +29,15 @@ public class RuleScroller : MonoBehaviour
     private void Start()
     {
         ruleMinY = rule.position.y;
-        ruleMaxY = rule.position.y + LevelManager.Inst.wholeRuleHeight - GetComponent<BoxCollider2D>().size.y * transform.localScale.y;
+        ruleMaxY = rule.position.y + LevelManager.Inst.wholeRuleHeight - GetComponent<BoxCollider2D>().size.y * transform.localScale.y + ruleOffset;
         wheelOffset = 1.25f;
+        ruleOffset = 0.5f;
     }
 
 
     private void OnMouseDown()
     {
-        ruleMaxY = ruleMinY + LevelManager.Inst.wholeRuleHeight - GetComponent<BoxCollider2D>().size.y * transform.localScale.y;
+        ruleMaxY = ruleMinY + LevelManager.Inst.wholeRuleHeight - GetComponent<BoxCollider2D>().size.y * transform.localScale.y + ruleOffset;
         if (LevelManager.Inst.isEditorMode)
         {
             ruleMaxY += 1.5f;
@@ -58,7 +59,7 @@ public class RuleScroller : MonoBehaviour
 
         if (scrollDelta != 0.0f)
         {
-            ruleMaxY = ruleMinY + LevelManager.Inst.wholeRuleHeight - GetComponent<BoxCollider2D>().size.y * transform.localScale.y;
+            ruleMaxY = ruleMinY + LevelManager.Inst.wholeRuleHeight - GetComponent<BoxCollider2D>().size.y * transform.localScale.y + ruleOffset;
             if (LevelManager.Inst.isEditorMode)
             {
                 ruleMaxY += 1.5f;
