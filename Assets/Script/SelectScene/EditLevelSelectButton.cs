@@ -35,6 +35,7 @@ public class EditLevelSelectButton : SelectButton
             if (IsPlayable)
             {
                 AudioManager.Inst.ButtonClicked();
+                GameManager.Inst.LoadCustomPuzzle(LevelToGo);
             }
             else
             {

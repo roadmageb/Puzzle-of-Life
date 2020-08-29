@@ -32,7 +32,7 @@ public class LevelManager : Singleton<LevelManager>
     public float wholeRuleHeight { get; private set; }
     //private float interval;
     public float normalInterval = 1.0f;
-    private string currentLevelName;
+    private string currentLevelPath;
     public bool isEditorMode { get; private set; }
 
     public TopBoardController topBoardController;
@@ -329,7 +329,7 @@ public class LevelManager : Singleton<LevelManager>
         background.sprite = ImageManager.Inst.backgroundSprites[0];
         try
         {
-            string str = File.ReadAllText(Application.dataPath + "/Resources/" + currentLevelName + ".json");
+            string str = File.ReadAllText(currentLevelPath);
             Level level = JsonConvert.DeserializeObject<Level>(str);
 
             currentLevel = level;
@@ -342,9 +342,15 @@ public class LevelManager : Singleton<LevelManager>
         MapInstantiate();
     }
 
+    public void CustomMapReset(string str)
+    {
+        currentLevelPath = Application.persistentDataPath + "/CustomStage/" + str + ".json";
+        MapReset();
+    }
+
     public void MapReset(string str)
     {
-        currentLevelName = str;
+        currentLevelPath = Application.dataPath + "/Resources/" + str + ".json";
         MapReset();
     }
 
@@ -385,13 +391,27 @@ public class LevelManager : Singleton<LevelManager>
         {
             if (!GameManager.Inst.isTestMode)
             {
-                try
+                if (GameManager.Inst.stage == -1)
                 {
-                    MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+                    try
+                    {
+                        CustomMapReset(GameManager.Inst.level.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log(e);
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    Debug.Log(e);
+                    try
+                    {
+                        MapReset("Maps/Stage" + GameManager.Inst.stage.ToString() + "/" + GameManager.Inst.stage.ToString() + "-" + GameManager.Inst.level.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log(e);
+                    }
                 }
             }
             else
